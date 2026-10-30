@@ -103,6 +103,25 @@ svg.f { fill: currentColor; stroke: none; }
 .dafbox { display: flex; gap: .5rem; }
 .dafbox input { flex: 1; min-width: 0; border: 1px solid var(--line); background: var(--surface); border-radius: 6px; padding: .55rem .7rem; }
 
+.week { background: var(--accent); color: var(--accent-ink); border-radius: 4px; padding: 1.5rem; display: grid; gap: 1rem; box-shadow: var(--shadow); }
+.week-top { display: flex; justify-content: space-between; gap: .5rem 1rem; flex-wrap: wrap; align-items: baseline; }
+.week .eyebrow { color: inherit; opacity: .75; }
+.now { font-size: .9rem; }
+.now b, .now .he { font-weight: 700; }
+.now .he { margin-left: .35rem; font-size: 1.05rem; }
+.week-ep { display: flex; gap: 1rem; align-items: center; }
+.week .big-play { background: var(--accent-ink); color: var(--accent); flex: none; }
+.week-ep a { text-decoration: none; display: grid; gap: .25rem; min-width: 0; }
+.week .ep-meta { color: inherit; opacity: .75; }
+.week-title { font-size: 1.45rem; font-weight: 700; line-height: 1.2; text-wrap: balance; }
+.week p { margin: 0; opacity: .9; max-width: 55ch; }
+.week-sub { display: flex; justify-content: space-between; align-items: center; gap: .75rem 1rem; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid color-mix(in srgb, var(--accent-ink) 25%, transparent); font-size: .88rem; }
+.week-sub .actions { gap: .5rem; }
+.chip-l { border: 1.5px solid currentColor; border-radius: 999px; padding: .35rem .85rem; background: transparent; color: inherit; font-weight: 600; font-size: .82rem; cursor: pointer; }
+.lib-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem 2rem; flex-wrap: wrap; }
+.lib-head p { margin: .25rem 0 0; color: var(--muted); font-size: .92rem; max-width: 40ch; }
+.h2 { font-size: 1.45rem; font-weight: 700; margin: .2rem 0 0; line-height: 1.2; }
+.tag { background: var(--accent-soft); color: var(--accent); border-radius: 4px; padding: 0 .4rem; font-weight: 600; }
 .lede { font-size: 1.6rem; line-height: 1.4; font-weight: 400; margin: 0; max-width: 34ch; text-wrap: pretty; }
 .lede b { font-weight: 700; }
 .stats { display: flex; gap: 2.75rem; flex-wrap: wrap; }
@@ -213,6 +232,8 @@ h1.title { font-size: 2.2rem; line-height: 1.15; font-weight: 700; margin: 0; te
   .side-more { padding-top: 2rem; }
   .lede { font-size: 1.25rem; }
   .stats { gap: 1.5rem; }
+  .week { padding: 1.15rem; }
+  .week-title { font-size: 1.2rem; }
   .stat b { font-size: 1.15rem; }
   .ep-meta { letter-spacing: .04em; gap: .35rem; }
   .ep-meta .dot::before { margin-right: .35rem; }
@@ -352,6 +373,8 @@ MASECHTOS.forEach((m, mi) => {
 SHIURIM.sort((a, b) => b.given - a.given);
 const BY_ID = Object.fromEntries(SHIURIM.map(s => [s.id, s]));
 const BY_SLUG = Object.fromEntries(MASECHTOS.map(m => [m.slug, m]));
+const FEED_START = new Date("2026-09-22T00:00:00Z"); // shiurim given on or after this date are also in the weekly podcast
+const inFeed = s => s.given >= FEED_START;
 const TOTAL_HOURS = Math.round(SHIURIM.reduce((a, s) => a + s.dur, 0) / 3600);
 
 function chaptersFor(s) {
@@ -433,7 +456,7 @@ function epItem(s, terms, showM = true) {
   return `<li class="ep">
     <button class="ep-play" data-play="${s.id}" aria-pressed="${playing(s.id)}" aria-label="${playing(s.id) ? "Pause" : "Play"} ${esc(s.title)}">${playing(s.id) ? PAUSE : PLAY}</button>
     <a class="ep-body" href="#s-${s.id}">
-      <span class="ep-meta num">${showM ? `<span>${s.m.name} ${dafRange(s)}</span>` : `<span>Daf ${dafRange(s)}</span>`}<span class="dot">${fmtDate(s.given)}</span><span class="dot">${Math.round(s.dur / 60)} mins</span></span>
+      <span class="ep-meta num">${showM ? `<span>${s.m.name} ${dafRange(s)}</span>` : `<span>Daf ${dafRange(s)}</span>`}<span class="dot">${fmtDate(s.given)}</span><span class="dot">${Math.round(s.dur / 60)} mins</span>${inFeed(s) ? `<span class="tag">Podcast</span>` : ""}</span>
       <span class="ep-title">${showM ? "" : `Shiur ${s.number}: `}${hl(s.title, terms)}</span>
       <p class="ep-sum">${hl(s.summary, terms)}</p>
     </a>
@@ -480,7 +503,7 @@ function renderResults() {
   }
   const label = r.terms.length ? `${list.length} result${list.length === 1 ? "" : "s"}${r.m ? " in " + r.m.name : ""}` : r.dafHit ? "" : `${list.length} shiurim${r.m ? ` · Daf ${r.m.shiurim[0].dafStart}–${r.m.shiurim.at(-1).dafEnd}` : ""}`;
   box.innerHTML = `
-    ${!state.q ? `<p class="hint">Try <code>Kesuvos 17a</code>, <code>Ketubot 62b</code> or <code>Hillel</code>. Ashkenazi and Sephardi spellings both work.</p>` : ""}
+    ${!state.q ? `<p class="hint">Try <code>Kesuvos 17a</code>, <code>Ketubot 62b</code> or <code>Hillel</code>. Ashkenazi and Sephardi spellings both work. Shiurim tagged <span class="tag">Podcast</span> are also in the weekly feed.</p>` : ""}
     ${notice ? `<div class="notice">${notice}</div>` : ""}
     ${label ? `<div class="count num">${label.toUpperCase()}</div>` : ""}
     ${list.length ? `<ul class="eps">${list.map(s => epItem(s, r.terms, showM)).join("")}</ul>`
@@ -498,12 +521,25 @@ function viewHome() {
     </div>
     <div class="side-more">${sideBlocks()}</div>
     <section class="main-col">
-      <p class="lede"><b>Ein Yaakov with ${RAV}</b> is a weekly shiur on the aggados of the Gemara, masechta by masechta. Every shiur since the beginning, searchable by masechta, daf and topic.</p>
-      <div class="stats num">
-        <div class="stat"><small>Shiurim</small><b>${SHIURIM.length}</b></div>
-        <div class="stat"><small>Masechtos</small><b>${MASECHTOS.length}</b></div>
-        <div class="stat"><small>Hours</small><b>${TOTAL_HOURS}</b></div>
-        <div class="stat"><small>Latest</small><b><a href="#s-${latest.id}" style="text-decoration:none">${latest.m.name} ${latest.dafStart}</a></b></div>
+      <p class="lede"><b>Ein Yaakov with ${RAV}</b>, a weekly shiur on the aggados of the Gemara. Follow along each week, or learn at your own pace from the library.</p>
+      <div class="week">
+        <div class="week-top"><span class="eyebrow">This week's shiur</span><span class="now">Now learning <b>${latest.m.name}</b><span class="he" lang="he">${latest.m.he}</span></span></div>
+        <div class="week-ep">
+          <button class="big-play" data-play="${latest.id}" aria-label="Play">${PLAY}</button>
+          <a href="#s-${latest.id}"><span class="ep-meta num"><span>${latest.m.name} ${dafRange(latest)}</span><span class="dot">${fmtDate(latest.given)}</span><span class="dot">${Math.round(latest.dur / 60)} mins</span></span><span class="week-title">${esc(latest.title)}</span></a>
+        </div>
+        <p>${esc(latest.summary)}</p>
+        <div class="week-sub"><span>A new shiur every week in your podcast app</span>
+          <div class="actions"><button class="chip-l" data-toast="Podcast links go live once the feed is approved.">Apple Podcasts</button><button class="chip-l" data-toast="Podcast links go live once the feed is approved.">Spotify</button><button class="chip-l" data-toast="Podcast links go live once the feed is approved.">Other apps</button></div>
+        </div>
+      </div>
+      <div class="lib-head">
+        <div><span class="eyebrow">The library</span><h2 class="h2">Every shiur, by masechta</h2><p>Start any masechta from the beginning, jump to a daf, or search for a topic.</p></div>
+        <div class="stats num">
+          <div class="stat"><small>Shiurim</small><b>${SHIURIM.length}</b></div>
+          <div class="stat"><small>Masechtos</small><b>${MASECHTOS.length}</b></div>
+          <div class="stat"><small>Hours</small><b>${TOTAL_HOURS}</b></div>
+        </div>
       </div>
       ${showPanel("")}
     </section>
@@ -521,6 +557,17 @@ function sideBlocks() {
     </div>`;
 }
 
+const store = {
+  get() { try { return JSON.parse(localStorage.getItem("ey-progress")) || {}; } catch { return {}; } },
+  set(v) { try { localStorage.setItem("ey-progress", JSON.stringify(v)); } catch {} },
+};
+function saveProgress() { const s = BY_ID[player.id]; if (!s || player.pos < 5) return; const p = store.get(); p[s.m.slug] = { id: s.id, pos: Math.floor(player.pos) }; store.set(p); }
+function startButtons(m) {
+  const prog = store.get()[m.slug], cont = prog && BY_ID[prog.id];
+  return `<div class="actions">${cont
+    ? `<button class="btn" data-resume="${cont.id}:${prog.pos}">Continue shiur ${cont.number} at ${fmtTime(prog.pos)}</button><button class="btn ghost" data-resume="${m.shiurim[0].id}:0">Start over</button>`
+    : `<button class="btn" data-resume="${m.shiurim[0].id}:0">Start from shiur 1</button>`}</div>`;
+}
 function viewMasechta(slug) {
   const m = BY_SLUG[slug]; if (!m) return viewMissing();
   current.slug = slug;
@@ -529,6 +576,7 @@ function viewMasechta(slug) {
     <div class="side-top">
       ${cover(m)}
       <div class="by"><h1 class="show-name">Ein Yaakov on ${m.name}</h1>Season ${m.season} · Seder ${SEDARIM[m.seder][0]}</div>
+      ${startButtons(m)}
       <form class="block dafbox" id="dafjump" style="border-top:0;padding-block:0" data-m="${m.slug}"><input id="dafIn" placeholder="Go to daf, e.g. ${m.shiurim[2].dafStart}" aria-label="Go to daf" autocomplete="off"><button class="btn">Go</button></form>
     </div>
     <div class="side-more">
@@ -626,6 +674,7 @@ function tick() {
   clearInterval(player.timer);
   if (player.on) player.timer = setInterval(() => {
     const s = BY_ID[player.id]; player.pos = Math.min(s.dur, player.pos + player.rate);
+    saveProgress();
     if (player.pos >= s.dur) { player.on = false; tick(); } else paint(false);
   }, 1000);
   paint(true);
@@ -685,6 +734,7 @@ document.addEventListener("click", e => {
   else if (b.id === "pbPlay") toggle(player.id);
   else if (b.id === "pbRate") { player.rate = RATES[(RATES.indexOf(player.rate) + 1) % RATES.length]; tick(); }
   else if (b.dataset.skip) { player.pos = Math.max(0, Math.min(BY_ID[player.id].dur, player.pos + +b.dataset.skip)); paint(false); }
+  else if (b.dataset.resume) { const [id, t] = b.dataset.resume.split(":"); load(id, +t); player.on = true; tick(); location.hash = "s-" + id; }
   else if (b.dataset.jump) { const [id, t] = b.dataset.jump.split(":"); load(id, +t); player.on = true; tick(); }
   else if (b.dataset.sort) { if (current.slug) state.sortM = b.dataset.sort; else state.sortAll = b.dataset.sort; b.parentElement.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b)); renderResults(); }
   else if (b.dataset.stab) { state.stab = b.dataset.stab; route(); }

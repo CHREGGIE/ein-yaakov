@@ -1,12 +1,12 @@
 # Shiur Podcast — Technical Handoff for Claude Code
 
-Oct 28, 2026 · @Gregory
+Oct 28, 2026 · @Gregory · Updated Oct 30, 2026 (weekly podcast + library model, design prototype)
 
 Companion to Doc. Export this doc as Markdown and save it in the repo as `CLAUDE.md` or `HANDOFF.md`.
 
 ## Read this first
 
-You're building a pipeline and a standalone site that publish a rabbi's weekly Ein Yaakov shiur as a searchable library and a podcast feed. Greg Grinman owns the project and reviews everything before it goes public.
+You're building a pipeline and a standalone site that publish Rabbi Fogelman's weekly Ein Yaakov shiur from our shul as a searchable library and a weekly podcast feed. Greg Grinman owns the project and reviews everything before it goes public.
 
 Already decided:
 
@@ -15,7 +15,8 @@ Already decided:
 - **Intake is Dropbox**, one folder per masechta, files named `Masechta-NN`.
 - **Audio cleanup runs locally with ffmpeg** (`clean.sh` below), not Auphonic, unless spot checks show older recordings need more.
 - **Nothing publishes without human review.**
-- **Backfill publishes with original shiur dates**, one masechta at a time.
+- **Two products from one catalog: a weekly podcast and a library.** The podcast carries new shiurim, one a week, from the feed launch onward. The site library carries every reviewed shiur, including the backlog. Backlog shiurim keep their original dates and go into the library one masechta at a time; they do not go into the main podcast feed.
+- **The weekly shiur always comes first in review.** Backlog review happens in batches and never holds up the weekly release.
 
 Proposed but not locked: Supabase, Cloudflare R2, Whisper, Vercel. Confirm with Greg before building on them.
 
@@ -28,8 +29,23 @@ Only the audio preset exists; no repo, database, storage or site has been set up
 | 2026-10-28 | `clean.sh` tested on `Kesuvos_05.m4a` (51 min) | Done; awaiting Greg's listening approval |
 | 2026-10-28 | A/B comparison clip produced | Done |
 | 2026-10-28 | Workflow diagram shown to stakeholders | Done |
+| 2026-10-30 | Site design prototype (`design/prototype.html`) | Round 3 done: weekly + library homepage |
+| 2026-10-30 | Weekly podcast + library model agreed | Done; this doc updated |
 | — | Backlog inventory (5 masechtos) | Not started; file count unknown |
 | — | Repo, catalog, storage, site, feed | Not started |
+
+## Two ways to listen
+
+Listeners and learners use the shiur in two ways, and both come from the same catalog.
+
+| | Weekly podcast | Site library |
+| --- | --- | --- |
+| For | People following the shiur week by week | People learning at their own pace, by masechta, or something other than the current masechta |
+| Contains | Shiurim given on or after the feed launch date, plus any flagged `in_feed` | Every reviewed shiur, backlog included |
+| Where | Apple Podcasts, Spotify and other apps via `/feed.xml` | The shiur site |
+| Cadence | One new shiur a week | Backlog added a masechta at a time as review finishes |
+
+Launch the feed with the three or four most recent shiurim already in it so it doesn't look empty in the directories. Per-masechta feeds (e.g. "Ein Yaakov on Kesuvos") are a likely later addition for library learners who listen in a podcast app; they are cheap because every feed is generated from the catalog.
 
 ## Conventions and specs
 
@@ -45,6 +61,7 @@ Every output file must meet these specs so the site and every podcast app behave
 | Publish date | The date the shiur was given, never the upload date |
 | Season / episode | Season = masechta, episode = shiur number within it |
 | Status flow | raw → cleaned → transcribed → drafted → reviewed → published |
+| Published means | Visible in the site library. It is in the podcast feed only if `given_on` ≥ feed launch date or `in_feed` is true |
 
 The title format is a working default; Greg may change it after the rav weighs in.
 
@@ -84,8 +101,14 @@ create table masechtos (
   slug          text unique not null,      -- 'kesuvos'
   name          text not null,             -- 'Kesuvos'
   name_he       text,                      -- Hebrew name
+  seder         text not null,             -- 'nashim', for grouping on the site
+  aliases       text[] not null default '{}', -- other spellings for search: {'ketubot','kesubos'}
   season        int unique not null,       -- podcast season number
   description   text
+);
+
+create table settings (
+  feed_launch_date date not null           -- shiurim given on or after this go in the weekly feed
 );
 
 create table shiurim (
@@ -98,6 +121,9 @@ create table shiurim (
   title          text,
   daf_start      text,                     -- e.g. '17a'
   daf_end        text,
+  daf_start_idx  int,                      -- daf*2 + (amud b ? 1 : 0), for "which shiur covers 17a"
+  daf_end_idx    int,
+  in_feed        boolean not null default false, -- force a shiur into the weekly feed (e.g. launch seeding)
   summary        text,
   chapters       jsonb,                    -- [{start_sec, title}]
   transcript     text,
@@ -137,7 +163,8 @@ The feed is a static XML file regenerated whenever a shiur is published; the dir
 
 - **Channel:** title, description, language `en`, author, owner name and email, explicit `false`, category Religion & Spirituality → Judaism, 3000×3000 cover art, link to the shiur site
 - **Per item:** title, description (summary + link to the shiur page), `enclosure` with MP3 URL, byte length and `audio/mpeg`, `guid` from the catalog (`isPermaLink="false"`), `pubDate` from `given_on`, duration, season = masechta, episode = shiur number, chapters if supported
-- **Order:** all published items, newest first
+- **Which items:** published shiurim with `given_on` ≥ `feed_launch_date`, or `in_feed = true`. Backlog shiurim stay out of the main feed
+- **Order:** newest first
 - **Stats:** prefix enclosure URLs with OP3 for download counts
 - **Scheduling:** if the rav asks for it, never set a publish time that falls on Shabbos or Yom Tov
 
@@ -149,8 +176,8 @@ The site is a library modeled on YUTorah, scoped to this one shiur, reading only
 
 | Route | Content |
 | --- | --- |
-| `/` | Latest shiur with player, masechta list, search box, subscribe links per app |
-| `/<masechta>` | All shiurim in order: number, date, daf range, length |
+| `/` | Two paths: **This week** (now-learning masechta, latest shiur with player, subscribe links per app) and **The library** (masechta tabs, search, stats) |
+| `/<masechta>` | All shiurim in order: number, date, daf range, length; "Start from shiur 1" / "Continue shiur N"; go-to-daf box |
 | `/<masechta>/<number>` | Player, download, summary, chapters, full transcript, previous/next |
 | `/search?q=` | Full-text search over title, summary and transcript |
 | `/daf/<masechta>/<daf>` | Redirect to the shiur covering that daf |
@@ -162,6 +189,11 @@ Other requirements:
 - Each shiur page is server-rendered with the transcript in the HTML, so it can be indexed by search engines
 - Structured data (`PodcastEpisode`) on each shiur page
 - Mobile-first; most listeners will open it on a phone
+- Search accepts masechta + daf (`Kesuvos 17a`) and both Ashkenazi and Sephardi spellings, via `masechtos.aliases`
+- Shiurim that are also in the podcast are tagged as such in the library
+- Remember each listener's place per masechta in the browser (no accounts) so "Continue" works
+- A docked player persists across pages, with 1×–2× speed and −15/+30 skips
+- `design/prototype.html` is the reference for layout and behavior; `design/NOTES.md` has the reasoning
 - Hebrew terms display correctly; any Hebrew text renders right-to-left
 
 Framework is open; Next.js or Astro on Vercel both fit.
@@ -171,6 +203,10 @@ Framework is open; Next.js or Astro on Vercel both fit.
 Ask Greg about each of these instead of guessing; several depend on the rav.
 
 - [ ] Show name, intro wording, and the shiur site's domain
+- [ ] Shul name, and the shiur's day, time and place for the About page
+- [ ] Feed launch date, and which recent shiurim to seed it with
+- [ ] How dedications work: price, payment, who approves wording
+- [ ] Whether to add per-masechta feeds, and when
 - [ ] How audience questions are handled: keep, trim, or remove identifiable voices
 - [ ] Whether publishing must avoid Shabbos and Yom Tov
 - [ ] Who reviews: Greg, the rav, or a volunteer

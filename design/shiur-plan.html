@@ -1,0 +1,249 @@
+<title>Ein Yaakov Shiur Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@500;700&display=swap">
+<style>
+/* Layout: a cobalt title band matching the shiur site, then one reading column with a section per audience. */
+:root {
+  --bg: #e8eef2;
+  --surface: #ffffff;
+  --ink: #0e1630;
+  --muted: #5f6984;
+  --line: #dde3ec;
+  --accent: #1d3fd1;
+  --accent-soft: #e7ecff;
+  --band: #1a3bc8;
+  --band-ink: #ffffff;
+  --ok: #1d7a4f;
+  --ok-soft: #e3f3ea;
+  --f-ui: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-he: "Frank Ruhl Libre", "David", "Times New Roman", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0f1c; --surface: #141a2c; --ink: #e8ebf4; --muted: #9ba4bf; --line: #252d46;
+    --accent: #8aa2ff; --accent-soft: #1c2548; --band: #182a86; --band-ink: #ffffff; --ok: #6fd3a2; --ok-soft: #13301f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b0f1c; --surface: #141a2c; --ink: #e8ebf4; --muted: #9ba4bf; --line: #252d46;
+  --accent: #8aa2ff; --accent-soft: #1c2548; --band: #182a86; --band-ink: #ffffff; --ok: #6fd3a2; --ok-soft: #13301f;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 400 1.03rem/1.65 var(--f-ui); }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.he { font-family: var(--f-he); direction: rtl; unicode-bidi: isolate; }
+.pad { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.col { max-width: 46rem; margin: 0 auto; }
+
+.band { background: var(--band); color: var(--band-ink); padding-block: 3rem 2.5rem; }
+.band .col { display: grid; gap: 1rem; }
+.band .he { font-size: 2.6rem; font-weight: 700; line-height: 1; text-align: left; }
+.band h1 { margin: 0; font-size: 2.1rem; line-height: 1.15; font-weight: 700; text-wrap: balance; letter-spacing: -.01em; }
+.band p { margin: 0; max-width: 38rem; font-size: 1.1rem; opacity: .92; }
+.band small { opacity: .75; font-size: .85rem; }
+.jump { display: flex; flex-wrap: wrap; gap: .5rem; padding-top: .5rem; }
+.jump a { color: var(--band-ink); text-decoration: none; border: 1.5px solid color-mix(in srgb, var(--band-ink) 55%, transparent); border-radius: 999px; padding: .3rem .85rem; font-size: .88rem; font-weight: 600; }
+.jump a:hover { background: color-mix(in srgb, var(--band-ink) 15%, transparent); }
+
+main { padding-block: 2.5rem 4rem; }
+main .col { display: grid; gap: 3.5rem; }
+section { display: grid; gap: 1.1rem; scroll-margin-top: 1rem; }
+.eyebrow { font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
+h2 { margin: 0; font-size: 1.6rem; line-height: 1.2; font-weight: 700; text-wrap: balance; }
+h3 { margin: 0; font-size: 1.12rem; font-weight: 700; }
+p { margin: 0; }
+.muted { color: var(--muted); }
+
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+.card { background: var(--surface); border-radius: 6px; padding: 1.35rem; display: grid; gap: .6rem; align-content: start; box-shadow: 0 1px 2px rgba(14, 22, 48, .06); }
+.card .who { font-size: .85rem; color: var(--muted); }
+.card ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .3rem; font-size: .95rem; }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 2.4rem 1fr; gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--line); }
+.steps li:first-child { border-top: 0; }
+.steps li::before { content: counter(s); width: 2.2rem; height: 2.2rem; border-radius: 50%; border: 1.5px solid var(--ink); display: grid; place-items: center; font-weight: 700; font-size: .95rem; }
+.steps li.key::before { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.steps b { display: block; }
+.steps span { color: var(--muted); font-size: .95rem; }
+.split { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .4rem; }
+.pill { font-size: .8rem; font-weight: 600; background: var(--accent-soft); color: var(--accent); border-radius: 4px; padding: .1rem .5rem; }
+
+.qs { display: grid; gap: .75rem; }
+.q { background: var(--surface); border-radius: 6px; padding: 1.1rem 1.25rem; display: grid; gap: .35rem; }
+.q b { font-weight: 700; }
+.q p { color: var(--muted); font-size: .95rem; }
+.q .opts { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .25rem; }
+.q .opts span { font-size: .82rem; border: 1px solid var(--line); border-radius: 999px; padding: .15rem .65rem; color: var(--ink); }
+.callout { background: var(--accent-soft); border-radius: 6px; padding: 1rem 1.25rem; font-weight: 500; }
+
+.check { background: var(--surface); border-radius: 6px; overflow: hidden; }
+.check-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.check-head .count { font-size: .88rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.reset { border: 1.5px solid var(--line); background: transparent; border-radius: 6px; padding: .3rem .75rem; font: inherit; font-size: .85rem; font-weight: 600; color: var(--ink); cursor: pointer; }
+.group { padding: .5rem 1.25rem 1rem; }
+.group + .group { border-top: 1px solid var(--line); }
+.group h3 { padding-top: .75rem; font-size: .8rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
+.item { display: grid; grid-template-columns: 1.4rem 1fr; gap: .75rem; padding: .55rem 0; cursor: pointer; align-items: start; }
+.item input { width: 1.15rem; height: 1.15rem; margin: .25rem 0 0; accent-color: var(--accent); cursor: pointer; }
+.item small { display: block; color: var(--muted); font-size: .88rem; }
+.item:has(input:checked) > span { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line); }
+.verdict { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: .75rem; }
+.verdict div { border-radius: 6px; padding: 1rem 1.15rem; display: grid; gap: .25rem; }
+.verdict .yes { background: var(--ok-soft); }
+.verdict .yes b { color: var(--ok); }
+.verdict .no { background: var(--surface); }
+.verdict p { font-size: .93rem; color: var(--muted); }
+
+.timeline { display: grid; gap: .6rem; }
+.t { display: grid; grid-template-columns: 5.5rem 1fr; gap: 1rem; align-items: baseline; }
+.t .when { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.t.done .when { color: var(--ok); }
+.t.next .when { color: var(--accent); }
+.t.later .when { color: var(--muted); }
+.t ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .25rem; }
+
+footer { border-top: 1px solid var(--line); padding-block: 1.5rem 3rem; font-size: .88rem; color: var(--muted); }
+
+@media (max-width: 30rem) {
+  .band h1 { font-size: 1.65rem; }
+  .band .he { font-size: 2.1rem; }
+  h2 { font-size: 1.35rem; }
+  .t { grid-template-columns: 1fr; gap: .25rem; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header class="band pad">
+  <div class="col">
+    <div class="he" lang="he">עין יעקב</div>
+    <h1>Bringing Rabbi Fogelman's Ein Yaakov shiur to more listeners</h1>
+    <p>A weekly podcast for people who follow along, and an online library of every shiur for people who learn at their own pace. Here is how it will work, and what we need from each of you.</p>
+    <small>Prepared by Greg Grinman · October 30, 2026</small>
+    <nav class="jump" aria-label="Sections">
+      <a href="#plan">The plan</a>
+      <a href="#rabbi">For Rabbi Fogelman</a>
+      <a href="#review">For the reviewer</a>
+      <a href="#next">What's next</a>
+    </nav>
+  </div>
+</header>
+
+<main class="pad">
+  <div class="col">
+
+    <section id="plan">
+      <span class="eyebrow">The plan</span>
+      <h2>Two ways to learn, from one set of recordings</h2>
+      <p class="muted">People learn differently. Some like to keep pace with the shiur each week. Others want to start a masechta from the beginning, or learn something other than what the shiur is on now. Since we already have years of recordings, we can serve both.</p>
+      <div class="two">
+        <div class="card">
+          <h3>The weekly podcast</h3>
+          <p class="who">For people who follow the shiur week by week</p>
+          <ul>
+            <li>One new shiur each week, after it's been reviewed</li>
+            <li>Arrives on its own in Apple Podcasts, Spotify and other apps</li>
+            <li>Starts with the shiurim from launch onward, so listeners aren't greeted by years of old episodes</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>The shiur library</h3>
+          <p class="who">For people who learn at their own pace</p>
+          <ul>
+            <li>Every recorded shiur on its own website, including the older ones that were never on a podcast</li>
+            <li>Browse by masechta, jump straight to a daf, or search for a topic or story</li>
+            <li>Each shiur has a summary, chapters and a full written transcript</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="margin-top:1rem">How a shiur gets from the shul to listeners</h3>
+      <ol class="steps">
+        <li><div><b>Recorded at the shul</b><span>The recording is saved to a shared Dropbox folder, one folder per masechta.</span></div></li>
+        <li><div><b>Sound cleaned up</b><span>Room rumble and hum are reduced and the volume is evened out, gently enough that audience questions stay audible.</span></div></li>
+        <li><div><b>Transcribed</b><span>The shiur is turned into text, which makes it searchable.</span></div></li>
+        <li><div><b>Details drafted</b><span>A draft title, daf range, short summary and chapter list are prepared from the transcript.</span></div></li>
+        <li class="key"><div><b>Reviewed by a person</b><span>Someone listens and checks the details. Nothing goes public until this step is done.</span></div></li>
+        <li><div><b>Published</b><span>Every reviewed shiur goes into the library. New shiurim also go out on the weekly podcast.</span>
+          <div class="split"><span class="pill">Library: every shiur</span><span class="pill">Podcast: new each week</span></div></div></li>
+      </ol>
+    </section>
+
+    <section id="rabbi">
+      <span class="eyebrow">For Rabbi Fogelman</span>
+      <h2>A few decisions that are yours to make</h2>
+      <div class="callout">Nothing will be made public until you've approved it. Until then the site and podcast stay private.</div>
+      <div class="qs">
+        <div class="q"><b>What should the shiur be called?</b><p>The name listeners will see in podcast apps and at the top of the site. The working name is "Ein Yaakov with Rabbi Fogelman". We'd also like a sentence or two describing the shiur in your words.</p></div>
+        <div class="q"><b>How should audience questions be handled?</b><p>Some recordings include questions from people in the room, and some of those voices are recognizable.</p>
+          <div class="opts"><span>Keep them as they are</span><span>Trim them out</span><span>Keep them, but remove recognizable voices</span></div></div>
+        <div class="q"><b>Should the podcast avoid releasing on Shabbos and Yom Tov?</b><p>New episodes can be scheduled so they never appear on Shabbos or Yom Tov.</p></div>
+        <div class="q"><b>Who gives the final approval?</b><p>Whether you'd like to approve each shiur yourself, or have a trusted reviewer approve them and bring anything unusual to you.</p></div>
+        <div class="q"><b>How should each episode be titled?</b><p>The current suggestion is <i>Ein Yaakov on Kesuvos – Shiur 5: Mar Ukva and hidden tzedakah</i>. Happy to change it.</p></div>
+        <div class="q"><b>Dedications</b><p>Whether to offer dedications of individual shiurim (l'iluy nishmas or in honor of a simcha), and how they should be announced.</p></div>
+      </div>
+    </section>
+
+    <section id="review">
+      <span class="eyebrow">For the reviewer</span>
+      <h2>What to check before a shiur goes public</h2>
+      <p class="muted">For each shiur you'll get the cleaned-up audio along with its draft title, daf range, summary and chapters. The weekly shiur always comes first. Older recordings for the library can be reviewed in batches, one masechta at a time. This is a proposed checklist; tell us what to add or drop.</p>
+      <div class="check">
+        <div class="check-head"><b>Review checklist</b><span class="count" id="count">0 of 0 checked</span><button class="reset" id="reset" type="button">Clear checks</button></div>
+        <div class="group">
+          <h3>Sound</h3>
+          <label class="item"><input type="checkbox" id="c1"><span>Volume is steady from start to finish<small>No sudden loud or very quiet stretches.</small></span></label>
+          <label class="item"><input type="checkbox" id="c2"><span>No hum, buzzing, crackle or distortion</span></label>
+          <label class="item"><input type="checkbox" id="c3"><span>Questions from the room can still be understood</span></label>
+          <label class="item"><input type="checkbox" id="c4"><span>Nothing private before the start or after the end<small>Side conversations, announcements not meant for the public, or long silences.</small></span></label>
+        </div>
+        <div class="group">
+          <h3>Details</h3>
+          <label class="item"><input type="checkbox" id="c5"><span>Title fits what the shiur is actually about</span></label>
+          <label class="item"><input type="checkbox" id="c6"><span>Masechta, daf range and date are correct</span></label>
+          <label class="item"><input type="checkbox" id="c7"><span>Summary is accurate and reads well</span></label>
+          <label class="item"><input type="checkbox" id="c8"><span>Chapter times land where each part begins<small>Tap a few chapters and listen for a moment.</small></span></label>
+          <label class="item"><input type="checkbox" id="c9"><span>Names, Hebrew terms and sources are spelled right in the transcript</span></label>
+        </div>
+        <div class="group">
+          <h3>Rabbi Fogelman's wishes</h3>
+          <label class="item"><input type="checkbox" id="c10"><span>Audience voices are handled the way the Rav decided</span></label>
+          <label class="item"><input type="checkbox" id="c11"><span>Anything you're unsure about is flagged for the Rav</span></label>
+        </div>
+      </div>
+      <div class="verdict">
+        <div class="yes"><b>Approve</b><p>Everything checks out. The shiur goes into the library, and onto the podcast if it's a new one.</p></div>
+        <div class="no"><b>Send back with a note</b><p>Say what's wrong and, for sound problems, the time in the recording (for example, "hum from 12:40 to 14:00").</p></div>
+      </div>
+    </section>
+
+    <section id="next">
+      <span class="eyebrow">What's next</span>
+      <h2>Where things stand</h2>
+      <div class="timeline">
+        <div class="t done"><span class="when">Done</span><ul><li>Sound cleanup tested on a Kesuvos shiur, with a before-and-after sample</li><li>A clickable design of the website, with sample shiurim</li><li>Agreed on the weekly podcast plus library approach</li></ul></div>
+        <div class="t next"><span class="when">Next</span><ul><li>Rabbi Fogelman's decisions above</li><li>Count and list every existing recording</li><li>Build the review screen and the website</li><li>Pick a launch date for the podcast</li></ul></div>
+        <div class="t later"><span class="when">Later</span><ul><li>Launch the podcast with the three or four most recent shiurim</li><li>Add older shiurim to the library one masechta at a time</li><li>Possibly offer a separate podcast feed for each masechta</li></ul></div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="pad"><div class="col">Questions or changes? Reply to Greg. Everything here is a working plan and can change.</div></footer>
+
+<script>
+const boxes = [...document.querySelectorAll('.check input[type="checkbox"]')];
+const KEY = "ey-review-checks";
+function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(Object.fromEntries(boxes.map(b => [b.id, b.checked])))); } catch {} }
+function count() { document.getElementById("count").textContent = `${boxes.filter(b => b.checked).length} of ${boxes.length} checked`; }
+const saved = load();
+boxes.forEach(b => { b.checked = !!saved[b.id]; b.addEventListener("change", () => { save(); count(); }); });
+document.getElementById("reset").addEventListener("click", () => { boxes.forEach(b => b.checked = false); save(); count(); });
+count();
+</script>
