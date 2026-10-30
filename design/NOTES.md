@@ -1,4 +1,18 @@
-# Shiur site — design notes (round 1)
+# Shiur site — design notes
+
+## Round 2 (modern redesign)
+
+Restyled after a reference podcast page Greg shared: a show column on the left (cover art,
+Rabbi Fogelman, Subscribe/Share, dedications, live-shiur info) beside a tabbed panel of
+shiur cards. The masechta tabs are the main filter, and search inside the panel narrows
+results as you type. A full-width player bar is docked at the bottom with speed,
+−15/+30 and a scrubber. The cover art's block shape echoes a page of Gemara, with the text
+in the middle and commentaries on either side. On phones it collapses to one column.
+
+New open items: the shul's name, the shiur's day/time/place, and how dedications work
+(price, how people pay, who approves the wording).
+
+## Round 1
 
 `prototype.html` is a clickable, mobile-first prototype of the shiur site. It runs on
 **sample data**: the masechtos, topics, dates and transcripts are placeholders, and audio
@@ -38,7 +52,7 @@ Routes from `HANDOFF.md`, mapped to prototype views (hash routes stand in for re
 
 ## Open questions for Greg / the rav
 
-- Show name (the prototype uses "Ein Yaakov Shiur") and the rav's name on the About page
+- Show name (the prototype uses "Ein Yaakov"); the rav is Rabbi Fogelman
 - Should the masechta list also show masechtos not yet covered (greyed out)?
 - Hebrew dates alongside secular dates?
 - Keep "Questions from the audience" as a named chapter, given the open decision on audience voices?

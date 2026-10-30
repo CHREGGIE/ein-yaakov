@@ -1,216 +1,272 @@
 <title>Ein Yaakov Shiur Library</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=Frank+Ruhl+Libre:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@500;700&display=swap">
 <style>
-/* Layout: one reading column sized for a phone, a sticky masthead, and a persistent mini-player docked at the bottom. */
+/* Layout: show column (cover art, rav, dedications) beside a tabbed shiur panel; a full-width player bar docks at the bottom. Single column on phones. */
 :root {
-  --paper: #f3f5f2;
+  --bg: #e8eef2;
   --surface: #ffffff;
-  --ink: #17202b;
-  --muted: #586373;
-  --line: #d9ded8;
-  --accent: #1f4e79;
+  --ink: #0e1630;
+  --muted: #5f6984;
+  --faint: #959eb5;
+  --line: #dde3ec;
+  --accent: #1d3fd1;
   --accent-ink: #ffffff;
-  --accent-soft: #e2eaf2;
-  --brass: #8a6a1f;
-  --mark: #f3e3b0;
-  --f-display: "Spectral", Georgia, "Times New Roman", serif;
-  --f-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --accent-soft: #e7ecff;
+  --mark: #fff0b3;
+  --cover-a: #2d55ef;
+  --cover-b: #0a2398;
+  --shadow: 0 1px 2px rgba(14, 22, 48, .06), 0 8px 24px rgba(14, 22, 48, .06);
+  --f-ui: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-he: "Frank Ruhl Libre", "David", "Times New Roman", serif;
-  --col: 46rem;
-  --radius: 10px;
+  --max: 70rem;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #0f141b; --surface: #161d26; --ink: #e6e9ed; --muted: #9ba5b2; --line: #2a3441;
-    --accent: #8fb6de; --accent-ink: #0f141b; --accent-soft: #1d2b3b; --brass: #d4b46a; --mark: #4b3f1c;
+    --bg: #0b0f1c; --surface: #141a2c; --ink: #e8ebf4; --muted: #9ba4bf; --faint: #6c7693; --line: #252d46;
+    --accent: #7f99ff; --accent-ink: #0b0f1c; --accent-soft: #1c2548; --mark: #4d4114;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #0f141b; --surface: #161d26; --ink: #e6e9ed; --muted: #9ba5b2; --line: #2a3441;
-  --accent: #8fb6de; --accent-ink: #0f141b; --accent-soft: #1d2b3b; --brass: #d4b46a; --mark: #4b3f1c;
+  --bg: #0b0f1c; --surface: #141a2c; --ink: #e8ebf4; --muted: #9ba4bf; --faint: #6c7693; --line: #252d46;
+  --accent: #7f99ff; --accent-ink: #0b0f1c; --accent-soft: #1c2548; --mark: #4d4114;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
 body {
-  background: var(--paper); color: var(--ink);
+  background: var(--bg); color: var(--ink);
   font: 400 1rem/1.55 var(--f-ui);
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-bottom: 6.5rem;
+  padding-bottom: 7rem;
 }
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
-a { color: var(--accent); }
-button, input, select { font: inherit; color: inherit; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
-.wrap { max-width: var(--col); margin: 0 auto; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+a { color: inherit; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
 .he { font-family: var(--f-he); direction: rtl; unicode-bidi: isolate; }
 .num { font-variant-numeric: tabular-nums; }
+svg.i { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+svg.f { fill: currentColor; stroke: none; }
 
-.proto { max-width: var(--col); margin: 0 auto; padding-block: .5rem 0; font-size: .78rem; color: var(--muted); display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
-.proto b { color: var(--brass); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; font-size: .7rem; }
+/* Prototype strip + top bar */
+.proto { max-width: var(--max); margin: 0 auto; padding-block: .45rem; font-size: .75rem; color: var(--muted); text-align: center; }
+.proto b { color: var(--accent); font-weight: 600; }
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 6; background: var(--bg); border-bottom: 1px solid var(--line);
+  margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+  padding: 0 max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px)); }
+.top-in { max-width: var(--max); margin: 0 auto; height: 3.5rem; display: flex; align-items: center; gap: 2rem; }
+.word { text-decoration: none; font-weight: 600; letter-spacing: .22em; font-size: .9rem; }
+.top nav { display: flex; gap: 1.5rem; margin-right: auto; }
+.top nav a { text-decoration: none; color: var(--muted); font-size: .92rem; font-weight: 500; }
+.top nav a[aria-current="page"] { color: var(--ink); }
+.icon-btn { width: 2.4rem; height: 2.4rem; border-radius: 50%; border: 0; background: transparent; display: grid; place-items: center; cursor: pointer; color: var(--ink); }
+.icon-btn:hover { background: var(--surface); }
 
-header.mast { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); border-bottom: 1px solid var(--line); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding: .6rem max(16px, env(safe-area-inset-right, 0px)) .6rem max(16px, env(safe-area-inset-left, 0px)); }
-.mast-in { max-width: var(--col); margin: 0 auto; display: flex; align-items: center; gap: .75rem; }
-.brand { text-decoration: none; color: var(--ink); display: flex; flex-direction: column; line-height: 1.1; margin-right: auto; }
-.brand .en { font-family: var(--f-display); font-weight: 600; font-size: 1.15rem; }
-.brand .he { font-size: .95rem; color: var(--muted); direction: rtl; text-align: left; }
-.mast nav { display: flex; gap: .25rem; }
-.mast nav a { text-decoration: none; color: var(--muted); font-size: .9rem; padding: .35rem .55rem; border-radius: 6px; }
-.mast nav a[aria-current="page"] { color: var(--ink); background: var(--accent-soft); }
+/* Page layout */
+.page { max-width: var(--max); margin: 0 auto; padding-block: 2.5rem 2rem; }
+.layout { display: grid; grid-template-columns: 17.5rem minmax(0, 1fr); grid-template-areas: "top main" "more main"; grid-template-rows: auto 1fr; gap: 0 4rem; align-items: start; }
+.side-top { grid-area: top; display: grid; gap: 1.1rem; }
+.side-more { grid-area: more; display: grid; gap: 0; padding-top: 1.5rem; }
+.main-col { grid-area: main; display: grid; gap: 2rem; min-width: 0; }
 
-main { padding-block: 1.25rem 2rem; display: grid; gap: 2rem; }
-h1, h2, h3 { font-family: var(--f-display); font-weight: 600; text-wrap: balance; margin: 0; line-height: 1.2; }
-h1 { font-size: 1.85rem; }
-h2 { font-size: 1.3rem; }
-h3 { font-size: 1.05rem; }
-.eyebrow { font-size: .72rem; letter-spacing: .09em; text-transform: uppercase; color: var(--brass); font-weight: 600; }
-.muted { color: var(--muted); }
-section { display: grid; gap: .85rem; }
-.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+/* Cover art: the block echoes a page of Gemara, text in the center and commentary around it */
+.cover { container-type: inline-size; position: relative; width: 100%; max-width: 100%; aspect-ratio: 1; overflow: hidden; color: #fff;
+  background: linear-gradient(155deg, var(--cover-a), var(--cover-b)); box-shadow: 0 10px 30px rgba(10, 35, 152, .25); border-radius: 4px; }
+.cv-page { position: absolute; top: 9cqw; left: 9cqw; right: 9cqw; height: 40cqw; display: grid; grid-template-columns: 1fr 2.2fr 1fr; gap: 3cqw; }
+.cv-page i { background: rgba(255, 255, 255, .09); }
+.cv-page i:nth-child(2) { background: rgba(255, 255, 255, .2); }
+.cv-he { position: absolute; right: 9cqw; bottom: 25cqw; font: 700 17cqw/1 var(--f-he); direction: rtl; white-space: nowrap; }
+.cv-en { position: absolute; left: 9cqw; bottom: 13.5cqw; font-size: 6.2cqw; letter-spacing: .2em; font-weight: 500; white-space: nowrap; }
+.cv-by { position: absolute; left: 9cqw; bottom: 8cqw; font-size: 4cqw; letter-spacing: .24em; opacity: .7; white-space: nowrap; }
+.cover.sm .cv-page { display: none; }
+.cover.sm .cv-he { bottom: 30cqw; font-size: 26cqw; right: 12cqw; }
+.cover.sm .cv-en, .cover.sm .cv-by { display: none; }
 
-/* Search block */
-.finder { display: grid; gap: .75rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem; }
-.qrow { display: flex; gap: .5rem; }
-.qrow input { flex: 1; min-width: 0; padding: .7rem .85rem; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); font-size: 1rem; }
-.btn { border: 0; border-radius: 8px; padding: .7rem 1rem; background: var(--accent); color: var(--accent-ink); font-weight: 600; cursor: pointer; white-space: nowrap; }
-.btn.ghost { background: transparent; color: var(--accent); border: 1px solid var(--line); }
-.chips { display: flex; gap: .4rem; overflow-x: auto; padding-bottom: .15rem; scrollbar-width: none; }
-.chip { flex: none; border: 1px solid var(--line); background: transparent; border-radius: 999px; padding: .32rem .75rem; font-size: .85rem; cursor: pointer; color: var(--muted); }
-.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-.hint { font-size: .8rem; color: var(--muted); }
-.hint code { font-family: var(--f-ui); background: var(--accent-soft); padding: 0 .3rem; border-radius: 4px; color: var(--ink); }
+.show-name { font-size: 1.2rem; font-weight: 700; margin: 0; line-height: 1.25; color: var(--ink); }
+.by { font-size: .82rem; color: var(--muted); }
+.by b { display: block; color: var(--ink); font-weight: 600; font-size: .9rem; }
+.actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+.btn { border: 0; border-radius: 6px; padding: .55rem 1.1rem; background: var(--accent); color: var(--accent-ink); font-weight: 600; font-size: .88rem; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: .45rem; }
+.btn.ghost { background: transparent; color: var(--accent); box-shadow: inset 0 0 0 1.5px var(--accent); }
+.btn.wide { width: 100%; justify-content: center; padding-block: .75rem; }
+.block { display: grid; gap: .55rem; padding-block: 1.4rem; border-top: 1px solid var(--line); }
+.block-head { display: flex; justify-content: space-between; gap: 1rem; font-weight: 600; font-size: .95rem; }
+.block p { margin: 0; font-size: .86rem; color: var(--muted); line-height: 1.6; }
+.block dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: .45rem 1rem; font-size: .88rem; }
+.block dt { color: var(--muted); }
+.block dd { margin: 0; text-align: right; font-weight: 500; }
+.dafbox { display: flex; gap: .5rem; }
+.dafbox input { flex: 1; min-width: 0; border: 1px solid var(--line); background: var(--surface); border-radius: 6px; padding: .55rem .7rem; }
 
-/* Latest shiur */
-.latest { background: var(--accent); color: var(--accent-ink); border-radius: var(--radius); padding: 1.1rem; display: grid; gap: .6rem; }
-.latest .eyebrow { color: inherit; opacity: .8; }
-.latest h2 { font-size: 1.35rem; }
-.latest a { color: inherit; }
-.latest .meta { opacity: .85; font-size: .88rem; }
-.latest .btn { background: var(--accent-ink); color: var(--accent); justify-self: start; }
+.lede { font-size: 1.6rem; line-height: 1.4; font-weight: 400; margin: 0; max-width: 34ch; text-wrap: pretty; }
+.lede b { font-weight: 700; }
+.stats { display: flex; gap: 2.75rem; flex-wrap: wrap; }
+.stat small { display: block; font-size: .78rem; color: var(--muted); }
+.stat b { font-size: 1.35rem; font-weight: 600; }
+.stat .he { font-size: 1.35rem; font-weight: 700; }
 
-/* Masechta index */
-.seder { display: grid; gap: .4rem; }
-.seder-name { font-size: .78rem; color: var(--muted); display: flex; gap: .5rem; align-items: baseline; }
-.seder-name .he { font-size: .95rem; }
-.mgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr)); gap: .5rem; }
-.mcard { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .1rem .75rem; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: .7rem .85rem; }
-.mcard:hover { border-color: var(--accent); }
-.mcard .en { font-family: var(--f-display); font-weight: 600; font-size: 1.08rem; }
-.mcard .he { font-size: 1.15rem; grid-row: span 2; color: var(--accent); }
-.mcard .ct { font-size: .8rem; color: var(--muted); }
+/* Panel with tabs */
+.panel { background: var(--surface); box-shadow: var(--shadow); border-radius: 4px; min-width: 0; }
+.tabs { display: flex; gap: 1.75rem; padding: 0 1.5rem; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+.tab { flex: none; text-decoration: none; color: var(--faint); font-weight: 500; font-size: .92rem; padding: 1.1rem 0 1rem; border: 0; background: none; cursor: pointer; box-shadow: inset 0 -2px 0 transparent; }
+.tab:hover { color: var(--ink); }
+.tab[aria-selected="true"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--ink); }
+.tools { display: flex; gap: .75rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--line); align-items: center; flex-wrap: wrap; }
+.searchbox { flex: 1; min-width: 12rem; display: flex; align-items: center; gap: .5rem; background: var(--bg); border-radius: 6px; padding: 0 .75rem; color: var(--muted); }
+.searchbox input { flex: 1; min-width: 0; border: 0; background: transparent; padding: .65rem 0; outline: none; color: var(--ink); }
+.searchbox:focus-within { box-shadow: 0 0 0 2px var(--accent); }
+.seg { display: inline-flex; background: var(--bg); border-radius: 6px; padding: 3px; }
+.seg button { border: 0; background: transparent; padding: .35rem .7rem; font-size: .8rem; font-weight: 500; color: var(--muted); border-radius: 4px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0, 0, 0, .08); }
+.hint { font-size: .78rem; color: var(--muted); padding: .75rem 1.5rem 0; margin: 0; }
+.hint code { font-family: inherit; background: var(--accent-soft); color: var(--ink); padding: .05rem .35rem; border-radius: 4px; }
+.notice { margin: 1rem 1.5rem 0; padding: .75rem 1rem; background: var(--accent-soft); border-radius: 6px; font-size: .9rem; }
+.notice a { color: var(--accent); font-weight: 600; }
+.count { font-size: .78rem; color: var(--faint); padding: 1rem 1.5rem 0; letter-spacing: .04em; }
 
-/* Shiur list */
-.list { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
-.list li + li { border-top: 1px solid var(--line); }
-.row { display: grid; grid-template-columns: 2.4rem 1fr auto; gap: .2rem .75rem; padding: .8rem .9rem; text-decoration: none; color: var(--ink); align-items: start; }
-.row:hover .t { color: var(--accent); }
-.row .n { font-family: var(--f-display); font-size: 1.25rem; color: var(--muted); line-height: 1.2; }
-.row .body { min-width: 0; display: grid; gap: .15rem; }
-.row .t { font-weight: 500; }
-.row .sub { font-size: .82rem; color: var(--muted); display: flex; gap: .35rem .75rem; flex-wrap: wrap; }
-.row .len { font-size: .82rem; color: var(--muted); white-space: nowrap; }
-.daf { color: var(--brass); font-weight: 600; }
-.row .snip { font-size: .85rem; color: var(--muted); }
-mark { background: var(--mark); color: inherit; padding: 0 .1em; border-radius: 2px; }
-
-/* Masechta page */
-.mhead { display: grid; gap: .35rem; }
-.mhead p { margin: 0; }
-.mhead .he { font-size: 2rem; color: var(--accent); line-height: 1.1; text-align: left; }
-.tools { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
-.dafjump { display: flex; gap: .4rem; align-items: center; }
-.dafjump input { width: 5.5rem; padding: .5rem .6rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
-.dafjump label { font-size: .85rem; color: var(--muted); }
-.notice { font-size: .88rem; background: var(--accent-soft); border-radius: 8px; padding: .6rem .8rem; }
-.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; margin-left: auto; }
-.seg button { border: 0; background: transparent; padding: .45rem .7rem; font-size: .82rem; cursor: pointer; color: var(--muted); }
-.seg button[aria-pressed="true"] { background: var(--accent-soft); color: var(--ink); }
+.eps { list-style: none; margin: 0; padding: 0; }
+.ep { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); gap: 1.1rem; padding: 1.35rem 1.5rem; border-top: 1px solid var(--line); }
+.eps .ep:first-child { border-top: 0; }
+.ep-play { width: 2.25rem; height: 2.25rem; border-radius: 50%; border: 1.5px solid var(--ink); background: transparent; display: grid; place-items: center; cursor: pointer; color: var(--ink); margin-top: .1rem; }
+.ep-play svg { width: .8rem; height: .8rem; }
+.ep-play[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.ep-body { text-decoration: none; display: grid; gap: .3rem; min-width: 0; }
+.ep-meta { font-size: .7rem; letter-spacing: .07em; color: var(--faint); font-weight: 500; text-transform: uppercase; display: flex; gap: .5rem; flex-wrap: wrap; }
+.ep-meta .dot::before { content: "•"; margin-right: .5rem; }
+.ep-title { font-size: 1.08rem; font-weight: 600; line-height: 1.35; }
+.ep-body:hover .ep-title { color: var(--accent); }
+.ep-sum { font-size: .88rem; color: var(--muted); margin: 0; line-height: 1.55; }
+mark { background: var(--mark); color: inherit; border-radius: 2px; padding: 0 .1em; }
+.empty { padding: 2rem 1.5rem; color: var(--muted); }
 
 /* Shiur page */
-.crumbs { font-size: .85rem; color: var(--muted); display: flex; gap: .4rem; flex-wrap: wrap; }
-.crumbs a { color: var(--muted); }
-.shead { display: grid; gap: .5rem; }
-.shead .dafline { display: flex; gap: .75rem; align-items: baseline; flex-wrap: wrap; font-size: .95rem; }
-.shead .dafline .he { font-size: 1.1rem; color: var(--accent); }
-.playcard { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem; display: grid; gap: .75rem; }
-.prow { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; }
-.big-play { width: 3.25rem; height: 3.25rem; border-radius: 50%; border: 0; background: var(--accent); color: var(--accent-ink); cursor: pointer; display: grid; place-items: center; flex: none; }
-.big-play svg { width: 1.3rem; height: 1.3rem; fill: currentColor; }
-.bar { position: relative; height: 6px; background: var(--line); border-radius: 3px; cursor: pointer; flex: 1; min-width: 8rem; }
-.bar i { position: absolute; inset: 0 auto 0 0; background: var(--accent); border-radius: 3px; }
-.time { font-size: .8rem; color: var(--muted); }
-.small-btn { border: 1px solid var(--line); background: transparent; border-radius: 6px; padding: .35rem .6rem; font-size: .82rem; cursor: pointer; }
-.prose { max-width: 65ch; }
-.chapters { list-style: none; margin: 0; padding: 0; display: grid; }
-.chapters button { width: 100%; text-align: left; display: grid; grid-template-columns: 4rem 1fr; gap: .5rem; background: transparent; border: 0; border-top: 1px solid var(--line); padding: .55rem 0; cursor: pointer; }
-.chapters button:hover span:last-child { color: var(--accent); }
-.chapters .ts { color: var(--brass); font-variant-numeric: tabular-nums; font-size: .88rem; padding-top: .1rem; }
-.transcript { display: grid; gap: .8rem; max-width: 65ch; }
-.transcript p { margin: 0; }
-.transcript .ts { font-size: .75rem; color: var(--muted); margin-right: .5rem; font-variant-numeric: tabular-nums; }
-.pn { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
-.pn a { display: grid; gap: .1rem; text-decoration: none; color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: .7rem .85rem; background: var(--surface); min-width: 0; }
+.crumbs { font-size: .82rem; color: var(--muted); display: flex; gap: .5rem; flex-wrap: wrap; }
+.crumbs a { text-decoration: none; }
+.crumbs a:hover { color: var(--accent); }
+.eyebrow { font-size: .72rem; letter-spacing: .09em; color: var(--faint); font-weight: 600; text-transform: uppercase; }
+h1.title { font-size: 2.2rem; line-height: 1.15; font-weight: 700; margin: 0; text-wrap: balance; letter-spacing: -.01em; }
+.dafline { display: flex; gap: 1rem; align-items: baseline; flex-wrap: wrap; color: var(--muted); font-size: .92rem; }
+.dafline .he { font-size: 1.15rem; color: var(--accent); font-weight: 700; }
+.playrow { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.big-play { width: 3.5rem; height: 3.5rem; border-radius: 50%; border: 0; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; cursor: pointer; }
+.big-play svg { width: 1.2rem; height: 1.2rem; }
+.playrow .lbl b { display: block; font-weight: 600; }
+.playrow .lbl span { font-size: .85rem; color: var(--muted); }
+.summary { font-size: 1.2rem; line-height: 1.55; margin: 0; max-width: 40ch; }
+.chapters { list-style: none; margin: 0; padding: .5rem 0; }
+.chapters button { width: 100%; display: grid; grid-template-columns: 4.5rem 1fr; gap: .75rem; text-align: left; background: none; border: 0; padding: .8rem 1.5rem; cursor: pointer; font-size: .95rem; }
+.chapters button:hover { background: var(--bg); }
+.chapters .ts { color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }
+.transcript { padding: 1.25rem 1.5rem; display: grid; gap: 1rem; max-width: 70ch; }
+.transcript p { margin: 0; line-height: 1.7; }
+.transcript .ts { display: block; font-size: .72rem; color: var(--faint); font-weight: 600; letter-spacing: .05em; font-variant-numeric: tabular-nums; }
+.pn { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.pn a { text-decoration: none; background: var(--surface); box-shadow: var(--shadow); border-radius: 4px; padding: 1rem 1.2rem; display: grid; gap: .2rem; min-width: 0; }
+.pn a:hover b { color: var(--accent); }
 .pn a.next { text-align: right; }
-.pn small { color: var(--muted); }
-.pn span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .9rem; }
-details.tx summary { cursor: pointer; font-family: var(--f-display); font-weight: 600; font-size: 1.3rem; }
-details.tx[open] summary { margin-bottom: .8rem; }
+.pn small { font-size: .72rem; letter-spacing: .07em; text-transform: uppercase; color: var(--faint); font-weight: 600; }
+.pn b { font-weight: 600; font-size: .95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.prose { max-width: 60ch; display: grid; gap: 1rem; }
+.prose p { margin: 0; color: var(--muted); }
+.prose h2 { margin: .5rem 0 0; font-size: 1.15rem; }
 
-.subscribe { display: flex; gap: .5rem; flex-wrap: wrap; }
-.subscribe span { border: 1px solid var(--line); border-radius: 999px; padding: .35rem .8rem; font-size: .85rem; color: var(--muted); }
+/* Player bar */
+.pbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 7; background: var(--surface); box-shadow: 0 -1px 0 var(--line), 0 -6px 20px rgba(14, 22, 48, .06);
+  padding: 0 max(16px, env(safe-area-inset-right, 0px)) env(safe-area-inset-bottom, 0px) 0; }
+.pb-in { display: grid; grid-template-columns: 4.5rem minmax(9rem, 15rem) auto minmax(0, 1fr) auto; align-items: center; gap: 1.5rem; height: 4.5rem; }
+.pb-art { width: 4.5rem; height: 4.5rem; }
+.pb-art .cover { border-radius: 0; box-shadow: none; }
+.pb-info { text-decoration: none; min-width: 0; display: grid; }
+.pb-info b { font-weight: 600; font-size: .92rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pb-info span { font-size: .7rem; letter-spacing: .07em; color: var(--faint); text-transform: uppercase; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pb-ctrls { display: flex; align-items: center; gap: .6rem; }
+.pill { height: 2.1rem; min-width: 3rem; border-radius: 999px; border: 1.5px solid var(--ink); background: transparent; display: grid; place-items: center; font-size: .8rem; font-weight: 600; cursor: pointer; padding: 0 .6rem; }
+.pb-play { width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1.5px solid var(--ink); background: transparent; display: grid; place-items: center; cursor: pointer; }
+.pb-play svg { width: 1rem; height: 1rem; }
+.pb-scrub { display: flex; align-items: center; gap: .75rem; font-size: .72rem; color: var(--faint); font-variant-numeric: tabular-nums; min-width: 0; }
+.bar { position: relative; flex: 1; height: 3px; background: var(--line); border-radius: 2px; cursor: pointer; min-width: 4rem; }
+.bar::after { content: ""; position: absolute; inset: -10px 0; }
+.bar i { position: absolute; inset: 0 auto 0 0; background: var(--accent); border-radius: 2px; }
+.bar b { position: absolute; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); }
+.pb-end { padding-right: .25rem; }
 
-/* Mini player */
-.mini { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; background: var(--surface); border-top: 1px solid var(--line); padding: .55rem max(16px, env(safe-area-inset-right, 0px)) calc(.55rem + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
-.mini-in { max-width: var(--col); margin: 0 auto; display: grid; grid-template-columns: auto 1fr auto; gap: .2rem .75rem; align-items: center; }
-.mini .big-play { width: 2.6rem; height: 2.6rem; grid-row: span 2; }
-.mini .mt { font-size: .88rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; color: var(--ink); text-decoration: none; }
-.mini .bar { grid-column: 2 / 4; min-width: 0; height: 4px; }
-.mini .rate { font-size: .8rem; }
+.toast { position: fixed; left: 50%; bottom: 6rem; transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: .6rem 1rem; border-radius: 6px; font-size: .88rem; z-index: 8; max-width: calc(100% - 32px); text-align: center; }
 
-@media (max-width: 30rem) {
-  h1 { font-size: 1.55rem; }
-  .mast nav a.opt { display: none; }
-  .row { grid-template-columns: 2rem 1fr; }
-  .row .len { grid-column: 2; }
+@media (max-width: 960px) {
+  .pb-in { grid-template-columns: 4.5rem minmax(0, 1fr) auto; grid-template-rows: auto; gap: 1rem; }
+  .pb-scrub { position: absolute; left: 0; right: 0; top: -1px; }
+  .pb-scrub span, .pb-end, .pb-skip { display: none; }
+  .pb-scrub .bar b { display: none; }
+}
+@media (max-width: 860px) {
+  .page { padding-top: 1.5rem; }
+  .layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "top" "main" "more"; gap: 0; }
+  .side-top { grid-template-columns: 7.5rem minmax(0, 1fr); align-items: center; column-gap: 1.1rem; row-gap: .8rem; margin-bottom: 1.75rem; }
+  .side-top > .cover { grid-row: span 2; }
+  .side-top > .actions { grid-column: 1 / -1; }
+  .side-top > .block { grid-column: 1 / -1; }
+  .side-more { padding-top: 2rem; }
+  .lede { font-size: 1.25rem; }
+  .stats { gap: 1.5rem; }
+  .stat b { font-size: 1.15rem; }
+  .ep-meta { letter-spacing: .04em; gap: .35rem; }
+  .ep-meta .dot::before { margin-right: .35rem; }
+  h1.title { font-size: 1.7rem; }
+  .tabs, .tools, .ep, .chapters button, .transcript { padding-left: 1.1rem; padding-right: 1.1rem; }
+  .hint, .count { padding-left: 1.1rem; padding-right: 1.1rem; }
+  .notice { margin-inline: 1.1rem; }
+  .top nav { gap: 1rem; }
+  .top-in { gap: 1.25rem; }
+}
+@media (max-width: 420px) {
+  .word { letter-spacing: .14em; font-size: .82rem; }
+  .ep { grid-template-columns: 2rem minmax(0, 1fr); gap: .85rem; }
+  .ep-play { width: 2rem; height: 2rem; }
+  .pn { grid-template-columns: 1fr; }
+  .pn a.next { text-align: left; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 
-<div class="proto"><b>Design prototype</b><span>Sample data only. Titles, dates and topics are placeholders, and audio is simulated.</span></div>
-
-<header class="mast">
-  <div class="mast-in">
-    <a class="brand" href="#home"><span class="en">Ein Yaakov Shiur</span><span class="he" lang="he">עין יעקב</span></a>
+<div class="proto"><b>Design prototype</b> · Sample shiurim, dates and transcripts. Audio is simulated.</div>
+<header class="top">
+  <div class="top-in">
+    <a class="word" href="#home">EIN YAAKOV</a>
     <nav>
-      <a href="#home" data-nav="home">Masechtos</a>
-      <a href="#search" data-nav="search">Search</a>
-      <a href="#about" data-nav="about" class="opt">About</a>
+      <a href="#home" data-nav="home">Shiurim</a>
+      <a href="#about" data-nav="about">About</a>
     </nav>
+    <button class="icon-btn" id="searchBtn" aria-label="Search shiurim"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
   </div>
 </header>
 
-<main class="wrap" id="view" aria-live="polite"></main>
+<main class="page" id="view"></main>
 
-<div class="mini" id="mini" hidden>
-  <div class="mini-in">
-    <button class="big-play" id="miniPlay" aria-label="Play"></button>
-    <a class="mt" id="miniTitle" href="#home"></a>
-    <button class="small-btn rate" id="miniRate" aria-label="Playback speed">1×</button>
-    <div class="bar" id="miniBar"><i></i></div>
+<div class="pbar" id="pbar">
+  <div class="pb-in">
+    <div class="pb-art" id="pbArt"></div>
+    <a class="pb-info" id="pbInfo" href="#home"><b></b><span></span></a>
+    <div class="pb-ctrls">
+      <button class="pill" id="pbRate" aria-label="Playback speed">1×</button>
+      <button class="pill pb-skip" data-skip="-15" aria-label="Back 15 seconds">−15</button>
+      <button class="pb-play" id="pbPlay" aria-label="Play"></button>
+      <button class="pill pb-skip" data-skip="30" aria-label="Forward 30 seconds">+30</button>
+    </div>
+    <div class="pb-scrub"><span id="pbPos">0:00</span><div class="bar" id="pbBar"><i></i><b></b></div><span id="pbLeft">−0:00</span></div>
+    <button class="icon-btn pb-end" data-toast="Saving shiurim to a list comes later." aria-label="Save for later"><svg class="i" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
   </div>
 </div>
+<div class="toast" id="toast" hidden></div>
 
 <script>
 // ---------- Sample catalog (stands in for published rows from the `shiurim` table) ----------
-const SEDARIM = [
-  { key: "zeraim", en: "Zeraim", he: "זרעים" },
-  { key: "moed", en: "Moed", he: "מועד" },
-  { key: "nashim", en: "Nashim", he: "נשים" },
-  { key: "nezikin", en: "Nezikin", he: "נזיקין" },
-];
+const RAV = "Rabbi Fogelman";
+const SEDARIM = { zeraim: ["Zeraim", "זרעים"], moed: ["Moed", "מועד"], nashim: ["Nashim", "נשים"], nezikin: ["Nezikin", "נזיקין"] };
 const MASECHTOS = [
   { slug: "berachos", name: "Berachos", he: "ברכות", seder: "zeraim", aliases: ["berakhot", "brachot", "berachot", "brachos"], start: "2021-01-05", items: [
     ["3a","3b","Rabbi Yose in the ruins","Eliyahu meets Rabbi Yose in a ruin of Yerushalayim, and the Gemara's three watches of the night."],
@@ -268,10 +324,9 @@ const MASECHTOS = [
     ["104b","104b","Those who have no share","The Gemara's reading of who loses their share, and the hope that remains."],
   ]},
 ];
-const RAV = "the Rav"; // name pending
 
 // ---------- Derived catalog ----------
-function dafIdx(d) { const m = /^(\d+)([ab])?$/.exec(d); if (!m) return null; return +m[1] * 2 + (m[2] === "b" ? 1 : 0); }
+function dafIdx(d) { const m = /^(\d+)([ab])?$/.exec(d); return m ? +m[1] * 2 + (m[2] === "b" ? 1 : 0) : null; }
 function heNum(n) {
   const ones = ["","א","ב","ג","ד","ה","ו","ז","ח","ט"], tens = ["","י","כ","ל","מ","נ","ס","ע","פ","צ"], hund = ["","ק","ר","ש","ת"];
   let s = hund[Math.floor(n / 100)] || ""; const r = n % 100;
@@ -279,8 +334,8 @@ function heNum(n) {
   return s.length === 1 ? s + "׳" : s.slice(0, -1) + "״" + s.slice(-1);
 }
 function heDaf(d) { const m = /^(\d+)([ab])$/.exec(d); return m ? heNum(+m[1]) + (m[2] === "a" ? " ע״א" : " ע״ב") : ""; }
-function dafRange(s) { return s.dafStart === s.dafEnd ? s.dafStart : s.dafStart + "–" + s.dafEnd; }
-function heRange(s) { return s.dafStart === s.dafEnd ? heDaf(s.dafStart) : heDaf(s.dafStart) + " – " + heDaf(s.dafEnd); }
+const dafRange = s => s.dafStart === s.dafEnd ? s.dafStart : s.dafStart + "–" + s.dafEnd;
+const heRange = s => s.dafStart === s.dafEnd ? heDaf(s.dafStart) : heDaf(s.dafStart) + " – " + heDaf(s.dafEnd);
 const fmtDate = d => d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
 const fmtTime = s => { s = Math.max(0, Math.floor(s)); const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), x = String(s % 60).padStart(2, "0"); return h ? `${h}:${String(m).padStart(2, "0")}:${x}` : `${m}:${x}`; };
 
@@ -297,6 +352,7 @@ MASECHTOS.forEach((m, mi) => {
 SHIURIM.sort((a, b) => b.given - a.given);
 const BY_ID = Object.fromEntries(SHIURIM.map(s => [s.id, s]));
 const BY_SLUG = Object.fromEntries(MASECHTOS.map(m => [m.slug, m]));
+const TOTAL_HOURS = Math.round(SHIURIM.reduce((a, s) => a + s.dur, 0) / 3600);
 
 function chaptersFor(s) {
   const d = s.dur;
@@ -323,274 +379,323 @@ function transcriptFor(s) {
 
 // ---------- Search ----------
 const norm = t => t.toLowerCase().normalize("NFKD").replace(/[֑-ׇ]/g, "").replace(/[’'"״׳]/g, "").replace(/[^a-z0-9א-ת\s]/g, " ").replace(/\s+/g, " ").trim();
-function resolveMasechta(word) {
-  const w = norm(word);
-  return MASECHTOS.find(m => norm(m.name) === w || m.he === word || m.aliases.includes(w)) || null;
-}
+const resolveMasechta = word => { const w = norm(word); return MASECHTOS.find(m => norm(m.name) === w || m.he === word || m.aliases.includes(w)) || null; };
 function findDaf(m, daf) {
-  const d = String(daf).toLowerCase().replace(/^daf\s*/, "").replace(/[.:]$/, x => x === "." ? "a" : "b");
-  const m2 = /^(\d+)([ab])?$/.exec(d); if (!m2) return { error: "Type a daf number like 17 or 17a." };
-  const lo = dafIdx(m2[1] + (m2[2] || "a")), hi = m2[2] ? lo : lo + 1;
+  const d = String(daf).toLowerCase().replace(/^daf\s*/, "").trim();
+  const x = /^(\d+)([ab])?$/.exec(d); if (!x) return { error: "Type a daf number like 17 or 17a." };
+  const lo = dafIdx(x[1] + (x[2] || "a")), hi = x[2] ? lo : lo + 1;
   const hit = m.shiurim.find(s => dafIdx(s.dafStart) <= hi && dafIdx(s.dafEnd) >= lo);
-  if (hit) return { hit, daf: m2[1] + (m2[2] || "") };
+  if (hit) return { hit, daf: x[1] + (x[2] || "") };
   const near = [...m.shiurim].sort((a, b) => Math.abs(dafIdx(a.dafStart) - lo) - Math.abs(dafIdx(b.dafStart) - lo))[0];
-  return { near, daf: m2[1] + (m2[2] || "") };
+  return { near, daf: x[1] + (x[2] || "") };
 }
 function search(q, slug) {
-  const nq = norm(q); const words = nq.split(" ").filter(Boolean);
-  let pool = slug ? BY_SLUG[slug].shiurim : SHIURIM;
-  let dafHit = null, terms = [];
-  // "kesuvos 17a" or "ketubot 62b" goes straight to the daf
+  const words = norm(q).split(" ").filter(Boolean);
+  let m = slug ? BY_SLUG[slug] : null, dafHit = null; const terms = [];
   for (let i = 0; i < words.length; i++) {
-    const m = resolveMasechta(words[i]);
-    if (m) {
-      pool = m.shiurim; slug = m.slug;
-      if (/^\d+[ab]?$/.test(words[i + 1] || "")) { dafHit = findDaf(m, words[i + 1]); i++; }
-    } else terms.push(words[i]);
+    const found = resolveMasechta(words[i]);
+    if (found) { m = found; if (/^\d+[ab]?$/.test(words[i + 1] || "")) { dafHit = findDaf(m, words[++i]); } }
+    else if (m && /^\d+[ab]?$/.test(words[i]) && !dafHit) dafHit = findDaf(m, words[i]);
+    else terms.push(words[i]);
   }
-  if (!terms.length) return { slug, dafHit, terms, results: dafHit ? [] : pool.slice().sort((a, b) => a.m.season - b.m.season || a.number - b.number) };
+  const pool = m ? m.shiurim : SHIURIM;
+  if (!terms.length) return { m, dafHit, terms, results: dafHit ? [] : pool };
   const results = pool.map(s => {
-    const hay = { t: norm(s.title), s: norm(s.summary), x: norm(transcriptFor(s).map(p => p[1]).join(" ")) };
+    const t = norm(s.title), su = norm(s.summary), x = norm(transcriptFor(s).map(p => p[1]).join(" "));
     let score = 0;
-    for (const t of terms) {
-      if (hay.t.includes(t)) score += 5; else if (hay.s.includes(t)) score += 3; else if (hay.x.includes(t)) score += 1; else return null;
-    }
+    for (const w of terms) { if (t.includes(w)) score += 5; else if (su.includes(w)) score += 3; else if (x.includes(w)) score += 1; else return null; }
     return { s, score };
   }).filter(Boolean).sort((a, b) => b.score - a.score || b.s.given - a.s.given).map(r => r.s);
-  return { slug, dafHit, terms, results };
+  return { m, dafHit, terms, results };
 }
 
-// ---------- Rendering ----------
+// ---------- Rendering helpers ----------
 const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 function hl(text, terms) {
-  let out = esc(text); if (!terms || !terms.length) return out;
-  for (const t of terms) { if (t.length < 2) continue; out = out.replace(new RegExp("(" + t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi"), "<mark>$1</mark>"); }
+  let out = esc(text);
+  for (const t of terms || []) if (t.length > 1) out = out.replace(new RegExp("(" + t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi"), "<mark>$1</mark>");
   return out;
 }
-const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>';
-const PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg>';
+const PLAY = '<svg class="i f" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>';
+const PAUSE = '<svg class="i f" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg>';
+const SEARCH_I = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>';
 
-function row(s, opts = {}) {
-  return `<li><a class="row" href="#s-${s.id}">
-    <span class="n num">${s.number}</span>
-    <span class="body">
-      <span class="t">${hl(s.title, opts.terms)}</span>
-      <span class="sub">${opts.showM ? `<span>${esc(s.m.name)}</span>` : ""}<span class="daf num">${dafRange(s)}</span><span class="num">${fmtDate(s.given)}</span></span>
-      ${opts.snip ? `<span class="snip">${hl(s.summary, opts.terms)}</span>` : ""}
-    </span>
-    <span class="len num">${Math.round(s.dur / 60)} min</span>
-  </a></li>`;
-}
-function chips(active, name = "chip-m") {
-  return `<div class="chips" role="group" aria-label="Filter by masechta">
-    <button class="chip" data-${name}="" aria-pressed="${!active}">All masechtos</button>
-    ${MASECHTOS.map(m => `<button class="chip" data-${name}="${m.slug}" aria-pressed="${active === m.slug}">${esc(m.name)}</button>`).join("")}
+function cover(m, small) {
+  if (small) return `<div class="cover sm" aria-hidden="true"><div class="cv-he">${m ? m.he : "ע״י"}</div></div>`;
+  return `<div class="cover" role="img" aria-label="Ein Yaakov${m ? " on " + m.name : ""} with ${RAV}">
+    <div class="cv-page"><i></i><i></i><i></i></div>
+    <div class="cv-he">${m ? m.he : "עין יעקב"}</div>
+    <div class="cv-en">${m ? m.name.toUpperCase() : "EIN YAAKOV"}</div>
+    <div class="cv-by">RABBI FOGELMAN</div>
   </div>`;
 }
-function finder(q = "", slug = "") {
-  return `<form class="finder" id="finder" role="search">
-    <label for="q" class="eyebrow">Find a shiur</label>
-    <div class="qrow"><input id="q" name="q" type="search" placeholder="Topic, story, or masechta and daf" value="${esc(q)}" autocomplete="off"><button class="btn">Search</button></div>
-    ${chips(slug)}
-    <div class="hint">Try <code>Kesuvos 17a</code>, <code>Ketubot 62b</code> or <code>Hillel</code>. Ashkenazi and Sephardi spellings both work.</div>
-  </form>`;
+function epItem(s, terms, showM = true) {
+  return `<li class="ep">
+    <button class="ep-play" data-play="${s.id}" aria-pressed="${playing(s.id)}" aria-label="${playing(s.id) ? "Pause" : "Play"} ${esc(s.title)}">${playing(s.id) ? PAUSE : PLAY}</button>
+    <a class="ep-body" href="#s-${s.id}">
+      <span class="ep-meta num">${showM ? `<span>${s.m.name} ${dafRange(s)}</span>` : `<span>Daf ${dafRange(s)}</span>`}<span class="dot">${fmtDate(s.given)}</span><span class="dot">${Math.round(s.dur / 60)} mins</span></span>
+      <span class="ep-title">${showM ? "" : `Shiur ${s.number}: `}${hl(s.title, terms)}</span>
+      <p class="ep-sum">${hl(s.summary, terms)}</p>
+    </a>
+  </li>`;
 }
 
-const state = { q: "", slug: "", sort: "asc", dafMsg: "" };
+// ---------- Views ----------
+const state = { q: "", sortAll: "new", sortM: "order", stab: "chapters" };
+let current = { slug: "" };
+
+function showPanel(slug) {
+  const m = slug ? BY_SLUG[slug] : null;
+  const sort = m ? state.sortM : state.sortAll;
+  return `<div class="panel">
+    <div class="tabs" role="tablist" aria-label="Masechta">
+      <a class="tab" role="tab" href="#home" aria-selected="${!m}">All shiurim</a>
+      ${MASECHTOS.map(x => `<a class="tab" role="tab" href="#m-${x.slug}" aria-selected="${m === x}">${x.name}</a>`).join("")}
+    </div>
+    <div class="tools">
+      <label class="searchbox">${SEARCH_I}<input id="q" type="search" placeholder="${m ? `Search ${m.name} or type a daf` : "Search a topic, masechta or daf"}" value="${esc(state.q)}" autocomplete="off" aria-label="Search shiurim"></label>
+      <div class="seg" role="group" aria-label="Order">
+        <button data-sort="new" aria-pressed="${sort === "new"}">Newest</button>
+        <button data-sort="order" aria-pressed="${sort === "order"}">${m ? "By daf" : "In order"}</button>
+      </div>
+    </div>
+    <div id="results"></div>
+  </div>`;
+}
+function renderResults() {
+  const box = document.getElementById("results"); if (!box) return;
+  const r = search(state.q, current.slug);
+  const showM = !current.slug || (r.m && r.m.slug !== current.slug);
+  let notice = "";
+  if (r.dafHit) {
+    const m = r.m;
+    if (r.dafHit.error) notice = r.dafHit.error;
+    else if (r.dafHit.hit) notice = `${m.name} ${r.dafHit.daf} is covered in <a href="#s-${r.dafHit.hit.id}">Shiur ${r.dafHit.hit.number}</a>.`;
+    else notice = `No shiur covers ${m.name} ${r.dafHit.daf} yet. The closest is <a href="#s-${r.dafHit.near.id}">Shiur ${r.dafHit.near.number} on ${dafRange(r.dafHit.near)}</a>.`;
+  }
+  let list = r.dafHit ? [r.dafHit.hit || r.dafHit.near].filter(Boolean) : r.results.slice();
+  if (!r.terms.length && !r.dafHit) {
+    const sort = current.slug ? state.sortM : state.sortAll;
+    list.sort(sort === "new" ? (a, b) => b.given - a.given : (a, b) => a.m.season - b.m.season || a.number - b.number);
+  }
+  const label = r.terms.length ? `${list.length} result${list.length === 1 ? "" : "s"}${r.m ? " in " + r.m.name : ""}` : r.dafHit ? "" : `${list.length} shiurim${r.m ? ` · Daf ${r.m.shiurim[0].dafStart}–${r.m.shiurim.at(-1).dafEnd}` : ""}`;
+  box.innerHTML = `
+    ${!state.q ? `<p class="hint">Try <code>Kesuvos 17a</code>, <code>Ketubot 62b</code> or <code>Hillel</code>. Ashkenazi and Sephardi spellings both work.</p>` : ""}
+    ${notice ? `<div class="notice">${notice}</div>` : ""}
+    ${label ? `<div class="count num">${label.toUpperCase()}</div>` : ""}
+    ${list.length ? `<ul class="eps">${list.map(s => epItem(s, r.terms, showM)).join("")}</ul>`
+      : `<p class="empty">Nothing matched “${esc(state.q)}”${r.m ? " in " + r.m.name : ""}. Try fewer words${r.m ? " or the All shiurim tab" : ""}.</p>`}`;
+}
 
 function viewHome() {
+  current.slug = "";
   const latest = SHIURIM[0];
-  const bySeder = SEDARIM.map(sd => ({ sd, ms: MASECHTOS.filter(m => m.seder === sd.key) })).filter(x => x.ms.length);
-  return `
-  <section class="latest" aria-label="Latest shiur">
-    <span class="eyebrow">Latest shiur · ${fmtDate(latest.given)}</span>
-    <h2><a href="#s-${latest.id}">${esc(latest.title)}</a></h2>
-    <div class="meta num">${esc(latest.m.name)} ${dafRange(latest)} · Shiur ${latest.number} · ${Math.round(latest.dur / 60)} min</div>
-    <button class="btn" data-play="${latest.id}">${playing(latest.id) ? "Pause" : "Play shiur"}</button>
-  </section>
-  ${finder(state.q, state.slug)}
-  <section aria-labelledby="mh">
-    <div class="sec-head"><h2 id="mh">Masechtos</h2><span class="muted num">${SHIURIM.length} shiurim</span></div>
-    ${bySeder.map(({ sd, ms }) => `<div class="seder">
-      <div class="seder-name"><span class="eyebrow">Seder ${sd.en}</span><span class="he" lang="he">סדר ${sd.he}</span></div>
-      <div class="mgrid">${ms.map(m => `<a class="mcard" href="#m-${m.slug}"><span class="en">${m.name}</span><span class="he" lang="he">${m.he}</span><span class="ct num">${m.shiurim.length} shiurim · daf ${m.shiurim[0].dafStart}–${m.shiurim.at(-1).dafEnd}</span></a>`).join("")}</div>
-    </div>`).join("")}
-  </section>
-  <section aria-labelledby="sub">
-    <h2 id="sub">Listen in a podcast app</h2>
-    <div class="subscribe"><span>Apple Podcasts</span><span>Spotify</span><span>Pocket Casts</span><span>RSS feed</span></div>
-    <p class="hint">Links go live once the feed is approved.</p>
-  </section>`;
+  return `<div class="layout">
+    <div class="side-top">
+      ${cover()}
+      <div class="by"><h1 class="show-name">Ein Yaakov</h1>Given by<b>${RAV}</b></div>
+      <div class="actions"><button class="btn" data-toast="Podcast app links go live once the feed is approved.">Subscribe</button><button class="btn ghost" data-toast="Share links go live with the site.">Share</button></div>
+    </div>
+    <div class="side-more">${sideBlocks()}</div>
+    <section class="main-col">
+      <p class="lede"><b>Ein Yaakov with ${RAV}</b> is a weekly shiur on the aggados of the Gemara, masechta by masechta. Every shiur since the beginning, searchable by masechta, daf and topic.</p>
+      <div class="stats num">
+        <div class="stat"><small>Shiurim</small><b>${SHIURIM.length}</b></div>
+        <div class="stat"><small>Masechtos</small><b>${MASECHTOS.length}</b></div>
+        <div class="stat"><small>Hours</small><b>${TOTAL_HOURS}</b></div>
+        <div class="stat"><small>Latest</small><b><a href="#s-${latest.id}" style="text-decoration:none">${latest.m.name} ${latest.dafStart}</a></b></div>
+      </div>
+      ${showPanel("")}
+    </section>
+  </div>`;
+}
+function sideBlocks() {
+  return `<div class="block">
+      <div class="block-head"><span>Dedicate a shiur</span></div>
+      <p>Sponsor a week's shiur l'iluy nishmas a loved one or in honor of a simcha. The dedication is announced at the start of the shiur and shown on its page.</p>
+      <button class="btn wide" data-toast="Dedications will open once the details are set with the shul.">Dedicate a shiur</button>
+    </div>
+    <div class="block">
+      <div class="block-head"><span>Join the shiur live</span></div>
+      <p>${RAV} gives the shiur weekly at the shul. Day, time and place to be added.</p>
+    </div>`;
 }
 
 function viewMasechta(slug) {
   const m = BY_SLUG[slug]; if (!m) return viewMissing();
-  const list = state.sort === "asc" ? m.shiurim : [...m.shiurim].reverse();
-  const total = m.shiurim.reduce((a, s) => a + s.dur, 0);
-  return `
-  <nav class="crumbs"><a href="#home">Masechtos</a><span>›</span><span>${m.name}</span></nav>
-  <section class="mhead">
-    <span class="eyebrow">Season ${m.season} · Seder ${SEDARIM.find(s => s.key === m.seder).en}</span>
-    <h1>Ein Yaakov on ${m.name}</h1>
-    <div class="he" lang="he">עין יעקב · ${m.he}</div>
-    <p class="muted num">${m.shiurim.length} shiurim · ${Math.round(total / 3600)} hours · ${fmtDate(m.shiurim[0].given)} to ${fmtDate(m.shiurim.at(-1).given)}</p>
-  </section>
-  <section>
-    <div class="tools">
-      <form class="dafjump" id="dafjump" data-m="${m.slug}"><label for="dafIn">Go to daf</label><input id="dafIn" placeholder="17a" inputmode="text" autocomplete="off"><button class="btn ghost">Go</button></form>
-      <div class="seg" role="group" aria-label="Order"><button data-sort="asc" aria-pressed="${state.sort === "asc"}">By daf</button><button data-sort="desc" aria-pressed="${state.sort === "desc"}">Newest</button></div>
+  current.slug = slug;
+  const total = Math.round(m.shiurim.reduce((a, s) => a + s.dur, 0) / 3600);
+  return `<div class="layout">
+    <div class="side-top">
+      ${cover(m)}
+      <div class="by"><h1 class="show-name">Ein Yaakov on ${m.name}</h1>Season ${m.season} · Seder ${SEDARIM[m.seder][0]}</div>
+      <form class="block dafbox" id="dafjump" style="border-top:0;padding-block:0" data-m="${m.slug}"><input id="dafIn" placeholder="Go to daf, e.g. ${m.shiurim[2].dafStart}" aria-label="Go to daf" autocomplete="off"><button class="btn">Go</button></form>
     </div>
-    ${state.dafMsg ? `<div class="notice">${state.dafMsg}</div>` : ""}
-    <ul class="list">${list.map(s => row(s)).join("")}</ul>
-  </section>`;
+    <div class="side-more">
+      <div class="block"><dl class="num">
+        <dt>Shiurim</dt><dd>${m.shiurim.length}</dd>
+        <dt>Dapim</dt><dd>${m.shiurim[0].dafStart}–${m.shiurim.at(-1).dafEnd}</dd>
+        <dt>Hours</dt><dd>${total}</dd>
+        <dt>Given</dt><dd>${m.shiurim[0].given.getUTCFullYear()}${m.shiurim.at(-1).given.getUTCFullYear() !== m.shiurim[0].given.getUTCFullYear() ? "–" + m.shiurim.at(-1).given.getUTCFullYear() : ""}</dd>
+      </dl></div>
+      ${sideBlocks()}
+    </div>
+    <section class="main-col">
+      <p class="lede"><b>Ein Yaakov on ${m.name}</b> <span class="he" lang="he" style="color:var(--accent);font-weight:700">${m.he}</span>. ${m.shiurim.length} shiurim covering the aggados of the masechta in order.</p>
+      ${showPanel(slug)}
+    </section>
+  </div>`;
 }
 
 function viewShiur(id) {
   const s = BY_ID[id]; if (!s) return viewMissing();
+  current.slug = "";
   const i = s.number - 1, prev = s.m.shiurim[i - 1], next = s.m.shiurim[i + 1];
-  const p = player.id === s.id ? player.pos : 0;
-  return `
-  <nav class="crumbs"><a href="#home">Masechtos</a><span>›</span><a href="#m-${s.m.slug}">${s.m.name}</a><span>›</span><span>Shiur ${s.number}</span></nav>
-  <section class="shead">
-    <span class="eyebrow">Ein Yaakov on ${s.m.name} · Shiur ${s.number}</span>
-    <h1>${esc(s.title)}</h1>
-    <div class="dafline"><span class="daf num">Daf ${dafRange(s)}</span><span class="he" lang="he">${s.m.he} ${heRange(s)}</span><span class="muted num">${fmtDate(s.given)}</span></div>
-  </section>
-  <section class="playcard" aria-label="Player">
-    <div class="prow">
-      <button class="big-play" data-play="${s.id}" aria-label="${playing(s.id) ? "Pause" : "Play"}">${playing(s.id) ? PAUSE : PLAY}</button>
-      <div class="bar" data-seek="${s.id}"><i style="width:${p / s.dur * 100}%"></i></div>
-      <span class="time num" data-time="${s.id}">${fmtTime(p)} / ${fmtTime(s.dur)}</span>
+  const ch = chaptersFor(s);
+  return `<div class="layout">
+    <div class="side-top">
+      ${cover(s.m)}
+      <div class="by"><span class="show-name" style="display:block">Ein Yaakov on ${s.m.name}</span>Given by<b>${RAV}</b></div>
+      <div class="actions"><button class="btn" data-toast="Download goes live with the real audio.">Download MP3</button><button class="btn ghost" data-toast="Share links go live with the site.">Share</button></div>
     </div>
-    <div class="prow">
-      <button class="small-btn" data-skip="-15">−15 s</button>
-      <button class="small-btn" data-skip="30">+30 s</button>
-      <button class="small-btn" data-rate>${player.rate}×</button>
-      <span class="small-btn" style="margin-left:auto" title="Download goes live with real audio">Download MP3</span>
+    <div class="side-more">
+      <div class="block"><dl class="num">
+        <dt>Masechta</dt><dd>${s.m.name} <span class="he" lang="he">${s.m.he}</span></dd>
+        <dt>Daf</dt><dd>${dafRange(s)}</dd>
+        <dt>Shiur</dt><dd>${s.number} of ${s.m.shiurim.length}</dd>
+        <dt>Given</dt><dd>${fmtDate(s.given)}</dd>
+        <dt>Length</dt><dd>${Math.round(s.dur / 60)} mins</dd>
+      </dl></div>
+      ${sideBlocks()}
     </div>
-  </section>
-  <section>
-    <h2>Summary</h2>
-    <p class="prose" style="margin:0">${esc(s.summary)}</p>
-  </section>
-  <section>
-    <h2>Chapters</h2>
-    <ol class="chapters">${chaptersFor(s).map(([t, c]) => `<li><button data-jump="${s.id}:${t}"><span class="ts">${fmtTime(t)}</span><span>${esc(c)}</span></button></li>`).join("")}</ol>
-  </section>
-  <section>
-    <details class="tx" open><summary>Transcript</summary>
-      <div class="transcript">${transcriptFor(s).map(([t, x]) => `<p><span class="ts">${fmtTime(t)}</span>${esc(x)}</p>`).join("")}
-      <p class="hint">Sample text. The real transcript is server-rendered in full so search engines can index it.</p></div>
-    </details>
-  </section>
-  <nav class="pn" aria-label="Previous and next shiur">
-    ${prev ? `<a href="#s-${prev.id}"><small>← Shiur ${prev.number} · ${dafRange(prev)}</small><span>${esc(prev.title)}</span></a>` : "<span></span>"}
-    ${next ? `<a class="next" href="#s-${next.id}"><small>Shiur ${next.number} · ${dafRange(next)} →</small><span>${esc(next.title)}</span></a>` : "<span></span>"}
-  </nav>`;
-}
-
-function viewSearch() {
-  const r = search(state.q, state.slug);
-  const m = r.slug ? BY_SLUG[r.slug] : null;
-  let top = "";
-  if (r.dafHit) {
-    if (r.dafHit.error) top = `<div class="notice">${r.dafHit.error}</div>`;
-    else if (r.dafHit.hit) top = `<div class="notice">${m.name} ${r.dafHit.daf} is covered in <a href="#s-${r.dafHit.hit.id}">Shiur ${r.dafHit.hit.number}: ${esc(r.dafHit.hit.title)}</a>.</div>`;
-    else top = `<div class="notice">No shiur covers ${m.name} ${r.dafHit.daf} yet. The closest is <a href="#s-${r.dafHit.near.id}">Shiur ${r.dafHit.near.number} on ${dafRange(r.dafHit.near)}</a>.</div>`;
-  }
-  const label = r.terms.length ? `${r.results.length} result${r.results.length === 1 ? "" : "s"}${m ? " in " + m.name : ""}` : m ? `All shiurim in ${m.name}` : "All shiurim";
-  return `
-  <h1>Search</h1>
-  ${finder(state.q, r.slug || "")}
-  ${top}
-  ${r.dafHit && !r.terms.length ? "" : `<section>
-    <div class="sec-head"><h2>${label}</h2></div>
-    ${r.results.length ? `<ul class="list">${r.results.map(s => row(s, { showM: !m, snip: true, terms: r.terms })).join("")}</ul>`
-      : `<p class="muted">Nothing matched “${esc(r.terms.join(" "))}”${m ? " in " + m.name : ""}. Try fewer words${m ? ", or search all masechtos" : ""}.</p>`}
-  </section>`}`;
+    <section class="main-col">
+      <nav class="crumbs"><a href="#home">Shiurim</a><span>›</span><a href="#m-${s.m.slug}">${s.m.name}</a><span>›</span><span>Shiur ${s.number}</span></nav>
+      <div style="display:grid;gap:.75rem">
+        <span class="eyebrow num">${s.m.name} · Shiur ${s.number} · ${fmtDate(s.given)}</span>
+        <h1 class="title">${esc(s.title)}</h1>
+        <div class="dafline"><span class="num">Daf ${dafRange(s)}</span><span class="he" lang="he">${s.m.he} ${heRange(s)}</span></div>
+      </div>
+      <div class="playrow">
+        <button class="big-play" data-play="${s.id}" aria-label="${playing(s.id) ? "Pause" : "Play"}">${playing(s.id) ? PAUSE : PLAY}</button>
+        <div class="lbl"><b>${playing(s.id) ? "Playing" : "Play shiur"}</b><span class="num">${Math.round(s.dur / 60)} mins · ${ch.length} chapters</span></div>
+      </div>
+      <p class="summary">${esc(s.summary)}</p>
+      <div class="panel">
+        <div class="tabs" role="tablist">
+          <button class="tab" role="tab" data-stab="chapters" aria-selected="${state.stab === "chapters"}">Chapters</button>
+          <button class="tab" role="tab" data-stab="transcript" aria-selected="${state.stab === "transcript"}">Transcript</button>
+        </div>
+        ${state.stab === "chapters"
+          ? `<ol class="chapters">${ch.map(([t, c]) => `<li><button data-jump="${s.id}:${t}"><span class="ts">${fmtTime(t)}</span><span>${esc(c)}</span></button></li>`).join("")}</ol>`
+          : `<div class="transcript">${transcriptFor(s).map(([t, x]) => `<p><span class="ts">${fmtTime(t)}</span>${esc(x)}</p>`).join("")}<p class="hint" style="padding:0">Sample text. The real transcript is rendered in full on the page so search engines can index it.</p></div>`}
+      </div>
+      <nav class="pn" aria-label="Previous and next shiur">
+        ${prev ? `<a href="#s-${prev.id}"><small>← Shiur ${prev.number} · ${dafRange(prev)}</small><b>${esc(prev.title)}</b></a>` : "<span></span>"}
+        ${next ? `<a class="next" href="#s-${next.id}"><small>Shiur ${next.number} · ${dafRange(next)} →</small><b>${esc(next.title)}</b></a>` : "<span></span>"}
+      </nav>
+    </section>
+  </div>`;
 }
 
 function viewAbout() {
-  return `
-  <section class="prose">
-    <span class="eyebrow">About the shiur</span>
-    <h1>Ein Yaakov with ${RAV}</h1>
-    <p>A weekly shiur on the aggados of the Gemara as collected in the Ein Yaakov, going masechta by masechta. Every shiur since the beginning is here, dated by when it was given.</p>
-    <h2>When and where</h2>
-    <p class="muted">Day, time and location to be filled in.</p>
-    <h2>Dedications</h2>
-    <p class="muted">Dedication options to be filled in.</p>
-  </section>`;
+  current.slug = "";
+  return `<div class="layout">
+    <div class="side-top">${cover()}</div>
+    <div class="side-more">${sideBlocks()}</div>
+    <section class="main-col prose">
+      <span class="eyebrow">About the shiur</span>
+      <h1 class="title">Ein Yaakov with ${RAV}</h1>
+      <p>${RAV} gives a weekly shiur at the shul on the Ein Yaakov, Rabbi Yaakov ibn Chaviv's collection of the aggados of the Talmud. The shiur moves through each masechta in order, reading the Gemara inside with Rashi, the Maharsha and the commentaries printed alongside it.</p>
+      <p>Every recorded shiur is here, dated by when it was given, and is also available as a podcast.</p>
+      <h2>When and where</h2>
+      <p>Day, time and location to be added.</p>
+      <h2>Dedications</h2>
+      <p>Dedication options to be set with the shul.</p>
+    </section>
+  </div>`;
 }
-function viewMissing() { return `<section><h1>Shiur not found</h1><p>That page doesn't exist. <a href="#home">Browse the masechtos</a>.</p></section>`; }
+const viewMissing = () => `<section class="prose"><h1 class="title">Shiur not found</h1><p>That page doesn't exist. <a href="#home">Browse all shiurim</a>.</p></section>`;
 
 // ---------- Simulated player ----------
-const player = { id: null, pos: 0, on: false, rate: 1, timer: null };
+const player = { id: SHIURIM[0].id, pos: 0, on: false, rate: 1, timer: null };
 const RATES = [1, 1.25, 1.5, 1.75, 2];
 const playing = id => player.on && player.id === id;
 function load(id, at) { if (player.id !== id) { player.id = id; player.pos = 0; } if (at != null) player.pos = at; }
-function toggle(id) { if (player.id === id && player.on) { player.on = false; } else { load(id); player.on = true; } tick(true); }
-function tick(repaint) {
+function toggle(id) { if (player.id === id && player.on) player.on = false; else { load(id); player.on = true; } tick(); }
+function tick() {
   clearInterval(player.timer);
-  if (player.on) player.timer = setInterval(() => { const s = BY_ID[player.id]; player.pos = Math.min(s.dur, player.pos + player.rate); if (player.pos >= s.dur) player.on = false; paintPlayer(); if (!player.on) tick(true); }, 1000);
-  if (repaint) { paintPlayer(true); }
+  if (player.on) player.timer = setInterval(() => {
+    const s = BY_ID[player.id]; player.pos = Math.min(s.dur, player.pos + player.rate);
+    if (player.pos >= s.dur) { player.on = false; tick(); } else paint(false);
+  }, 1000);
+  paint(true);
 }
-function paintPlayer(full) {
-  const s = BY_ID[player.id]; const mini = document.getElementById("mini");
-  if (!s) { mini.hidden = true; return; }
-  mini.hidden = false;
-  document.getElementById("miniPlay").innerHTML = player.on ? PAUSE : PLAY;
-  document.getElementById("miniPlay").setAttribute("aria-label", player.on ? "Pause" : "Play");
-  const t = document.getElementById("miniTitle"); t.textContent = `${s.m.name} ${dafRange(s)} · ${s.title}`; t.href = "#s-" + s.id;
-  document.getElementById("miniRate").textContent = player.rate + "×";
-  document.querySelector("#miniBar i").style.width = (player.pos / s.dur * 100) + "%";
-  document.querySelectorAll(`[data-seek="${s.id}"] i`).forEach(el => el.style.width = (player.pos / s.dur * 100) + "%");
-  document.querySelectorAll(`[data-time="${s.id}"]`).forEach(el => el.textContent = `${fmtTime(player.pos)} / ${fmtTime(s.dur)}`);
-  if (full) document.querySelectorAll("[data-play]").forEach(b => {
+function paint(full) {
+  const s = BY_ID[player.id], pct = player.pos / s.dur * 100;
+  document.querySelector("#pbBar i").style.width = pct + "%";
+  document.querySelector("#pbBar b").style.left = pct + "%";
+  document.getElementById("pbPos").textContent = fmtTime(player.pos);
+  document.getElementById("pbLeft").textContent = "−" + fmtTime(s.dur - player.pos);
+  if (!full) return;
+  document.getElementById("pbArt").innerHTML = cover(s.m, true);
+  const info = document.getElementById("pbInfo"); info.href = "#s-" + s.id;
+  info.querySelector("b").textContent = s.title;
+  info.querySelector("span").textContent = `${s.m.name} ${dafRange(s)} · ${fmtDate(s.given)}`;
+  const pp = document.getElementById("pbPlay"); pp.innerHTML = player.on ? PAUSE : PLAY; pp.setAttribute("aria-label", player.on ? "Pause" : "Play");
+  document.getElementById("pbRate").textContent = player.rate + "×";
+  document.querySelectorAll("[data-play]").forEach(b => {
     const on = playing(b.dataset.play);
-    if (b.classList.contains("big-play")) { b.innerHTML = on ? PAUSE : PLAY; b.setAttribute("aria-label", on ? "Pause" : "Play"); }
-    else b.textContent = on ? "Pause" : "Play shiur";
+    b.innerHTML = on ? PAUSE : PLAY; b.setAttribute("aria-pressed", on);
+    const lbl = b.parentElement.querySelector(".lbl b"); if (lbl) lbl.textContent = on ? "Playing" : "Play shiur";
   });
-  document.querySelectorAll("[data-rate]").forEach(b => b.textContent = player.rate + "×");
 }
 
-// ---------- Routing ----------
+// ---------- Routing & events ----------
 function route() {
   const h = location.hash.slice(1) || "home";
   let html, nav = "home";
-  if (h === "home") html = viewHome();
-  else if (h === "search") { html = viewSearch(); nav = "search"; }
+  if (h === "home" || h === "search") html = viewHome();
   else if (h === "about") { html = viewAbout(); nav = "about"; }
   else if (h.startsWith("m-")) html = viewMasechta(h.slice(2));
   else if (h.startsWith("s-")) html = viewShiur(h.slice(2));
   else html = viewMissing();
   document.getElementById("view").innerHTML = html;
   document.querySelectorAll("[data-nav]").forEach(a => a.dataset.nav === nav ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
-  paintPlayer(true);
+  renderResults();
+  paint(true);
+  if (h === "search") focusSearch();
 }
-function go(hash) { if (location.hash === "#" + hash) route(); else location.hash = hash; window.scrollTo(0, 0); }
+function focusSearch() { const q = document.getElementById("q"); if (q) { q.focus(); q.scrollIntoView({ block: "center" }); } else location.hash = "search"; }
+let toastT;
+function toast(msg) { const t = document.getElementById("toast"); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => t.hidden = true, 2800); }
 
+document.addEventListener("input", e => { if (e.target.id === "q") { state.q = e.target.value; renderResults(); } });
 document.addEventListener("submit", e => {
   e.preventDefault();
-  if (e.target.id === "finder") { state.q = e.target.q.value; go("search"); }
   if (e.target.id === "dafjump") {
-    const m = BY_SLUG[e.target.dataset.m]; const r = findDaf(m, e.target.dafIn.value.trim());
-    if (r.hit) { state.dafMsg = ""; go("s-" + r.hit.id); }
-    else { state.dafMsg = r.error || `No shiur covers ${m.name} ${r.daf} yet. The closest is <a href="#s-${r.near.id}">Shiur ${r.near.number} on ${dafRange(r.near)}</a>.`; route(); document.getElementById("dafIn").value = e.target.dafIn?.value || ""; }
+    const m = BY_SLUG[e.target.dataset.m], v = e.target.dafIn.value.trim(); const r = findDaf(m, v);
+    if (r.hit) location.hash = "s-" + r.hit.id;
+    else { state.q = v; const q = document.getElementById("q"); q.value = v; renderResults(); }
   }
 });
 document.addEventListener("click", e => {
-  const b = e.target.closest("button, [data-seek]"); if (!b) return;
-  if (b.dataset.chipM !== undefined) { e.preventDefault(); state.slug = b.dataset.chipM; const q = document.getElementById("q"); if (q) state.q = q.value; go("search"); }
+  const b = e.target.closest("button"); if (!b) return;
+  if (b.id === "searchBtn") focusSearch();
   else if (b.dataset.play) toggle(b.dataset.play);
-  else if (b.dataset.sort) { state.sort = b.dataset.sort; route(); }
-  else if (b.dataset.skip) { if (!player.id) return; player.pos = Math.max(0, Math.min(BY_ID[player.id].dur, player.pos + +b.dataset.skip)); paintPlayer(); }
-  else if (b.dataset.rate !== undefined || b.id === "miniRate") { player.rate = RATES[(RATES.indexOf(player.rate) + 1) % RATES.length]; paintPlayer(true); tick(); }
-  else if (b.dataset.jump) { const [id, t] = b.dataset.jump.split(":"); load(id, +t); player.on = true; tick(true); }
-  else if (b.id === "miniPlay") toggle(player.id);
-  else if (b.dataset.seek) { const s = BY_ID[b.dataset.seek]; const r = b.getBoundingClientRect(); load(s.id, (e.clientX - r.left) / r.width * s.dur); paintPlayer(true); }
+  else if (b.id === "pbPlay") toggle(player.id);
+  else if (b.id === "pbRate") { player.rate = RATES[(RATES.indexOf(player.rate) + 1) % RATES.length]; tick(); }
+  else if (b.dataset.skip) { player.pos = Math.max(0, Math.min(BY_ID[player.id].dur, player.pos + +b.dataset.skip)); paint(false); }
+  else if (b.dataset.jump) { const [id, t] = b.dataset.jump.split(":"); load(id, +t); player.on = true; tick(); }
+  else if (b.dataset.sort) { if (current.slug) state.sortM = b.dataset.sort; else state.sortAll = b.dataset.sort; b.parentElement.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b)); renderResults(); }
+  else if (b.dataset.stab) { state.stab = b.dataset.stab; route(); }
+  else if (b.dataset.toast) toast(b.dataset.toast);
 });
-document.getElementById("miniBar").addEventListener("click", e => { if (!player.id) return; const r = e.currentTarget.getBoundingClientRect(); player.pos = (e.clientX - r.left) / r.width * BY_ID[player.id].dur; paintPlayer(); });
-window.addEventListener("hashchange", () => { if (!location.hash.startsWith("#m-")) state.dafMsg = ""; route(); });
+document.getElementById("pbBar").addEventListener("click", e => { const r = e.currentTarget.getBoundingClientRect(); player.pos = (e.clientX - r.left) / r.width * BY_ID[player.id].dur; paint(false); });
+let lastView = "";
+window.addEventListener("hashchange", () => {
+  const h = location.hash.slice(1); const kind = h.startsWith("m-") || h === "home" || h === "" || h === "search" ? "list" : h;
+  if (kind !== "list") state.q = "";
+  route(); if (kind !== "list" || lastView !== "list") window.scrollTo(0, 0); lastView = kind;
+});
 route();
 </script>
