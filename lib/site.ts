@@ -4,6 +4,11 @@ export const SITE = {
   rav: "Rabbi Fogelman",
   description:
     "A weekly shiur on the aggados of the Gemara as collected in the Ein Yaakov, masechta by masechta, with Rabbi Fogelman.",
+  /** The show description podcast apps display. Plain text; keep under 4,000 characters. */
+  podcastDescription:
+    "A weekly shiur on the Ein Yaakov, the classic collection of the aggados of the Talmud: the stories, parables and teachings woven through every masechta of the Gemara. " +
+    "Each week Rabbi Fogelman reads the Gemara inside with Rashi, the Maharsha and the commentaries printed alongside it, and draws out what Chazal are teaching about Hashem, the soul and how a person should live. " +
+    "The podcast follows the shiur masechta by masechta, starting with Kesuvos. Every past shiur, with summaries, chapters and full transcripts, is at einyaakovshiur.com.",
   // SITE_URL wins; otherwise use the production domain Vercel exposes to every build.
   url: (process.env.SITE_URL
     || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000")

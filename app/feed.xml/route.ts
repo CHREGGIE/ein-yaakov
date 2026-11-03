@@ -38,7 +38,8 @@ export function GET() {
     <title>${esc(SITE.name)}</title>
     <link>${SITE.url}</link>
     <atom:link href="${SITE.url}/feed.xml" rel="self" type="application/rss+xml"/>
-    <description>${esc(SITE.description)}</description>
+    <description>${esc(SITE.podcastDescription)}</description>
+    <itunes:summary>${esc(SITE.podcastDescription)}</itunes:summary>
     <language>en</language>
     <itunes:author>${esc(SITE.rav)}</itunes:author>
     <itunes:owner><itunes:name>${esc(SITE.ownerName || SITE.rav)}</itunes:name>${SITE.ownerEmail ? `<itunes:email>${esc(SITE.ownerEmail)}</itunes:email>` : ""}</itunes:owner>
