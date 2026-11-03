@@ -43,8 +43,10 @@ export function search<Mx extends M, X extends S>(
     if (found) {
       m = found;
       if (/^\d+[ab]?$/.test(words[i + 1] || "")) dafHit = findDaf(shiurim.filter((s) => s.masechta === found.slug), words[++i]);
-    } else if (m && !dafHit && /^\d+[ab]?$/.test(words[i])) {
-      const mm = m;
+    } else if (!dafHit && /^\d+[ab]?$/.test(words[i]) && (m || masechtos.length === 1)) {
+      // A bare daf means the selected masechta, or the only one there is.
+      const mm = m ?? masechtos[0];
+      m = mm;
       dafHit = findDaf(shiurim.filter((s) => s.masechta === mm.slug), words[i]);
     } else terms.push(words[i]);
   }

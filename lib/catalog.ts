@@ -57,9 +57,9 @@ export function inOrder(): ShiurFile[] {
   return [...published()].sort((a, b) => season.get(a.masechta)! - season.get(b.masechta)! || a.number - b.number);
 }
 
-/** Newest first by date given; undated shiurim fall back to learning order at the end. */
+/** Newest first by date given; shiurim without a date fall back to reverse learning order. */
 export function newest(): ShiurFile[] {
-  return [...inOrder()].sort((a, b) => (b.given_on ?? "").localeCompare(a.given_on ?? "") || 0);
+  return [...inOrder()].reverse().sort((a, b) => (b.given_on ?? "").localeCompare(a.given_on ?? ""));
 }
 
 export function shiur(slug: string, n: number): ShiurFile | undefined {

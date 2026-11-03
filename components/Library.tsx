@@ -24,7 +24,7 @@ export function EpItem({ s, terms = [], showM = true }: { s: ShiurLite; terms?: 
           <span>{showM ? `${s.masechtaName} ${dafRange(s)}` : `Daf ${dafRange(s)}`}</span>
           <span className="dot">{fmtDate(s.given_on)}</span>
           <span className="dot">{mins(s.audio.duration_sec)}</span>
-          {s.in_feed && <span className="tag">Podcast</span>}
+          {s.in_feed && s.given_on && <span className="tag">Podcast</span>}
         </span>
         <span className="ep-title">{showM ? "" : `Shiur ${s.number}: `}{hl(s.title, terms)}</span>
         <p className="ep-sum">{hl(s.summary, terms)}</p>

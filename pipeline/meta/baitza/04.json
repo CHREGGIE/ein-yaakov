@@ -1,0 +1,18 @@
+{
+ "masechta": "baitza", "number": 4, "status": "published", "in_feed": true, "given_on": null,
+ "title": "Why the Torah was given to Klal Yisrael",
+ "daf_start": "25a", "daf_end": "26a",
+ "summary": "Lessons in derech eretz from how meat is prepared and a cup of wine is drunk, and the bitter beans that turn sweet after seven boilings. Why the Torah was given to Klal Yisrael: they are the boldest of nations, and the Torah channels that strength. Also walking with a stick and being carried on Yom Tov.",
+ "chapters": [
+  {"start": 0, "title": "Finding our place"},
+  {"start": 77, "title": "Don't rush: derech eretz in eating and drinking"},
+  {"start": 243, "title": "Learning from the trop"},
+  {"start": 399, "title": "Bitter beans boiled seven times"},
+  {"start": 792, "title": "A tzaddik falls seven times and rises"},
+  {"start": 869, "title": "Why the Torah was given to Klal Yisrael"},
+  {"start": 1026, "title": "The boldest among animals, birds and trees"},
+  {"start": 1342, "title": "Walking with a stick on Yom Tov"},
+  {"start": 1573, "title": "Carried on the shoulders"},
+  {"start": 1728, "title": "Measuring and weighing on Yom Tov"}
+ ]
+}

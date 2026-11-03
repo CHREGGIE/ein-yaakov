@@ -9,7 +9,11 @@ import { SideBlocks } from "@/components/Side";
 
 export default function Home() {
   const all = inOrder().map(lite);
-  const latest = lite(newest()[0]);
+  const first = newest()[0];
+  if (!first) return (
+    <section className="prose"><h1 className="title">{SITE.name}</h1><p>The first shiurim are being prepared and will appear here soon.</p></section>
+  );
+  const latest = lite(first);
   const ms = masechtos();
   const hours = Math.round(all.reduce((a, s) => a + s.audio.duration_sec, 0) / 3600);
   return (

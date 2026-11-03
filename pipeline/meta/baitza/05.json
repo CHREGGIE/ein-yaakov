@@ -1,0 +1,22 @@
+{
+ "masechta": "baitza", "number": 5, "status": "published", "in_feed": true, "given_on": null,
+ "label": "Siyum",
+ "title": "The Siyum: wild and domestic, and finishing Baitza",
+ "daf_start": "29a", "daf_end": "40a",
+ "summary": "The final shiur and siyum on Masechta Baitza. Buying and measuring on Yom Tov without doing business, why it can be better to let people err unknowingly, Shabsai bar Marinus and the rich of Bavel, and the three whose lives are not lives. The masechta ends with the wild and domestic animals, read as two kinds of learners: those who leave home to learn and those who work by day and learn every night.",
+ "chapters": [
+  {"start": 0, "title": "Where we are holding"},
+  {"start": 83, "title": "Asking the butcher for meat on Yom Tov"},
+  {"start": 251, "title": "Filling a jug without measuring"},
+  {"start": 488, "title": "Returning what was over-measured"},
+  {"start": 569, "title": "A derashah at the Nasi's door"},
+  {"start": 645, "title": "\"Take your goodness and throw it on the thorns\""},
+  {"start": 953, "title": "Clapping and dancing on Yom Tov"},
+  {"start": 1029, "title": "Better they err unknowingly"},
+  {"start": 1183, "title": "Shabsai bar Marinus and the rich of Bavel"},
+  {"start": 1419, "title": "Three whose lives are not lives"},
+  {"start": 1577, "title": "A coal follows its owner's techum"},
+  {"start": 1811, "title": "Wild and domestic animals: two kinds of learners"},
+  {"start": 1930, "title": "Finishing the masechta"}
+ ]
+}

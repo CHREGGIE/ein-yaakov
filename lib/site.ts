@@ -4,7 +4,10 @@ export const SITE = {
   rav: "Rabbi Fogelman",
   description:
     "A weekly shiur on the aggados of the Gemara as collected in the Ein Yaakov, masechta by masechta, with Rabbi Fogelman.",
-  url: (process.env.SITE_URL || "https://ein-yaakov.vercel.app").replace(/\/$/, ""),
+  // SITE_URL wins; otherwise use the production domain Vercel exposes to every build.
+  url: (process.env.SITE_URL
+    || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000")
+  ).replace(/\/$/, ""),
   audioBase: (process.env.AUDIO_BASE_URL || "").replace(/\/$/, ""),
   op3: process.env.OP3 === "1",
   ownerName: process.env.PODCAST_OWNER_NAME || "",

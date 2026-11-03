@@ -1,0 +1,16 @@
+{
+ "masechta": "baitza", "number": 2, "status": "published", "in_feed": true, "given_on": null,
+ "label": "Yud-Tes Kislev",
+ "title": "A gift you have to tell about: Shabbos",
+ "daf_start": "16a", "daf_end": "16b",
+ "summary": "A shorter shiur given on Yud-Tes Kislev before a farbrengen. The Gemara teaches that one who gives a gift must let the recipient know, and Hashem's good gift of Shabbos. Moshe's shining face, the extra neshamah that comes with Shabbos, and the eruv tavshilin made for a whole town.",
+ "chapters": [
+  {"start": 0, "title": "A shorter shiur for Yud-Tes Kislev"},
+  {"start": 81, "title": "Moshe didn't know his face was shining"},
+  {"start": 316, "title": "Telling someone you gave them a gift"},
+  {"start": 472, "title": "Shabbos, Hashem's hidden gift"},
+  {"start": 1021, "title": "The extra neshamah of Shabbos"},
+  {"start": 1337, "title": "An eruv tavshilin for the whole town"},
+  {"start": 1416, "title": "The blind man who knew the Mishnah"}
+ ]
+}
