@@ -1,19 +1,57 @@
 {
- "masechta": "baitza", "number": 1, "status": "published", "in_feed": true, "given_on": null,
+ "masechta": "baitza",
+ "number": 1,
+ "status": "published",
+ "in_feed": false,
+ "given_on": null,
  "title": "Opening Baitza: Yom Tov for Hashem and for yourself",
- "daf_start": "2a", "daf_end": "16a",
+ "daf_start": "2a",
+ "daf_end": "16a",
  "summary": "The first shiur on Masechta Baitza: why the masechta is named for an egg, an egg laid on Yom Tov, and Rosh Hashanah as one long day. Then Rabbi Eliezer's lesson that Yom Tov is half for Hashem and half for yourself, and the teaching that a person's livelihood is set on Rosh Hashanah except for what he spends on Shabbos, Yom Tov and his children's Torah.",
  "chapters": [
-  {"start": 0, "title": "Starting Masechta Baitza: the egg and Klal Yisrael"},
-  {"start": 339, "title": "An egg laid on Yom Tov"},
-  {"start": 422, "title": "The interpreter who didn't speak after the meal"},
-  {"start": 504, "title": "Rosh Hashanah as one long day"},
-  {"start": 1072, "title": "Grinding salt on Yom Tov"},
-  {"start": 1316, "title": "The groups who left Rabbi Eliezer's shiur"},
-  {"start": 1473, "title": "Half for Hashem, half for yourself"},
-  {"start": 1634, "title": "\"Borrow on My account and I will repay\""},
-  {"start": 2348, "title": "A person's livelihood is set on Rosh Hashanah"},
-  {"start": 2428, "title": "Stories of emunah and parnassah"},
-  {"start": 2734, "title": "Shammai and Hillel prepare for Shabbos"}
+  {
+   "start": 0,
+   "title": "Starting Masechta Baitza: the egg and Klal Yisrael"
+  },
+  {
+   "start": 339,
+   "title": "An egg laid on Yom Tov"
+  },
+  {
+   "start": 422,
+   "title": "The interpreter who didn't speak after the meal"
+  },
+  {
+   "start": 504,
+   "title": "Rosh Hashanah as one long day"
+  },
+  {
+   "start": 1072,
+   "title": "Grinding salt on Yom Tov"
+  },
+  {
+   "start": 1316,
+   "title": "The groups who left Rabbi Eliezer's shiur"
+  },
+  {
+   "start": 1473,
+   "title": "Half for Hashem, half for yourself"
+  },
+  {
+   "start": 1634,
+   "title": "\"Borrow on My account and I will repay\""
+  },
+  {
+   "start": 2348,
+   "title": "A person's livelihood is set on Rosh Hashanah"
+  },
+  {
+   "start": 2428,
+   "title": "Stories of emunah and parnassah"
+  },
+  {
+   "start": 2734,
+   "title": "Shammai and Hillel prepare for Shabbos"
+  }
  ]
 }

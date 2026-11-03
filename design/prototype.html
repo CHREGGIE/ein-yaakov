@@ -423,7 +423,7 @@ function renderResults() {
   let list = r.dafHit ? [r.dafHit.hit || r.dafHit.near].filter(Boolean) : r.results.slice();
   if (!r.terms.length && !r.dafHit) {
     const sort = current.slug ? state.sortM : state.sortAll;
-    list.sort(sort === "new" ? (a, b) => (b.given || 0) - (a.given || 0) || b.number - a.number : (a, b) => a.m.season - b.m.season || a.number - b.number);
+    list.sort(sort === "new" ? (a, b) => (b.given || 0) - (a.given || 0) || b.number - a.number : (a, b) => a.m.order - b.m.order || a.number - b.number);
   }
   const label = r.terms.length ? `${list.length} result${list.length === 1 ? "" : "s"}${r.m ? " in " + r.m.name : ""}` : r.dafHit ? "" : `${list.length} shiurim${r.m ? ` · Daf ${r.m.shiurim[0].dafStart}–${r.m.shiurim.at(-1).dafEnd}` : ""}`;
   box.innerHTML = `
@@ -499,7 +499,7 @@ function viewMasechta(slug) {
   return `<div class="layout">
     <div class="side-top">
       ${cover(m)}
-      <div class="by"><h1 class="show-name">Ein Yaakov on ${m.name}</h1>Season ${m.season} · Seder ${SEDARIM[m.seder][0]}</div>
+      <div class="by"><h1 class="show-name">Ein Yaakov on ${m.name}</h1>${m.season ? `Podcast season ${m.season} · ` : ""}Seder ${SEDARIM[m.seder][0]}</div>
       ${startButtons(m)}
       <form class="block dafbox" id="dafjump" style="border-top:0;padding-block:0" data-m="${m.slug}"><input id="dafIn" placeholder="Go to daf, e.g. ${m.shiurim[2].dafStart}" aria-label="Go to daf" autocomplete="off"><button class="btn">Go</button></form>
     </div>

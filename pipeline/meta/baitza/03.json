@@ -1,18 +1,53 @@
 {
- "masechta": "baitza", "number": 3, "status": "published", "in_feed": true, "given_on": null,
+ "masechta": "baitza",
+ "number": 3,
+ "status": "published",
+ "in_feed": false,
+ "given_on": null,
  "title": "Bava ben Buta and the flock in the Azarah",
- "daf_start": "20a", "daf_end": "23a",
+ "daf_start": "20a",
+ "daf_end": "23a",
  "summary": "Whether a korban olah may be brought on Yom Tov, and how Bava ben Buta brought his flock to the Azarah so the halachah would follow Beis Hillel. Also why one may not invite a non-Jew to a Yom Tov meal, a lesson from Esther's banquets, and Rabbi Elazar ben Azaryah's cow that went out with a strap between its horns.",
  "chapters": [
-  {"start": 0, "title": "Where we are holding"},
-  {"start": 77, "title": "Bringing a korban olah on Yom Tov"},
-  {"start": 157, "title": "Hillel in the Azarah"},
-  {"start": 234, "title": "Bava ben Buta's flock"},
-  {"start": 468, "title": "When a young talmid chacham should stay quiet"},
-  {"start": 779, "title": "Praise for Rav Abba"},
-  {"start": 1091, "title": "Inviting a non-Jew on Yom Tov"},
-  {"start": 1246, "title": "Esther, Haman and the banquets"},
-  {"start": 1739, "title": "Rabbi Elazar ben Azaryah's cow"},
-  {"start": 1893, "title": "The power of one sigh"}
+  {
+   "start": 0,
+   "title": "Where we are holding"
+  },
+  {
+   "start": 77,
+   "title": "Bringing a korban olah on Yom Tov"
+  },
+  {
+   "start": 157,
+   "title": "Hillel in the Azarah"
+  },
+  {
+   "start": 234,
+   "title": "Bava ben Buta's flock"
+  },
+  {
+   "start": 468,
+   "title": "When a young talmid chacham should stay quiet"
+  },
+  {
+   "start": 779,
+   "title": "Praise for Rav Abba"
+  },
+  {
+   "start": 1091,
+   "title": "Inviting a non-Jew on Yom Tov"
+  },
+  {
+   "start": 1246,
+   "title": "Esther, Haman and the banquets"
+  },
+  {
+   "start": 1739,
+   "title": "Rabbi Elazar ben Azaryah's cow"
+  },
+  {
+   "start": 1893,
+   "title": "The power of one sigh"
+  }
  ]
 }

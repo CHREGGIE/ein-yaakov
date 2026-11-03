@@ -28,10 +28,10 @@ export function published(): ShiurFile[] {
   return load().shiurim.filter((s) => s.status === "published");
 }
 
-/** Masechtos that have at least one published shiur, in season order. */
+/** Masechtos that have at least one published shiur, in library order. */
 export function masechtos(): Masechta[] {
   const live = new Set(published().map((s) => s.masechta));
-  return load().masechtos.filter((m) => live.has(m.slug)).sort((a, b) => a.season - b.season);
+  return load().masechtos.filter((m) => live.has(m.slug)).sort((a, b) => a.order - b.order);
 }
 
 export function masechta(slug: string): Masechta | undefined {
@@ -51,10 +51,10 @@ export function lite(s: ShiurFile): ShiurLite {
   };
 }
 
-/** Shiurim in learning order: by masechta season, then shiur number. */
+/** Shiurim in learning order: by masechta, then shiur number. */
 export function inOrder(): ShiurFile[] {
-  const season = new Map(load().masechtos.map((m) => [m.slug, m.season]));
-  return [...published()].sort((a, b) => season.get(a.masechta)! - season.get(b.masechta)! || a.number - b.number);
+  const order = new Map(load().masechtos.map((m) => [m.slug, m.order]));
+  return [...published()].sort((a, b) => order.get(a.masechta)! - order.get(b.masechta)! || a.number - b.number);
 }
 
 /** Newest first by date given; shiurim without a date fall back to reverse learning order. */
@@ -66,7 +66,8 @@ export function shiur(slug: string, n: number): ShiurFile | undefined {
   return published().find((s) => s.masechta === slug && s.number === n);
 }
 
-/** The weekly feed: published, in the feed, and with a known date (pubDate must be the date given). */
+/** The weekly feed: published, in the feed, dated (pubDate is the date given), and in a masechta with a podcast season. */
 export function feedItems(): ShiurFile[] {
-  return newest().filter((s) => s.in_feed && s.given_on);
+  const inPodcast = new Set(load().masechtos.filter((m) => m.season != null).map((m) => m.slug));
+  return newest().filter((s) => s.in_feed && s.given_on && inPodcast.has(s.masechta));
 }

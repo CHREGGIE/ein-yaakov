@@ -1,4 +1,4 @@
-"""Usage: python transcribe.py MODEL OUT_DIR audio1.mp3 [audio2.mp3 ...]
+"""Usage: MASECHTA=Kesuvos python transcribe.py MODEL OUT_DIR audio1.mp3 [audio2.mp3 ...]
 
 Writes OUT_DIR/<name>.json with timestamped segments, using faster-whisper on CPU.
 The initial prompt primes the vocabulary the shiur uses so names and terms come out right.
@@ -7,7 +7,8 @@ import json, os, subprocess, sys, time
 import numpy as np
 from faster_whisper import WhisperModel
 
-PROMPT = ("A shiur on Ein Yaakov, Masechta Beitzah (Baitza), by Rabbi Fogelman. "
+# Set MASECHTA to the masechta being transcribed, e.g. MASECHTA="Kesuvos (Kesubos, Ketubot)".
+PROMPT = (f"A shiur on Ein Yaakov, Masechta {os.environ.get('MASECHTA', '')}, by Rabbi Fogelman. "
           "Gemara, Rashi, Maharsha, Tosafos, Chazal, Hashem, Torah, Yom Tov, Shabbos, "
           "Hakadosh Baruch Hu, Klal Yisrael, Rebbi, Rabbi Yehoshua, siyum, hadran, daf, amud.")
 

@@ -5,6 +5,16 @@
     "he": "ביצה",
     "seder": "moed",
     "aliases": ["beitzah", "beitza", "beitsa", "betzah", "baitzah", "beitzo", "yom tov"],
+    "order": 1,
+    "season": null
+  },
+  {
+    "slug": "kesuvos",
+    "name": "Kesuvos",
+    "he": "כתובות",
+    "seder": "nashim",
+    "aliases": ["ketubot", "ketubos", "kesubos", "kesuvot", "ketuvot", "kesubot", "ksubos"],
+    "order": 2,
     "season": 1
   }
 ]

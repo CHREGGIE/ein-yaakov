@@ -4,7 +4,10 @@ export type Masechta = {
   he: string;
   seder: "zeraim" | "moed" | "nashim" | "nezikin" | "kodashim" | "taharos";
   aliases: string[];
-  season: number;
+  /** Library order (by when the masechta was learned). */
+  order: number;
+  /** Podcast season; null for masechtos that are in the library only. */
+  season: number | null;
   description?: string;
 };
 

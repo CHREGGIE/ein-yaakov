@@ -3,7 +3,7 @@
  "masechta": "baitza",
  "number": 5,
  "status": "published",
- "in_feed": true,
+ "in_feed": false,
  "given_on": null,
  "title": "The Siyum: wild and domestic, and finishing Baitza",
  "label": "Siyum",

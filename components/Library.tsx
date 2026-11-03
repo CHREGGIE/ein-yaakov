@@ -41,10 +41,10 @@ export function Library({ masechtos, shiurim, active }: { masechtos: Masechta[];
   const r = useMemo(() => search(q, masechtos, shiurim, (s) => ({ title: s.title, summary: s.summary }), active), [q, masechtos, shiurim, active]);
   let list = r.dafHit && !("error" in r.dafHit) ? ["hit" in r.dafHit ? r.dafHit.hit : r.dafHit.near] : r.dafHit ? [] : [...r.results];
   if (!r.terms.length && !r.dafHit) {
-    const season = new Map(masechtos.map((x) => [x.slug, x.season]));
+    const order = new Map(masechtos.map((x) => [x.slug, x.order]));
     list.sort(sort === "new"
-      ? (a, b) => (b.given_on ?? "").localeCompare(a.given_on ?? "") || season.get(b.masechta)! - season.get(a.masechta)! || b.number - a.number
-      : (a, b) => season.get(a.masechta)! - season.get(b.masechta)! || a.number - b.number);
+      ? (a, b) => (b.given_on ?? "").localeCompare(a.given_on ?? "") || order.get(b.masechta)! - order.get(a.masechta)! || b.number - a.number
+      : (a, b) => order.get(a.masechta)! - order.get(b.masechta)! || a.number - b.number);
   }
   const showM = !active || (r.m != null && r.m.slug !== active);
   const dm = r.m;

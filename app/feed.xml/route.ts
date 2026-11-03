@@ -11,9 +11,9 @@ const pubDate = (iso: string) => new Date(iso + "T20:00:00Z").toUTCString();
 const op3 = (url: string) => (SITE.op3 ? `https://op3.dev/e/${url.replace(/^https?:\/\//, "")}` : url);
 
 export function GET() {
-  const season = new Map(masechtos().map((m) => [m.slug, m]));
+  const bySlug = new Map(masechtos().map((m) => [m.slug, m]));
   const items = feedItems().map((s) => {
-    const m = season.get(s.masechta)!;
+    const m = bySlug.get(s.masechta)!;
     const url = audioUrl(s);
     const link = `${SITE.url}/${s.masechta}/${s.number}`;
     const title = `Ein Yaakov on ${m.name} – Shiur ${s.number}: ${s.title}`;
