@@ -5,6 +5,7 @@ import { SITE } from "@/lib/site";
 import { Cover } from "@/components/Cover";
 import { Library } from "@/components/Library";
 import { PlayButton } from "@/components/Player";
+import { RavPhoto } from "@/components/RavPhoto";
 import { SideBlocks } from "@/components/Side";
 
 export default function Home() {
@@ -20,7 +21,7 @@ export default function Home() {
     <div className="layout">
       <div className="side-top">
         <Cover />
-        <div className="by"><h1 className="show-name">{SITE.short}</h1>Given by<b>{SITE.rav}</b></div>
+        <div className="rav"><RavPhoto /><div className="by"><h1 className="show-name">{SITE.short}</h1>Given by<b>{SITE.rav}</b></div></div>
         <div className="actions"><a className="btn" href="/feed.xml">Podcast feed</a></div>
       </div>
       <div className="side-more"><SideBlocks /></div>

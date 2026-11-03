@@ -6,6 +6,7 @@ import { dafRange, fmtDate, fmtTime, heRange, mins } from "@/lib/daf";
 import { SITE } from "@/lib/site";
 import { Cover } from "@/components/Cover";
 import { ChapterList, PlayButton, PlayLabel } from "@/components/Player";
+import { RavPhoto } from "@/components/RavPhoto";
 import { SideBlocks } from "@/components/Side";
 import { Tabs } from "@/components/Tabs";
 
@@ -49,7 +50,7 @@ export default async function ShiurPage({ params }: P) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="side-top">
         <Cover he={m.he} en={m.name} />
-        <div className="by"><span className="show-name">Ein Yaakov on {m.name}</span>Given by<b>{SITE.rav}</b></div>
+        <div className="rav"><RavPhoto /><div className="by"><span className="show-name">Ein Yaakov on {m.name}</span>Given by<b>{SITE.rav}</b></div></div>
         <div className="actions">{l.audioUrl ? <a className="btn" href={l.audioUrl} download>Download MP3</a> : <button className="btn" disabled>Download coming soon</button>}</div>
       </div>
       <div className="side-more">

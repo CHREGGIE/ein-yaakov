@@ -214,3 +214,8 @@ h1.title { font-size: 2.2rem; line-height: 1.15; font-weight: 700; margin: 0; te
   .pn a.next { text-align: left; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+.rav { display: flex; align-items: center; gap: .75rem; }
+.rav-photo { object-fit: cover; flex: none; }
+.rav-photo.sm { width: 3.5rem; height: 3.5rem; border-radius: 50%; }
+.rav-photo.lg { width: 100%; max-width: 20rem; height: auto; aspect-ratio: 4 / 5; border-radius: 4px; box-shadow: var(--shadow); }

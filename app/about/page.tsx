@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
 import { Cover } from "@/components/Cover";
+import { RavPhoto } from "@/components/RavPhoto";
 import { SideBlocks } from "@/components/Side";
 
 export const metadata: Metadata = { title: "About" };
@@ -8,7 +9,7 @@ export const metadata: Metadata = { title: "About" };
 export default function About() {
   return (
     <div className="layout">
-      <div className="side-top"><Cover /></div>
+      <div className="side-top"><RavPhoto size="lg" /><Cover /></div>
       <div className="side-more"><SideBlocks /></div>
       <section className="main-col prose">
         <span className="eyebrow">About the shiur</span>
