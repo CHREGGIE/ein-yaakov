@@ -254,7 +254,7 @@ h1.title { font-size: 2.2rem; line-height: 1.15; font-weight: 700; margin: 0; te
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 
-<div class="proto"><b>Preview</b> · Masechta Baitza with Rabbi Fogelman. Audio is a preview copy; transcripts are automatic and not yet reviewed.</div>
+<div class="proto"><b>Preview</b> · Masechta Baitza with Rabbi Fogelman. Audio is a preview copy.</div>
 <header class="top">
   <div class="top-in">
     <a class="word" href="#home">EIN YAAKOV</a>
@@ -554,13 +554,8 @@ function viewShiur(id) {
       <p class="summary">${esc(s.summary)}</p>
       ${s.dedication ? `<p class="muted" style="margin:0;font-size:.9rem">${esc(s.dedication)}</p>` : ""}
       <div class="panel">
-        <div class="tabs" role="tablist">
-          <button class="tab" role="tab" data-stab="chapters" aria-selected="${state.stab === "chapters"}">Chapters</button>
-          <button class="tab" role="tab" data-stab="transcript" aria-selected="${state.stab === "transcript"}">Transcript</button>
-        </div>
-        ${state.stab === "chapters"
-          ? `<ol class="chapters">${ch.map(([t, c]) => `<li><button data-jump="${s.id}:${t}"><span class="ts">${fmtTime(t)}</span><span>${esc(c)}</span></button></li>`).join("")}</ol>`
-          : `<div class="transcript">${transcriptFor(s).map(([t, x]) => `<p><span class="ts">${fmtTime(t)}</span>${esc(x)}</p>`).join("")}<p class="hint" style="padding:0">Transcribed automatically and not yet reviewed, so names and Hebrew terms may be spelled imperfectly.</p></div>`}
+        <div class="tabs"><span class="tab" aria-selected="true">Chapters</span></div>
+        <ol class="chapters">${ch.map(([t, c]) => `<li><button data-jump="${s.id}:${t}"><span class="ts">${fmtTime(t)}</span><span>${esc(c)}</span></button></li>`).join("")}</ol>
       </div>
       <nav class="pn" aria-label="Previous and next shiur">
         ${prev ? `<a href="#s-${prev.id}"><small>← Shiur ${prev.number} · ${dafRange(prev)}</small><b>${esc(prev.title)}</b></a>` : "<span></span>"}

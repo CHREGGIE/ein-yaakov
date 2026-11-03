@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { lite, masechta, published, shiur } from "@/lib/catalog";
-import { dafRange, fmtDate, fmtTime, heRange, mins } from "@/lib/daf";
+import { dafRange, fmtDate, heRange, mins } from "@/lib/daf";
 import { SITE } from "@/lib/site";
 import { Cover } from "@/components/Cover";
 import { ChapterList, PlayButton, PlayLabel } from "@/components/Player";
 import { RavPhoto } from "@/components/RavPhoto";
 import { SideBlocks } from "@/components/Side";
-import { Tabs } from "@/components/Tabs";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -73,13 +72,10 @@ export default async function ShiurPage({ params }: P) {
         <div className="playrow"><PlayButton s={l} variant="big" /><PlayLabel s={l} chapters={s.chapters.length} /></div>
         <p className="summary">{s.summary}</p>
         {s.dedication && <p className="dedication">{s.dedication}</p>}
-        <Tabs labels={["Chapters", "Transcript"]}>
+        <div className="panel">
+          <div className="tabs"><span className="tab" aria-selected="true">Chapters</span></div>
           <ChapterList s={l} />
-          <div className="transcript">
-            {s.transcript.map((p) => <p key={p.start}><span className="ts">{fmtTime(p.start)}</span>{p.text}</p>)}
-            <p className="hint" style={{ padding: 0 }}>Transcribed automatically and lightly reviewed, so names and Hebrew terms may be spelled imperfectly.</p>
-          </div>
-        </Tabs>
+        </div>
         <nav className="pn" aria-label="Previous and next shiur">
           {prev ? <Link href={`/${m.slug}/${prev.number}`}><small>← Shiur {prev.number} · {dafRange(prev)}</small><b>{prev.title}</b></Link> : <span />}
           {next ? <Link className="next" href={`/${m.slug}/${next.number}`}><small>Shiur {next.number} · {dafRange(next)} →</small><b>{next.title}</b></Link> : <span />}

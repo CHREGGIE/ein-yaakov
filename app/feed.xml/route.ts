@@ -20,7 +20,7 @@ export function GET() {
     return `
     <item>
       <title>${esc(title)}</title>
-      <description>${esc(`${s.summary}\n\n${m.name} ${dafRange(s)}. Summary, chapters and full transcript: ${link}`)}</description>
+      <description>${esc(`${s.summary}\n\n${m.name} ${dafRange(s)}. Summary and chapters: ${link}`)}</description>
       <link>${link}</link>
       <guid isPermaLink="false">${s.guid}</guid>
       <pubDate>${pubDate(s.given_on!)}</pubDate>

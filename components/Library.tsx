@@ -71,7 +71,7 @@ export function Library({ masechtos, shiurim, active }: { masechtos: Masechta[];
           <button aria-pressed={sort === "order"} onClick={() => setSort("order")}>{m ? "By daf" : "In order"}</button>
         </div>
       </div>
-      {!q && <p className="hint">Search a topic, or type a masechta and daf like <code>{masechtos[0]?.name} {shiurim[0]?.daf_start}</code>. For words said inside a shiur, use <Link href="/search">full-text search</Link>.</p>}
+      {!q && <p className="hint">Search a topic, or type a masechta and daf like <code>{masechtos[0]?.name} {shiurim[0]?.daf_start}</code>.</p>}
       {notice && <div className="notice">{notice}</div>}
       {label && <div className="count num">{label}</div>}
       {list.length ? (

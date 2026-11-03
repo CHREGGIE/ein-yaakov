@@ -8,7 +8,7 @@ import { SearchIcon } from "@/components/Icons";
 
 export const metadata: Metadata = { title: "Search" };
 
-/** Full-text search over title, summary and transcript, rendered on the server. */
+/** Search over title and summary, plus the hidden automatic transcript as a weak signal. Rendered on the server. */
 export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const q = ((await searchParams).q ?? "").slice(0, 200);
   const ms = masechtos();
@@ -21,10 +21,10 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
       <h1 className="title">Search</h1>
       <div className="panel">
         <form className="tools" action="/search">
-          <label className="searchbox"><SearchIcon /><input id="q" name="q" type="search" defaultValue={q} placeholder="Words from a shiur, a topic, or a masechta and daf" aria-label="Search" /></label>
+          <label className="searchbox"><SearchIcon /><input id="q" name="q" type="search" defaultValue={q} placeholder="A topic, a story, or a masechta and daf" aria-label="Search" /></label>
           <button className="btn">Search</button>
         </form>
-        {!r && <p className="empty">Searches titles, summaries and everything said in each shiur.</p>}
+        {!r && <p className="empty">Searches shiur titles and summaries, and finds the shiur for any masechta and daf.</p>}
         {dh && <div className="notice">{"error" in dh ? dh.error : "hit" in dh
           ? <>{r!.m!.name} {dh.daf} is covered in <Link href={`/${dh.hit.masechta}/${dh.hit.number}`}>Shiur {dh.hit.number}</Link>.</>
           : <>No shiur covers {r!.m!.name} {dh.daf} yet. The closest is Shiur {dh.near.number} on {dafRange(dh.near)}.</>}</div>}

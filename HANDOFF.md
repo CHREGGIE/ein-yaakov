@@ -192,7 +192,7 @@ The site is a library modeled on YUTorah, scoped to this one shiur, reading only
 
 Other requirements:
 
-- Each shiur page is server-rendered with the transcript in the HTML, so it can be indexed by search engines
+- Each shiur page is server-rendered with its title, summary and chapters. Transcripts are not shown (decided 2026-11-03): automatic transcription garbles the Hebrew, Aramaic and Yiddish. They stay in the catalog files and feed search only. Revisit if a better transcription method is found
 - Structured data (`PodcastEpisode`) on each shiur page
 - Mobile-first; most listeners will open it on a phone
 - Search accepts masechta + daf (`Kesuvos 17a`) and both Ashkenazi and Sephardi spellings, via `masechtos.aliases`
