@@ -1,0 +1,23 @@
+{
+ "masechta": "kesuvos", "number": 1, "status": "published", "in_feed": true, "given_on": "2026-09-01",
+ "title": "Opening Kesuvos: the match made in Heaven",
+ "daf_start": "2a", "daf_end": "8a",
+ "summary": "The first shiur on Masechta Kesuvos: what the word kesubah means, why a person's zivug is the one thing he doesn't choose, and why Heaven calls out \"the daughter of so-and-so.\" Why a besulah is married on Wednesday, why our fingers are shaped like pegs that can close the ears, why the chosson and kallah cry under the chuppah, and how even the unborn sang shirah at the Yam Suf.",
+ "chapters": [
+  {"start": 0, "title": "Starting Masechta Kesuvos"},
+  {"start": 78, "title": "What the word kesubah means"},
+  {"start": 323, "title": "A zivug is the one thing you don't choose"},
+  {"start": 403, "title": "\"The daughter of so-and-so\""},
+  {"start": 561, "title": "Why a besulah marries on Wednesday"},
+  {"start": 719, "title": "Each one's role in a marriage"},
+  {"start": 874, "title": "The world with one hand, the Mikdash with two"},
+  {"start": 1265, "title": "Why fingers are shaped like pegs"},
+  {"start": 1420, "title": "Guarding what we hear"},
+  {"start": 1581, "title": "Why the chosson and kallah cry under the chuppah"},
+  {"start": 1742, "title": "The generations who stand at the chuppah"},
+  {"start": 1978, "title": "Even the unborn sang shirah"},
+  {"start": 2074, "title": "Ten elders for the brachos"},
+  {"start": 2211, "title": "L'chaim, vort and tenaim"},
+  {"start": 2608, "title": "Seven days of sheva brachos"}
+ ]
+}
