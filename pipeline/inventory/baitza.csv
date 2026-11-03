@@ -1,0 +1,5 @@
+masechta,number,source_files,metadata_date,duration_sec,output_file,output_bytes,lufs,true_peak_dbtp,status,flags
+Baitza,1,Baitza_01.m4a,2026-05-07,2779,Baitza-01.mp3,22229855,-17.1,-2.1,cleaned,"name uses _ not -; metadata date is a copy/export time, not the shiur date"
+Baitza,2,Baitza_02.m4a,2026-05-07,1642,Baitza-02.mp3,13138198,-17.0,-2.5,cleaned,"name uses _ not -; metadata date is a copy/export time, not the shiur date"
+Baitza,3,Baitza_03.m4a,2026-05-07,1924,Baitza-03.mp3,15393714,-17.3,-1.9,cleaned,"name uses _ not -; metadata date is a copy/export time, not the shiur date"
+Baitza,4,Baitza_04.1.m4a + Baitza_04.2.m4a,2026-05-07,1874,Baitza-04.mp3,14992338,-17.2,-2.1,cleaned,"recording split in two parts, joined at 26:40; confirm both parts are the same shiur; name uses _ not -; metadata date is a copy/export time, not the shiur date"

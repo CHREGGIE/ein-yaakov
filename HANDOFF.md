@@ -31,7 +31,9 @@ Only the audio preset exists; no repo, database, storage or site has been set up
 | 2026-10-28 | Workflow diagram shown to stakeholders | Done |
 | 2026-10-30 | Site design prototype (`design/prototype.html`) | Round 3 done: weekly + library homepage |
 | 2026-10-30 | Weekly podcast + library model agreed | Done; this doc updated |
-| — | Backlog inventory (5 masechtos) | Not started; file count unknown |
+| 2026-11-03 | Baitza 1–4 received, inventoried and cleaned (`pipeline/inventory/baitza.csv`) | Done; awaiting listening review, shiur dates unknown |
+| 2026-11-03 | `pipeline/clean.sh` moved to two-pass loudnorm, limiter at -3 dBFS | Done; all four Baitza files pass -16 ±1 LUFS and ≤ -1 dBTP |
+| — | Backlog inventory (5 masechtos) | Started with Baitza; rest not received |
 | — | Repo, catalog, storage, site, feed | Not started |
 
 ## Two ways to listen
@@ -86,7 +88,11 @@ What each stage targets, from measurements of the source:
 - `afftdn` at `nr=10` is deliberately gentle so audience questions survive; source noise floor sits about 30 dB under speech
 - `loudnorm` + `alimiter` hit podcast loudness without overs (source peaked at +0.5 dBFS)
 
-To do: add a two-pass `loudnorm` to land closer to -16 LUFS, and verify each output with `ebur128` before marking it cleaned.
+Done (2026-11-03): `pipeline/clean.sh` is now two-pass (measure, then linear `loudnorm`), and `pipeline/measure.sh` checks each output with `ebur128`. The single-pass limiter at 0.79 let one Baitza file reach -0.7 dBTP after MP3 encoding, so the limiter is now 0.708 (-3 dBFS). Outputs land around -17 LUFS, inside the ±1 LU window.
+
+Source recordings seen so far peak above 0 dBTP (Baitza: +0.0 to +1.9), so the limiter is required, not optional.
+
+Intake notes from Baitza: files arrive as `Masechta_NN` (underscore), a shiur can be split into parts (`Baitza_04.1`, `Baitza_04.2`) that must be joined in order before cleaning, and file metadata dates are copy/export times, not shiur dates. The inventory script must flag all three.
 
 ## Proposed data model
 
