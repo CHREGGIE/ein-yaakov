@@ -1,0 +1,89 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { lite, masechta, published, shiur } from "@/lib/catalog";
+import { dafRange, fmtDate, fmtTime, heRange, mins } from "@/lib/daf";
+import { SITE } from "@/lib/site";
+import { Cover } from "@/components/Cover";
+import { ChapterList, PlayButton, PlayLabel } from "@/components/Player";
+import { SideBlocks } from "@/components/Side";
+import { Tabs } from "@/components/Tabs";
+
+export const dynamicParams = false;
+export function generateStaticParams() {
+  return published().map((s) => ({ masechta: s.masechta, number: String(s.number) }));
+}
+
+type P = { params: Promise<{ masechta: string; number: string }> };
+async function get(params: P["params"]) {
+  const p = await params;
+  const m = masechta(p.masechta), s = shiur(p.masechta, Number(p.number));
+  return m && s ? { m, s } : null;
+}
+
+export async function generateMetadata({ params }: P): Promise<Metadata> {
+  const r = await get(params);
+  if (!r) return {};
+  return { title: `${r.s.title} · ${r.m.name} ${dafRange(r.s)}`, description: r.s.summary };
+}
+
+export default async function ShiurPage({ params }: P) {
+  const r = await get(params);
+  if (!r) notFound();
+  const { m, s } = r;
+  const l = lite(s);
+  const siblings = published().filter((x) => x.masechta === m.slug).sort((a, b) => a.number - b.number);
+  const i = siblings.findIndex((x) => x.number === s.number);
+  const prev = siblings[i - 1], next = siblings[i + 1];
+  const jsonLd = {
+    "@context": "https://schema.org", "@type": "PodcastEpisode",
+    url: `${SITE.url}${l.href}`, name: s.title, description: s.summary,
+    episodeNumber: s.number, ...(s.given_on ? { datePublished: s.given_on } : {}),
+    timeRequired: `PT${Math.round(s.audio.duration_sec / 60)}M`,
+    ...(l.audioUrl ? { associatedMedia: { "@type": "MediaObject", contentUrl: l.audioUrl } } : {}),
+    partOfSeason: { "@type": "PodcastSeason", name: `Ein Yaakov on ${m.name}` },
+    partOfSeries: { "@type": "PodcastSeries", name: SITE.name, url: SITE.url },
+  };
+  return (
+    <div className="layout">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <div className="side-top">
+        <Cover he={m.he} en={m.name} />
+        <div className="by"><span className="show-name">Ein Yaakov on {m.name}</span>Given by<b>{SITE.rav}</b></div>
+        <div className="actions">{l.audioUrl ? <a className="btn" href={l.audioUrl} download>Download MP3</a> : <button className="btn" disabled>Download coming soon</button>}</div>
+      </div>
+      <div className="side-more">
+        <div className="block"><dl className="num">
+          <dt>Masechta</dt><dd>{m.name} <span className="he" lang="he">{m.he}</span></dd>
+          <dt>Daf</dt><dd>{dafRange(s)}</dd>
+          <dt>Shiur</dt><dd>{s.number} of {siblings.length}</dd>
+          <dt>Given</dt><dd>{fmtDate(s.given_on)}</dd>
+          <dt>Length</dt><dd>{mins(s.audio.duration_sec)}</dd>
+        </dl></div>
+        <SideBlocks />
+      </div>
+      <section className="main-col">
+        <nav className="crumbs"><Link href="/">Shiurim</Link><span>›</span><Link href={`/${m.slug}`}>{m.name}</Link><span>›</span><span>Shiur {s.number}</span></nav>
+        <div style={{ display: "grid", gap: ".75rem" }}>
+          <span className="eyebrow num">{m.name} · Shiur {s.number}{s.label ? ` · ${s.label}` : ""} · {fmtDate(s.given_on)}</span>
+          <h1 className="title">{s.title}</h1>
+          <div className="dafline"><span className="num">Daf {dafRange(s)}</span><span className="he" lang="he">{m.he} {heRange(s)}</span></div>
+        </div>
+        <div className="playrow"><PlayButton s={l} variant="big" /><PlayLabel s={l} chapters={s.chapters.length} /></div>
+        <p className="summary">{s.summary}</p>
+        {s.dedication && <p className="dedication">{s.dedication}</p>}
+        <Tabs labels={["Chapters", "Transcript"]}>
+          <ChapterList s={l} />
+          <div className="transcript">
+            {s.transcript.map((p) => <p key={p.start}><span className="ts">{fmtTime(p.start)}</span>{p.text}</p>)}
+            <p className="hint" style={{ padding: 0 }}>Transcribed automatically and lightly reviewed, so names and Hebrew terms may be spelled imperfectly.</p>
+          </div>
+        </Tabs>
+        <nav className="pn" aria-label="Previous and next shiur">
+          {prev ? <Link href={`/${m.slug}/${prev.number}`}><small>← Shiur {prev.number} · {dafRange(prev)}</small><b>{prev.title}</b></Link> : <span />}
+          {next ? <Link className="next" href={`/${m.slug}/${next.number}`}><small>Shiur {next.number} · {dafRange(next)} →</small><b>{next.title}</b></Link> : <span />}
+        </nav>
+      </section>
+    </div>
+  );
+}

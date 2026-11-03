@@ -1,0 +1,72 @@
+import "server-only";
+import fs from "node:fs";
+import path from "node:path";
+import { SITE } from "./site";
+import type { Masechta, ShiurFile, ShiurLite } from "./types";
+
+const ROOT = path.join(process.cwd(), "content");
+
+let cache: { masechtos: Masechta[]; shiurim: ShiurFile[] } | null = null;
+
+function load() {
+  if (cache) return cache;
+  const masechtos: Masechta[] = JSON.parse(fs.readFileSync(path.join(ROOT, "masechtos.json"), "utf8"));
+  const shiurim: ShiurFile[] = [];
+  for (const m of masechtos) {
+    const dir = path.join(ROOT, "shiurim", m.slug);
+    if (!fs.existsSync(dir)) continue;
+    for (const f of fs.readdirSync(dir).filter((f) => f.endsWith(".json")).sort()) {
+      shiurim.push(JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")));
+    }
+  }
+  cache = { masechtos, shiurim };
+  return cache;
+}
+
+/** Only published shiurim are ever shown on the site or in the feed. */
+export function published(): ShiurFile[] {
+  return load().shiurim.filter((s) => s.status === "published");
+}
+
+/** Masechtos that have at least one published shiur, in season order. */
+export function masechtos(): Masechta[] {
+  const live = new Set(published().map((s) => s.masechta));
+  return load().masechtos.filter((m) => live.has(m.slug)).sort((a, b) => a.season - b.season);
+}
+
+export function masechta(slug: string): Masechta | undefined {
+  return masechtos().find((m) => m.slug === slug);
+}
+
+export function audioUrl(s: Pick<ShiurFile, "masechta" | "audio">): string | null {
+  return SITE.audioBase ? `${SITE.audioBase}/${s.masechta}/${s.audio.file}` : null;
+}
+
+export function lite(s: ShiurFile): ShiurLite {
+  const m = load().masechtos.find((x) => x.slug === s.masechta)!;
+  const { transcript: _t, ...rest } = s;
+  return {
+    ...rest, id: `${s.masechta}-${s.number}`, href: `/${s.masechta}/${s.number}`,
+    masechtaName: m.name, masechtaHe: m.he, audioUrl: audioUrl(s),
+  };
+}
+
+/** Shiurim in learning order: by masechta season, then shiur number. */
+export function inOrder(): ShiurFile[] {
+  const season = new Map(load().masechtos.map((m) => [m.slug, m.season]));
+  return [...published()].sort((a, b) => season.get(a.masechta)! - season.get(b.masechta)! || a.number - b.number);
+}
+
+/** Newest first by date given; undated shiurim fall back to learning order at the end. */
+export function newest(): ShiurFile[] {
+  return [...inOrder()].sort((a, b) => (b.given_on ?? "").localeCompare(a.given_on ?? "") || 0);
+}
+
+export function shiur(slug: string, n: number): ShiurFile | undefined {
+  return published().find((s) => s.masechta === slug && s.number === n);
+}
+
+/** The weekly feed: published, in the feed, and with a known date (pubDate must be the date given). */
+export function feedItems(): ShiurFile[] {
+  return newest().filter((s) => s.in_feed && s.given_on);
+}

@@ -254,7 +254,7 @@ h1.title { font-size: 2.2rem; line-height: 1.15; font-weight: 700; margin: 0; te
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 
-<div class="proto"><b>Design prototype</b> · Sample shiurim, dates and transcripts. Audio is simulated.</div>
+<div class="proto"><b>Preview</b> · Masechta Baitza with Rabbi Fogelman. Audio is a preview copy; transcripts are automatic and not yet reviewed.</div>
 <header class="top">
   <div class="top-in">
     <a class="word" href="#home">EIN YAAKOV</a>
@@ -283,68 +283,14 @@ h1.title { font-size: 2.2rem; line-height: 1.15; font-weight: 700; margin: 0; te
   </div>
 </div>
 <div class="toast" id="toast" hidden></div>
+<audio id="audio" preload="none"></audio>
+<script src="catalog.js"></script>
 
 <script>
-// ---------- Sample catalog (stands in for published rows from the `shiurim` table) ----------
+// ---------- Catalog: published Baitza shiurim, generated into catalog.js from content/shiurim ----------
 const RAV = "Rabbi Fogelman";
 const SEDARIM = { zeraim: ["Zeraim", "זרעים"], moed: ["Moed", "מועד"], nashim: ["Nashim", "נשים"], nezikin: ["Nezikin", "נזיקין"] };
-const MASECHTOS = [
-  { slug: "berachos", name: "Berachos", he: "ברכות", seder: "zeraim", aliases: ["berakhot", "brachot", "berachot", "brachos"], start: "2021-01-05", items: [
-    ["3a","3b","Rabbi Yose in the ruins","Eliyahu meets Rabbi Yose in a ruin of Yerushalayim, and the Gemara's three watches of the night."],
-    ["3b","4a","David's harp at midnight","The kinnor over David's bed and how he divided his night between Torah and song."],
-    ["5a","5b","Yissurim shel ahavah","Suffering as an expression of love, and the line between a test and a punishment."],
-    ["6a","6b","The tefillin of Hashem","What is written in Hashem's tefillin, and the bond between Hashem and Klal Yisrael."],
-    ["7a","7a","Moshe asks to understand Hashem's ways","Tzaddik v'ra lo: Moshe's request to understand why the righteous suffer."],
-    ["10a","10a","Chizkiyahu and Yeshayahu","The prophet's visit to the sick king, and never despairing of mercy."],
-    ["17a","17a","The prayers of the Amoraim","The personal tefillos the Amoraim said after Shemoneh Esrei, including the yeast in the dough."],
-    ["32a","32b","Moshe's tefillah after the Golden Calf","How Moshe stood in prayer for Klal Yisrael, and what it teaches about persistence in tefillah."],
-    ["54a","54b","Brachos on places of miracles","The blessing on seeing a place where a miracle happened, and the story of Og's mountain."],
-    ["61b","61b","Rabbi Akiva and the fox","The parable of the fox and the fish, and why Torah is our water."],
-  ]},
-  { slug: "shabbos", name: "Shabbos", he: "שבת", seder: "moed", aliases: ["shabbat", "shabat", "shabbath"], start: "2022-09-06", items: [
-    ["10a","10a","A judge for one hour","A judge who rules truthfully even for one hour becomes a partner in creation."],
-    ["21b","21b","The miracle of the oil","Mai Chanukah: the Gemara's account of the jar of oil and the eight days."],
-    ["30a","30b","David and the day of his death","David asks to know his end, and learning Torah that holds back the Angel of Death."],
-    ["31a","31a","Hillel and the three converts","On one foot: Hillel's patience with the converts Shammai turned away."],
-    ["33b","34a","Rabbi Shimon bar Yochai in the cave","Twelve years in the cave, and seeing the world on leaving it."],
-    ["88a","88a","Kafah aleihem har kegigis","The mountain held over Sinai, and accepting the Torah again in the days of Achashverosh."],
-    ["88b","89a","Moshe and the angels","The angels ask why Torah should go to people of flesh and blood, and Moshe's answer."],
-    ["119a","119a","Yosef mokir Shabbos","The man who honored Shabbos, and the pearl inside the fish."],
-    ["127a","127a","Greater is hospitality","Hachnasas orchim as greater than receiving the Shechinah."],
-    ["153a","153a","Repent one day before your death","The parable of the king's feast and keeping one's clothes ready."],
-  ]},
-  { slug: "kesuvos", name: "Kesuvos", he: "כתובות", seder: "nashim", aliases: ["ketubot", "ketubos", "kesubos", "kesuvot", "ketuvot"], start: "2024-01-09", items: [
-    ["8b","8b","Words of comfort to mourners","The words of nichum aveilim said by Reish Lakish in the house of mourning."],
-    ["17a","17a","How one dances before the bride","Kallah na'ah vachasudah: the disagreement between Beis Shammai and Beis Hillel."],
-    ["62b","63a","Rabbi Akiva and Rachel","Twenty-four years of learning, and \"what is mine and yours is hers.\""],
-    ["66b","67a","Nakdimon ben Gurion's daughter","Rabban Yochanan ben Zakkai meets the daughter of one of Yerushalayim's wealthiest men."],
-    ["67b","67b","Mar Ukva and hidden tzedakah","Giving so the poor man never knows who gave, even at a cost to oneself."],
-    ["77b","77b","Rabbi Yehoshua ben Levi and the Angel of Death","How Rabbi Yehoshua ben Levi entered Gan Eden alive."],
-    ["103a","103b","The final instructions of Rebbi","Rebbi's instructions to his sons about his household and the leadership after him."],
-    ["104a","104a","The passing of Rebbi","The prayers of Rebbi's maid, and the day the upper and lower worlds pulled at the holy ark."],
-    ["105b","105b","Judges and gifts","How even a small favor can bend a judge's thinking."],
-    ["111a","111a","The three oaths","The oaths of exile and what they ask of Klal Yisrael."],
-    ["111b","112a","Eretz Yisrael in time to come","Wheat that rises like palm trees, and the love of the Amoraim for the land."],
-  ]},
-  { slug: "gittin", name: "Gittin", he: "גיטין", seder: "nashim", aliases: ["gitin"], start: "2025-11-04", items: [
-    ["55b","56a","Kamtza and bar Kamtza","A mistaken invitation and the sinas chinam that led to the Churban."],
-    ["56a","56b","Rabban Yochanan ben Zakkai and Vespasian","Leaving Yerushalayim in a coffin: \"Give me Yavneh and its sages.\""],
-    ["56b","56b","Titus in the Holy of Holies","Titus's arrogance and the gnat that humbled him."],
-    ["57a","57a","Tur Malka and Beitar","A rooster and a hen, and the destruction of Beitar."],
-    ["57b","57b","Chana and her seven sons","A mother's steadfastness under the decree of the emperor."],
-    ["58a","58a","The children of Rabbi Yishmael","Rabbi Yehoshua redeems a captive child in Rome."],
-  ]},
-  { slug: "sanhedrin", name: "Sanhedrin", he: "סנהדרין", seder: "nezikin", aliases: ["sanhedrine"], start: "2026-08-25", items: [
-    ["37a","37a","Whoever saves one life","Why every person must say \"the world was created for me.\""],
-    ["38a","38b","Why Adam was created alone","For peace among people, and to show the greatness of the Creator."],
-    ["90a","90a","A share in the World to Come","Kol Yisrael yesh lahem chelek, and what puts a share at risk."],
-    ["97a","97a","The generation of Mashiach","Signs of the generation in which Ben David comes."],
-    ["98a","98a","Today, if you hear His voice","Rabbi Yehoshua ben Levi asks Mashiach when he is coming."],
-    ["99a","99a","Where baalei teshuvah stand","The place of a baal teshuvah compared to a complete tzaddik."],
-    ["101b","102a","Yeravam and the calves","Why Yeravam set up the golden calves, and the arrogance behind it."],
-    ["104b","104b","Those who have no share","The Gemara's reading of who loses their share, and the hope that remains."],
-  ]},
-];
+const MASECHTOS = window.CATALOG.masechtos.map(m => ({ ...m }));
 
 // ---------- Derived catalog ----------
 function dafIdx(d) { const m = /^(\d+)([ab])?$/.exec(d); return m ? +m[1] * 2 + (m[2] === "b" ? 1 : 0) : null; }
@@ -357,48 +303,26 @@ function heNum(n) {
 function heDaf(d) { const m = /^(\d+)([ab])$/.exec(d); return m ? heNum(+m[1]) + (m[2] === "a" ? " ע״א" : " ע״ב") : ""; }
 const dafRange = s => s.dafStart === s.dafEnd ? s.dafStart : s.dafStart + "–" + s.dafEnd;
 const heRange = s => s.dafStart === s.dafEnd ? heDaf(s.dafStart) : heDaf(s.dafStart) + " – " + heDaf(s.dafEnd);
-const fmtDate = d => d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+const fmtDate = d => !d ? "Date to be confirmed" : d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
 const fmtTime = s => { s = Math.max(0, Math.floor(s)); const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), x = String(s % 60).padStart(2, "0"); return h ? `${h}:${String(m).padStart(2, "0")}:${x}` : `${m}:${x}`; };
 
 const SHIURIM = [];
-MASECHTOS.forEach((m, mi) => {
-  m.season = mi + 1;
-  m.shiurim = m.items.map(([ds, de, title, summary], i) => {
-    const given = new Date(m.start + "T00:00:00Z"); given.setUTCDate(given.getUTCDate() + 7 * i);
-    const dur = (38 + ((i * 7 + m.slug.length * 3) % 21)) * 60 + ((i * 37) % 60);
-    const s = { id: `${m.slug}-${i + 1}`, m, number: i + 1, dafStart: ds, dafEnd: de, title, summary, given, dur };
-    SHIURIM.push(s); return s;
+MASECHTOS.forEach(m => {
+  m.shiurim = window.CATALOG.shiurim.filter(x => x.masechta === m.slug).sort((a, b) => a.number - b.number).map(x => {
+    const sh = { id: `${m.slug}-${x.number}`, m, number: x.number, dafStart: x.daf_start, dafEnd: x.daf_end, title: x.title, summary: x.summary,
+      given: x.given_on ? new Date(x.given_on + "T00:00:00Z") : null, dur: x.audio.duration_sec, chapters: x.chapters, transcript: x.transcript,
+      inFeed: x.in_feed, src: x.src, label: x.label, dedication: x.dedication };
+    SHIURIM.push(sh); return sh;
   });
 });
-SHIURIM.sort((a, b) => b.given - a.given);
+SHIURIM.sort((a, b) => (b.given || 0) - (a.given || 0) || b.number - a.number);
 const BY_ID = Object.fromEntries(SHIURIM.map(s => [s.id, s]));
 const BY_SLUG = Object.fromEntries(MASECHTOS.map(m => [m.slug, m]));
-const FEED_START = new Date("2026-09-22T00:00:00Z"); // shiurim given on or after this date are also in the weekly podcast
-const inFeed = s => s.given >= FEED_START;
+const inFeed = s => s.inFeed;
 const TOTAL_HOURS = Math.round(SHIURIM.reduce((a, s) => a + s.dur, 0) / 3600);
 
-function chaptersFor(s) {
-  const d = s.dur;
-  return [
-    [0, "Introduction and review of last week"],
-    [Math.round(d * .08), `Reading the Ein Yaakov on ${s.m.name} ${s.dafStart}`],
-    [Math.round(d * .30), s.title],
-    [Math.round(d * .58), "Rashi, Maharsha and the Iyun Yaakov"],
-    [Math.round(d * .80), "Questions from the audience"],
-    [Math.round(d * .93), "Closing thought for the week"],
-  ];
-}
-function transcriptFor(s) {
-  const c = chaptersFor(s);
-  return [
-    [c[0][0], `Good evening. Last week we finished the previous piece in ${s.m.name}, and tonight we come to a new piece: ${s.title}.`],
-    [c[1][0], `The Ein Yaakov brings the Gemara on daf ${s.dafStart}. Let's read it inside, slowly, and then ask what is bothering the Gemara here.`],
-    [c[2][0], s.summary + " The question we want to ask is why Chazal chose to tell it this way, and what it is coming to teach us."],
-    [c[3][0], "Rashi gives the simple reading. The Maharsha in the Chiddushei Aggados reads it differently, and the Iyun Yaakov adds a point we'll come back to."],
-    [c[4][0], "A question from the back: does this apply in our times? It's a good question, and the Maharsha seems to address it."],
-    [c[5][0], "So the takeaway for the week is a small one, but it's something each of us can carry into Shabbos."],
-  ];
-}
+const chaptersFor = s => s.chapters.map(c => [c.start, c.title]);
+const transcriptFor = s => s.transcript.map(p => [p.start, p.text]);
 
 // ---------- Search ----------
 const norm = t => t.toLowerCase().normalize("NFKD").replace(/[֑-ׇ]/g, "").replace(/[’'"״׳]/g, "").replace(/[^a-z0-9א-ת\s]/g, " ").replace(/\s+/g, " ").trim();
@@ -428,7 +352,7 @@ function search(q, slug) {
     let score = 0;
     for (const w of terms) { if (t.includes(w)) score += 5; else if (su.includes(w)) score += 3; else if (x.includes(w)) score += 1; else return null; }
     return { s, score };
-  }).filter(Boolean).sort((a, b) => b.score - a.score || b.s.given - a.s.given).map(r => r.s);
+  }).filter(Boolean).sort((a, b) => b.score - a.score || (b.s.given || 0) - (a.s.given || 0)).map(r => r.s);
   return { m, dafHit, terms, results };
 }
 
@@ -499,11 +423,11 @@ function renderResults() {
   let list = r.dafHit ? [r.dafHit.hit || r.dafHit.near].filter(Boolean) : r.results.slice();
   if (!r.terms.length && !r.dafHit) {
     const sort = current.slug ? state.sortM : state.sortAll;
-    list.sort(sort === "new" ? (a, b) => b.given - a.given : (a, b) => a.m.season - b.m.season || a.number - b.number);
+    list.sort(sort === "new" ? (a, b) => (b.given || 0) - (a.given || 0) || b.number - a.number : (a, b) => a.m.season - b.m.season || a.number - b.number);
   }
   const label = r.terms.length ? `${list.length} result${list.length === 1 ? "" : "s"}${r.m ? " in " + r.m.name : ""}` : r.dafHit ? "" : `${list.length} shiurim${r.m ? ` · Daf ${r.m.shiurim[0].dafStart}–${r.m.shiurim.at(-1).dafEnd}` : ""}`;
   box.innerHTML = `
-    ${!state.q ? `<p class="hint">Try <code>Kesuvos 17a</code>, <code>Ketubot 62b</code> or <code>Hillel</code>. Ashkenazi and Sephardi spellings both work. Shiurim tagged <span class="tag">Podcast</span> are also in the weekly feed.</p>` : ""}
+    ${!state.q ? `<p class="hint">Type a daf like <code>Baitza ${SHIURIM.at(-1).dafStart}</code>, or search a topic. Beitzah and Baitza both work. Shiurim tagged <span class="tag">Podcast</span> are also in the weekly feed.</p>` : ""}
     ${notice ? `<div class="notice">${notice}</div>` : ""}
     ${label ? `<div class="count num">${label.toUpperCase()}</div>` : ""}
     ${list.length ? `<ul class="eps">${list.map(s => epItem(s, r.terms, showM)).join("")}</ul>`
@@ -619,7 +543,7 @@ function viewShiur(id) {
     <section class="main-col">
       <nav class="crumbs"><a href="#home">Shiurim</a><span>›</span><a href="#m-${s.m.slug}">${s.m.name}</a><span>›</span><span>Shiur ${s.number}</span></nav>
       <div style="display:grid;gap:.75rem">
-        <span class="eyebrow num">${s.m.name} · Shiur ${s.number} · ${fmtDate(s.given)}</span>
+        <span class="eyebrow num">${s.m.name} · Shiur ${s.number}${s.label ? " · " + esc(s.label) : ""} · ${fmtDate(s.given)}</span>
         <h1 class="title">${esc(s.title)}</h1>
         <div class="dafline"><span class="num">Daf ${dafRange(s)}</span><span class="he" lang="he">${s.m.he} ${heRange(s)}</span></div>
       </div>
@@ -628,6 +552,7 @@ function viewShiur(id) {
         <div class="lbl"><b>${playing(s.id) ? "Playing" : "Play shiur"}</b><span class="num">${Math.round(s.dur / 60)} mins · ${ch.length} chapters</span></div>
       </div>
       <p class="summary">${esc(s.summary)}</p>
+      ${s.dedication ? `<p class="muted" style="margin:0;font-size:.9rem">${esc(s.dedication)}</p>` : ""}
       <div class="panel">
         <div class="tabs" role="tablist">
           <button class="tab" role="tab" data-stab="chapters" aria-selected="${state.stab === "chapters"}">Chapters</button>
@@ -635,7 +560,7 @@ function viewShiur(id) {
         </div>
         ${state.stab === "chapters"
           ? `<ol class="chapters">${ch.map(([t, c]) => `<li><button data-jump="${s.id}:${t}"><span class="ts">${fmtTime(t)}</span><span>${esc(c)}</span></button></li>`).join("")}</ol>`
-          : `<div class="transcript">${transcriptFor(s).map(([t, x]) => `<p><span class="ts">${fmtTime(t)}</span>${esc(x)}</p>`).join("")}<p class="hint" style="padding:0">Sample text. The real transcript is rendered in full on the page so search engines can index it.</p></div>`}
+          : `<div class="transcript">${transcriptFor(s).map(([t, x]) => `<p><span class="ts">${fmtTime(t)}</span>${esc(x)}</p>`).join("")}<p class="hint" style="padding:0">Transcribed automatically and not yet reviewed, so names and Hebrew terms may be spelled imperfectly.</p></div>`}
       </div>
       <nav class="pn" aria-label="Previous and next shiur">
         ${prev ? `<a href="#s-${prev.id}"><small>← Shiur ${prev.number} · ${dafRange(prev)}</small><b>${esc(prev.title)}</b></a>` : "<span></span>"}
@@ -664,21 +589,28 @@ function viewAbout() {
 }
 const viewMissing = () => `<section class="prose"><h1 class="title">Shiur not found</h1><p>That page doesn't exist. <a href="#home">Browse all shiurim</a>.</p></section>`;
 
-// ---------- Simulated player ----------
-const player = { id: SHIURIM[0].id, pos: 0, on: false, rate: 1, timer: null };
+// ---------- Player (real audio) ----------
+const audio = document.getElementById("audio");
+const player = { id: SHIURIM[0].id, rate: 1, pending: 0 };
+Object.defineProperty(player, "on", { get: () => !audio.paused && !audio.ended });
+Object.defineProperty(player, "pos", {
+  get: () => audio.dataset.id === player.id && audio.readyState > 0 ? audio.currentTime : player.pending,
+  set: v => { if (audio.dataset.id === player.id && audio.readyState > 0) audio.currentTime = v; else player.pending = v; },
+});
 const RATES = [1, 1.25, 1.5, 1.75, 2];
 const playing = id => player.on && player.id === id;
-function load(id, at) { if (player.id !== id) { player.id = id; player.pos = 0; } if (at != null) player.pos = at; }
-function toggle(id) { if (player.id === id && player.on) player.on = false; else { load(id); player.on = true; } tick(); }
-function tick() {
-  clearInterval(player.timer);
-  if (player.on) player.timer = setInterval(() => {
-    const s = BY_ID[player.id]; player.pos = Math.min(s.dur, player.pos + player.rate);
-    saveProgress();
-    if (player.pos >= s.dur) { player.on = false; tick(); } else paint(false);
-  }, 1000);
-  paint(true);
+function load(id, at) { if (player.id !== id) { player.id = id; player.pending = 0; } if (at != null) player.pos = at; }
+function start() {
+  const s = BY_ID[player.id];
+  if (audio.dataset.id !== s.id) { audio.dataset.id = s.id; audio.src = s.src; audio.load(); }
+  audio.playbackRate = player.rate;
+  audio.play().catch(() => toast("This audio couldn't start. Tap play again."));
 }
+function toggle(id) { if (player.id === id && player.on) audio.pause(); else { load(id); start(); } }
+function tick() { audio.playbackRate = player.rate; paint(true); }
+audio.addEventListener("loadedmetadata", () => { if (player.pending) { audio.currentTime = player.pending; player.pending = 0; } audio.playbackRate = player.rate; });
+audio.addEventListener("timeupdate", () => { saveProgress(); paint(false); });
+["play", "pause", "ended"].forEach(ev => audio.addEventListener(ev, () => paint(true)));
 function paint(full) {
   const s = BY_ID[player.id], pct = player.pos / s.dur * 100;
   document.querySelector("#pbBar i").style.width = pct + "%";
@@ -734,8 +666,8 @@ document.addEventListener("click", e => {
   else if (b.id === "pbPlay") toggle(player.id);
   else if (b.id === "pbRate") { player.rate = RATES[(RATES.indexOf(player.rate) + 1) % RATES.length]; tick(); }
   else if (b.dataset.skip) { player.pos = Math.max(0, Math.min(BY_ID[player.id].dur, player.pos + +b.dataset.skip)); paint(false); }
-  else if (b.dataset.resume) { const [id, t] = b.dataset.resume.split(":"); load(id, +t); player.on = true; tick(); location.hash = "s-" + id; }
-  else if (b.dataset.jump) { const [id, t] = b.dataset.jump.split(":"); load(id, +t); player.on = true; tick(); }
+  else if (b.dataset.resume) { const [id, t] = b.dataset.resume.split(":"); load(id, +t); start(); location.hash = "s-" + id; }
+  else if (b.dataset.jump) { const [id, t] = b.dataset.jump.split(":"); load(id, +t); start(); }
   else if (b.dataset.sort) { if (current.slug) state.sortM = b.dataset.sort; else state.sortAll = b.dataset.sort; b.parentElement.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b)); renderResults(); }
   else if (b.dataset.stab) { state.stab = b.dataset.stab; route(); }
   else if (b.dataset.toast) toast(b.dataset.toast);
