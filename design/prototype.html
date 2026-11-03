@@ -318,7 +318,7 @@ MASECHTOS.forEach(m => {
 SHIURIM.sort((a, b) => (b.given || 0) - (a.given || 0) || b.number - a.number);
 const BY_ID = Object.fromEntries(SHIURIM.map(s => [s.id, s]));
 const BY_SLUG = Object.fromEntries(MASECHTOS.map(m => [m.slug, m]));
-const inFeed = s => s.inFeed;
+const inFeed = s => s.inFeed && !!s.given;
 const TOTAL_HOURS = Math.round(SHIURIM.reduce((a, s) => a + s.dur, 0) / 3600);
 
 const chaptersFor = s => s.chapters.map(c => [c.start, c.title]);
