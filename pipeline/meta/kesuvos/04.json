@@ -1,0 +1,24 @@
+{
+ "masechta": "kesuvos", "number": 4, "status": "reviewed", "in_feed": true, "given_on": "2026-10-13",
+ "title": "Three hadasim: dancing before the kallah",
+ "daf_start": "17a", "daf_end": "28b",
+ "summary": "Rav Shmuel bar Rav Yitzchak juggled three hadasim before the kallah: why hadasim, why three, and why Chazal saw something in it that only one or two in a generation see. When to stop learning for a levaya or a chuppah, why a king may not forgo his honor, and the bracha on seeing a king. Then Rabbi Pinchas ben Yair's donkey that would not eat untithed grain, and the kezazah, Chazal's way of marking a marriage that should not have been.",
+ "chapters": [
+  {"start": 0, "title": "Where we are holding"},
+  {"start": 86, "title": "Dancing with three hadasim"},
+  {"start": 169, "title": "Why hadasim, and why three"},
+  {"start": 410, "title": "The three times a couple is joined"},
+  {"start": 488, "title": "Chesed in the home"},
+  {"start": 725, "title": "What only one or two in a generation see"},
+  {"start": 955, "title": "Acting foolish for a mitzvah"},
+  {"start": 1032, "title": "Why a wife is compared to a beam"},
+  {"start": 1109, "title": "A levaya that waited for a chuppah"},
+  {"start": 1261, "title": "A king who forgoes his honor"},
+  {"start": 1339, "title": "The bracha on seeing a king"},
+  {"start": 1517, "title": "Stopping learning for a levaya or a chuppah"},
+  {"start": 1599, "title": "How many people a levaya needs"},
+  {"start": 1802, "title": "Appearances and marriage"},
+  {"start": 2082, "title": "Rabbi Pinchas ben Yair's donkey"},
+  {"start": 2246, "title": "The kezazah"}
+ ]
+}
