@@ -44,7 +44,7 @@ export default function Faq() {
     },
     {
       q: "How can I listen to the shiur?",
-      a: "On this site, or as a podcast on Spotify, Apple Podcasts and other podcast apps. A new shiur comes out every week.",
+      a: "On this site, or as a podcast on Spotify, Apple Podcasts, Amazon Music, iHeartRadio and other podcast apps. A new shiur comes out every week.",
       more: <Listen />,
     },
     {

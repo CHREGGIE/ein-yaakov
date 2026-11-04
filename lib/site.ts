@@ -23,6 +23,8 @@ export const SITE = {
   listen: {
     spotify: process.env.SPOTIFY_URL || "https://open.spotify.com/show/06NyPmLt9e35F8Yc402QlW",
     apple: process.env.APPLE_PODCASTS_URL || "https://podcasts.apple.com/us/podcast/ein-yaakov-with-rabbi-fogelman/id6830361751",
+    amazon: "https://music.amazon.com/podcasts/8377bbda-5e83-4a04-b099-99c8e978fd0c/ein-yaakov-with-rabbi-fogelman",
+    iheart: "https://www.iheart.com/podcast/269-ein-yaakov-with-rabbi-foge-349137341/",
   },
 };
 

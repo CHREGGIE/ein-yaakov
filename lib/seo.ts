@@ -21,7 +21,7 @@ export const seriesLd = {
   inLanguage: "en",
   webFeed: `${SITE.url}/feed.xml`,
   author: { "@id": ravLd["@id"] },
-  sameAs: [SITE.listen.spotify, SITE.listen.apple].filter(Boolean),
+  sameAs: Object.values(SITE.listen).filter(Boolean),
 };
 
 export function breadcrumbsLd(items: { name: string; path: string }[]) {
