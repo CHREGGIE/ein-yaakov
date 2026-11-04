@@ -17,6 +17,11 @@ export const SITE = {
   op3: process.env.OP3 === "1",
   ownerName: process.env.PODCAST_OWNER_NAME || "",
   ownerEmail: process.env.PODCAST_OWNER_EMAIL || "",
+  /** Show pages in the podcast apps. Each badge appears once its link is set. */
+  listen: {
+    spotify: process.env.SPOTIFY_URL || "",
+    apple: process.env.APPLE_PODCASTS_URL || "",
+  },
 };
 
 export const SEDARIM: Record<string, [string, string]> = {

@@ -188,7 +188,7 @@ h1.title { font-size: 2.2rem; line-height: 1.15; font-weight: 700; margin: 0; te
   .layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "top" "main" "more"; gap: 0; }
   .side-top { grid-template-columns: 7.5rem minmax(0, 1fr); align-items: center; column-gap: 1.1rem; row-gap: .8rem; margin-bottom: 1.75rem; }
   .side-top > .cover { grid-row: span 2; }
-  .side-top > .actions, .side-top > .block, .side-top > form { grid-column: 1 / -1; }
+  .side-top > .actions, .side-top > .listen, .side-top > .block, .side-top > form { grid-column: 1 / -1; }
   .side-more { padding-top: 2rem; }
   .lede { font-size: 1.25rem; }
   .stats { gap: 1.5rem; }
@@ -216,3 +216,6 @@ h1.title { font-size: 2.2rem; line-height: 1.15; font-weight: 700; margin: 0; te
 .rav-photo { object-fit: cover; flex: none; }
 .rav-photo.sm { width: 3.5rem; height: 3.5rem; border-radius: 50%; }
 .rav-photo.lg { width: 100%; max-width: 20rem; height: auto; aspect-ratio: 4 / 5; border-radius: 4px; box-shadow: var(--shadow); }
+
+.listen { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
+.listen .badge { display: block; height: 2.5rem; width: auto; }

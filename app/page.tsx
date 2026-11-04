@@ -5,6 +5,7 @@ import { SITE } from "@/lib/site";
 import { Cover } from "@/components/Cover";
 import { Library } from "@/components/Library";
 import { PlayButton } from "@/components/Player";
+import { Listen } from "@/components/Listen";
 import { RavPhoto } from "@/components/RavPhoto";
 import { SideBlocks } from "@/components/Side";
 
@@ -22,7 +23,7 @@ export default function Home() {
       <div className="side-top">
         <Cover />
         <div className="rav"><RavPhoto /><div className="by"><h1 className="show-name">{SITE.short}</h1>Given by<b>{SITE.rav}</b></div></div>
-        <div className="actions"><a className="btn" href="/feed.xml">Podcast feed</a></div>
+        <Listen />
       </div>
       <div className="side-more"><SideBlocks /></div>
       <section className="main-col">
@@ -39,7 +40,7 @@ export default function Home() {
           </div>
           <p>{latest.summary}</p>
           <div className="week-sub"><span>A new shiur every week in your podcast app</span>
-            <div className="actions"><a className="chip-l" href="/feed.xml">Podcast feed (RSS)</a></div></div>
+            <Listen onAccent /></div>
         </div>
         <div className="lib-head">
           <div><span className="eyebrow">The library</span><h2 className="h2">Every shiur, by masechta</h2>
