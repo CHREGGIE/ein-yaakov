@@ -54,7 +54,7 @@ export default async function ShiurPage({ params }: P) {
     about: `${m.name} ${dafRange(s)}`,
   };
   return (
-    <div className="layout">
+    <div className="layout shiur-page">
       <JsonLd data={jsonLd} />
       <JsonLd data={breadcrumbsLd([{ name: "Shiurim", path: "/" }, { name: m.name, path: `/${m.slug}` }, { name: `Shiur ${s.number}`, path: `/${m.slug}/${s.number}` }])} />
       <div className="side-top">

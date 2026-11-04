@@ -30,7 +30,7 @@ export default async function MasechtaPage({ params }: P) {
   const mine = all.filter((s) => s.masechta === m.slug);
   const hours = Math.round(mine.reduce((a, s) => a + s.audio.duration_sec, 0) / 3600 * 10) / 10;
   return (
-    <div className="layout">
+    <div className="layout masechta-page">
       <JsonLd data={breadcrumbsLd([{ name: "Shiurim", path: "/" }, { name: m.name, path: `/${m.slug}` }])} />
       <div className="side-top">
         <Cover he={m.he} en={m.name} />

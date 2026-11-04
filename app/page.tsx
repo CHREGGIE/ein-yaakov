@@ -21,10 +21,10 @@ export default function Home() {
   const ms = masechtos();
   const hours = Math.round(all.reduce((a, s) => a + s.audio.duration_sec, 0) / 3600);
   return (
-    <div className="layout">
+    <div className="layout home">
       <div className="side-top">
         <Cover />
-        <div className="rav"><RavPhoto /><div className="by"><h1 className="show-name">{SITE.short}</h1>Given by<b>{SITE.rav}</b></div></div>
+        <div className="rav"><RavPhoto /><div className="by"><h1 className="show-name">{SITE.short}<span className="sm-only"> with {SITE.rav}</span></h1><span className="lg-only">Given by<b>{SITE.rav}</b></span><span className="sched">Tuesdays 8pm · Itchkes Shtiebel</span></div></div>
         <Listen />
       </div>
       <div className="side-more"><SideBlocks /></div>
@@ -42,7 +42,7 @@ export default function Home() {
           </div>
           <p>{latest.summary}</p>
           <div className="week-sub"><span>A new shiur every week in your podcast app</span>
-            <Listen onAccent /></div>
+            <Listen onAccent compact /></div>
         </div>
         <div className="lib-head">
           <div><span className="eyebrow">The library</span><h2 className="h2">Every shiur, by masechta</h2>

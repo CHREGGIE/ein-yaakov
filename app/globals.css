@@ -224,3 +224,43 @@ h1.title { font-size: 2.2rem; line-height: 1.15; font-weight: 700; margin: 0; te
 .faq .qa h2 { margin: 0; font-size: 1.15rem; }
 .faq .qa p { color: var(--ink); line-height: 1.65; }
 .faq .qa a { color: var(--accent); font-weight: 600; }
+
+/* Show/hide helpers: sm-only = phones, lg-only = wider screens */
+.sm-only { display: none; }
+.lg-contents { display: contents; }
+.sched { display: block; font-size: .8rem; color: var(--muted); margin-top: .2rem; }
+.more-apps summary { list-style: none; cursor: pointer; }
+.more-apps summary::-webkit-details-marker { display: none; }
+.more-apps summary::after { content: " ▾"; }
+.more-apps[open] summary::after { content: " ▴"; }
+.more-list { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .6rem; }
+
+@media (max-width: 860px) {
+  .sm-only { display: revert; }
+  .lg-only, .lg-contents { display: none; }
+  .listen.compact { align-items: center; }
+  .listen.compact .more-apps summary { display: inline-flex; align-items: center; gap: .3rem; height: 2.5rem; padding: 0 1rem; white-space: nowrap; }
+  .listen.compact .more-apps[open] { flex-basis: 100%; }
+
+  /* Home on phones: compact header, latest shiur and the library up front */
+  .home .side-top { grid-template-columns: minmax(0, 1fr); margin-bottom: 1.25rem; }
+  .home .side-top > .cover, .home .side-top > .listen, .home .lede { display: none; }
+  .home .rav-photo.sm { width: 4rem; height: 4rem; }
+  .home .show-name { font-size: 1.15rem; }
+  .home .main-col { gap: 1.5rem; }
+  .week { gap: .8rem; }
+  .week p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-size: .92rem; }
+  .week-sub { padding-top: .8rem; }
+  .week-sub > span { display: none; }
+  .week .ep-meta .dot:last-child { display: none; }
+  .ep-sum { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .lib-head p, .home .lib-head .stats, .panel .hint, .ep-meta .tag { display: none; }
+
+  /* Shiur and masechta pages on phones: content first, no cover art */
+  .shiur-page { grid-template-areas: "main" "top" "more"; }
+  .shiur-page .side-top { margin: 2rem 0 0; }
+  .shiur-page .side-top > .cover, .masechta-page .side-top > .cover { display: none; }
+  .shiur-page .side-top, .masechta-page .side-top { grid-template-columns: minmax(0, 1fr); }
+  .shiur-page .summary { font-size: 1.05rem; }
+  .masechta-page .lede { display: none; }
+}
