@@ -27,6 +27,10 @@ export type ShiurFile = {
   daf_end: string;
   summary: string;
   dedication?: string;
+  /** 3-5 short takeaways shown as "Key ideas". */
+  key_ideas?: string[];
+  /** Commentaries and stories the Rav cites, with where they come up in the recording. */
+  sources?: { title: string; start: number }[];
   chapters: Chapter[];
   audio: { file: string; bytes: number; duration_sec: number };
   transcript: Paragraph[];

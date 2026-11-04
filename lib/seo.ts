@@ -91,6 +91,8 @@ export function episodeLd(s: ShiurFile, m: Masechta, audioUrl: string | null) {
     name: `${daf}: ${s.title}`,
     headline: s.title,
     description: s.summary,
+    ...(s.key_ideas?.length ? { abstract: s.key_ideas.join(" ") } : {}),
+    ...(s.sources?.length ? { mentions: s.sources.map((x) => ({ "@type": "Thing", name: x.title })) } : {}),
     episodeNumber: s.number,
     ...(s.given_on ? { datePublished: s.given_on } : {}),
     inLanguage: "en",

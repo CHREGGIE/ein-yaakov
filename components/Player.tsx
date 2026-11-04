@@ -171,3 +171,20 @@ export function StartButtons({ first, all }: { first: ShiurLite; all: ShiurLite[
     </div>
   );
 }
+
+/** "Sources and stories": each item jumps the player to where it comes up. */
+export function SourceList({ s }: { s: ShiurLite }) {
+  const { play } = usePlayer();
+  if (!s.sources?.length) return null;
+  return (
+    <ul className="sources">
+      {s.sources.map((x) => (
+        <li key={x.start}>
+          <button onClick={() => play(s, x.start)}>
+            <span>{x.title}</span><span className="ts">{fmtTime(x.start)}</span>
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+}

@@ -5,7 +5,7 @@ import { lite, masechta, published, shiur } from "@/lib/catalog";
 import { dafRange, fmtDate, heRange, mins } from "@/lib/daf";
 import { SITE } from "@/lib/site";
 import { Cover } from "@/components/Cover";
-import { ChapterList, PlayButton, PlayLabel } from "@/components/Player";
+import { ChapterList, PlayButton, PlayLabel, SourceList } from "@/components/Player";
 import { RavPhoto } from "@/components/RavPhoto";
 import { SideBlocks } from "@/components/Side";
 import { JsonLd } from "@/components/JsonLd";
@@ -72,6 +72,19 @@ export default async function ShiurPage({ params }: P) {
         <div className="playrow"><PlayButton s={l} variant="big" /><PlayLabel s={l} chapters={s.chapters.length} /></div>
         <p className="summary">{s.summary}</p>
         {s.dedication && <p className="dedication">{s.dedication}</p>}
+        {s.key_ideas?.length ? (
+          <section className="ideas" aria-labelledby="ideas-h">
+            <h2 id="ideas-h">Key ideas</h2>
+            <ul>{s.key_ideas.map((k) => <li key={k}>{k}</li>)}</ul>
+          </section>
+        ) : null}
+        {s.sources?.length ? (
+          <section className="ideas" aria-labelledby="sources-h">
+            <h2 id="sources-h">Sources and stories in this shiur</h2>
+            <p className="muted-s">The Gemara, {m.name} {dafRange(s)}, with:</p>
+            <SourceList s={l} />
+          </section>
+        ) : null}
         <div className="panel">
           <div className="tabs"><span className="tab" aria-selected="true">Chapters</span></div>
           <ChapterList s={l} />

@@ -37,6 +37,8 @@ out = {
     "title": meta["title"], **({"label": meta["label"]} if meta.get("label") else {}),
     "daf_start": meta["daf_start"], "daf_end": meta["daf_end"],
     "summary": meta["summary"], **({"dedication": meta["dedication"]} if meta.get("dedication") else {}),
+    **({"key_ideas": meta["key_ideas"]} if meta.get("key_ideas") else {}),
+    **({"sources": meta["sources"]} if meta.get("sources") else {}),
     "chapters": meta["chapters"],
     "audio": {"file": os.path.basename(audio_path), "bytes": os.path.getsize(audio_path), "duration_sec": round(dur)},
     "transcript": paras,

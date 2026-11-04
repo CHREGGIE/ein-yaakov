@@ -1,24 +1,97 @@
 {
- "masechta": "kesuvos", "number": 3, "status": "published", "in_feed": true, "given_on": "2026-10-06",
+ "masechta": "kesuvos",
+ "number": 3,
+ "status": "published",
+ "in_feed": true,
+ "given_on": "2026-10-06",
  "title": "How one dances before the kallah",
- "daf_start": "9b", "daf_end": "17a",
+ "daf_start": "9b",
+ "daf_end": "17a",
  "summary": "The gittin Dovid's soldiers gave before going to war, the blessing \"go take what you have acquired,\" and why a widow is called almanah. What the mizbeach does for Klal Yisrael, when to eat dates, and the three things no person escapes each day. Then the famous question of how one dances before the kallah, the dancing that brought the Shechinah, the song when the Rabbanan gave semicha, and the radiance of a face.",
  "chapters": [
-  {"start": 0, "title": "Where we are holding"},
-  {"start": 86, "title": "The gittin of Dovid's soldiers"},
-  {"start": 246, "title": "\"Go take what you have acquired\""},
-  {"start": 478, "title": "Why a widow is called almanah"},
-  {"start": 632, "title": "Yerushalayim in the days of Mashiach"},
-  {"start": 708, "title": "The soft rain that smooths the furrows"},
-  {"start": 786, "title": "What the mizbeach does"},
-  {"start": 862, "title": "Dates: when and how to eat them"},
-  {"start": 1017, "title": "Three things no one escapes each day"},
-  {"start": 1565, "title": "Worry and bitachon"},
-  {"start": 1796, "title": "Why things are called what they are"},
-  {"start": 1958, "title": "How one dances before the kallah"},
-  {"start": 2112, "title": "Dancing that brought the Shechinah"},
-  {"start": 2266, "title": "The song at a semicha"},
-  {"start": 2498, "title": "Making a minyan"},
-  {"start": 2656, "title": "A radiant face"}
+  {
+   "start": 0,
+   "title": "Where we are holding"
+  },
+  {
+   "start": 86,
+   "title": "The gittin of Dovid's soldiers"
+  },
+  {
+   "start": 246,
+   "title": "\"Go take what you have acquired\""
+  },
+  {
+   "start": 478,
+   "title": "Why a widow is called almanah"
+  },
+  {
+   "start": 632,
+   "title": "Yerushalayim in the days of Mashiach"
+  },
+  {
+   "start": 708,
+   "title": "The soft rain that smooths the furrows"
+  },
+  {
+   "start": 786,
+   "title": "What the mizbeach does"
+  },
+  {
+   "start": 862,
+   "title": "Dates: when and how to eat them"
+  },
+  {
+   "start": 1017,
+   "title": "Three things no one escapes each day"
+  },
+  {
+   "start": 1565,
+   "title": "Worry and bitachon"
+  },
+  {
+   "start": 1796,
+   "title": "Why things are called what they are"
+  },
+  {
+   "start": 1958,
+   "title": "How one dances before the kallah"
+  },
+  {
+   "start": 2112,
+   "title": "Dancing that brought the Shechinah"
+  },
+  {
+   "start": 2266,
+   "title": "The song at a semicha"
+  },
+  {
+   "start": 2498,
+   "title": "Making a minyan"
+  },
+  {
+   "start": 2656,
+   "title": "A radiant face"
+  }
+ ],
+ "key_ideas": [
+  "Dovid's soldiers gave gittin before going to war so they could fight fully focused, as the Kotzker Rebbe explains.",
+  "Three things no one escapes each day: thoughts of sin, iyun tefillah, and the dust of lashon hara.",
+  "Davening as a child asks a parent, not as one who deserves, keeps a person from bringing judgment on himself.",
+  "How one dances before the kallah: Beis Hillel praise every kallah as beautiful and gracious."
+ ],
+ "sources": [
+  {
+   "title": "The Kotzker Rebbe on why Dovid's soldiers wrote gittin",
+   "start": 124
+  },
+  {
+   "title": "Rashi on worry",
+   "start": 978
+  },
+  {
+   "title": "The Kotzker Rebbe on thoughts of sin",
+   "start": 1174
+  }
  ]
 }

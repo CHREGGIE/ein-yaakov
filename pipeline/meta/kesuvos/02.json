@@ -1,26 +1,113 @@
 {
- "masechta": "kesuvos", "number": 2, "status": "published", "in_feed": true, "given_on": "2026-09-08",
+ "masechta": "kesuvos",
+ "number": 2,
+ "status": "published",
+ "in_feed": true,
+ "given_on": "2026-09-08",
  "title": "The sheva brachos, and comforting mourners",
- "daf_start": "7b", "daf_end": "8b",
+ "daf_start": "7b",
+ "daf_end": "8b",
  "summary": "The brachos said under the chuppah, one at a time: why Hashem made ten chuppos for Adam and Chava, what \"sameach tesamach\" asks for, and why the last bracha can stand on its own. Then the Gemara turns to the brachos and words of comfort in a house of mourning, the ten cups of wine Chazal once drank there, and how Rabban Gamliel ended costly burials by asking to be buried in simple linen.",
  "chapters": [
-  {"start": 0, "title": "Where we are holding"},
-  {"start": 81, "title": "The six brachos under the chuppah"},
-  {"start": 165, "title": "Ten chuppos for Adam and Chava"},
-  {"start": 241, "title": "Shehakol bara lichvodo and yotzer ha'adam"},
-  {"start": 413, "title": "Better not to have been created?"},
-  {"start": 575, "title": "Sameach tesamach rei'im ahuvim"},
-  {"start": 737, "title": "A double expression means forever"},
-  {"start": 898, "title": "The last bracha on its own"},
-  {"start": 1226, "title": "Body and soul: the two creations of Adam"},
-  {"start": 1286, "title": "Ten expressions of joy"},
-  {"start": 1365, "title": "What a wife brings into the home"},
-  {"start": 1601, "title": "Created as one or as two"},
-  {"start": 1757, "title": "Seeing only the bright side of the moon"},
-  {"start": 1914, "title": "Brachos in a house of mourning"},
-  {"start": 2225, "title": "Suffering for the generation"},
-  {"start": 2465, "title": "Death and atonement"},
-  {"start": 2939, "title": "Ten cups of wine in a mourner's home"},
-  {"start": 3094, "title": "Rabban Gamliel and burial in simple linen"}
+  {
+   "start": 0,
+   "title": "Where we are holding"
+  },
+  {
+   "start": 81,
+   "title": "The six brachos under the chuppah"
+  },
+  {
+   "start": 165,
+   "title": "Ten chuppos for Adam and Chava"
+  },
+  {
+   "start": 241,
+   "title": "Shehakol bara lichvodo and yotzer ha'adam"
+  },
+  {
+   "start": 413,
+   "title": "Better not to have been created?"
+  },
+  {
+   "start": 575,
+   "title": "Sameach tesamach rei'im ahuvim"
+  },
+  {
+   "start": 737,
+   "title": "A double expression means forever"
+  },
+  {
+   "start": 898,
+   "title": "The last bracha on its own"
+  },
+  {
+   "start": 1226,
+   "title": "Body and soul: the two creations of Adam"
+  },
+  {
+   "start": 1286,
+   "title": "Ten expressions of joy"
+  },
+  {
+   "start": 1365,
+   "title": "What a wife brings into the home"
+  },
+  {
+   "start": 1601,
+   "title": "Created as one or as two"
+  },
+  {
+   "start": 1757,
+   "title": "Seeing only the bright side of the moon"
+  },
+  {
+   "start": 1914,
+   "title": "Brachos in a house of mourning"
+  },
+  {
+   "start": 2225,
+   "title": "Suffering for the generation"
+  },
+  {
+   "start": 2465,
+   "title": "Death and atonement"
+  },
+  {
+   "start": 2939,
+   "title": "Ten cups of wine in a mourner's home"
+  },
+  {
+   "start": 3094,
+   "title": "Rabban Gamliel and burial in simple linen"
+  }
+ ],
+ "key_ideas": [
+  "Each of the brachos under the chuppah has its own purpose, from yotzer ha'adam to the joy heard in the streets of Yerushalayim.",
+  "A double expression like sameach tesamach asks for joy that continues, not joy for one day.",
+  "The Baal Shem Tov's lesson from the sun and the moon: one who gives should never look at what the other is missing.",
+  "Chazal limited the wine drunk in a mourner's home, and Rabban Gamliel ended costly funerals by asking to be buried in simple linen."
+ ],
+ "sources": [
+  {
+   "title": "The Baal Shem Tov on the sun and the moon",
+   "start": 1817
+  },
+  {
+   "title": "The Rebbe on a tragedy in the community",
+   "start": 2248
+  },
+  {
+   "title": "Rav Chaim Vital's hesped for the Arizal",
+   "start": 2272
+  },
+  {
+   "title": "The Magen Avraham on viduy before sleep",
+   "start": 2624
+  },
+  {
+   "title": "Rashi on the cups of wine in a mourner's home",
+   "start": 3087
+  }
  ]
 }
