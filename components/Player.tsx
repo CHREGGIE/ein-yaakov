@@ -12,6 +12,8 @@ type Ctx = {
   playing: boolean;
   pos: number;
   play: (s: ShiurLite, at?: number) => void;
+  /** Load a shiur at a time without starting playback (browsers block autoplay). */
+  cue: (s: ShiurLite, at: number) => void;
   toggle: (s: ShiurLite) => void;
 };
 const PlayerCtx = createContext<Ctx | null>(null);
@@ -53,6 +55,14 @@ export function PlayerProvider({ initial, children }: { initial: ShiurLite | nul
     if (s.audioUrl) el.play().catch(() => setPlaying(false));
   }, [current]);
 
+  const cue = useCallback((s: ShiurLite, at: number) => {
+    const el = audio.current;
+    if (!el) return;
+    setCurrent(s); setPos(at); setDur(s.audio.duration_sec);
+    pending.current = at;
+    if (s.audioUrl) { el.src = s.audioUrl; el.preload = "metadata"; el.load(); }
+  }, []);
+
   const toggle = useCallback((s: ShiurLite) => {
     if (current?.id === s.id && playing) audio.current?.pause(); else play(s);
   }, [current, playing, play]);
@@ -73,7 +83,7 @@ export function PlayerProvider({ initial, children }: { initial: ShiurLite | nul
   const skip = (d: number) => { const el = audio.current; if (el) el.currentTime = Math.max(0, Math.min(dur, el.currentTime + d)); };
 
   return (
-    <PlayerCtx.Provider value={{ current, playing, pos, play, toggle }}>
+    <PlayerCtx.Provider value={{ current, playing, pos, play, cue, toggle }}>
       {children}
       <audio ref={audio} preload="none" src={initial?.audioUrl ?? undefined}
         onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)}
@@ -130,7 +140,12 @@ export function PlayLabel({ s, chapters }: { s: ShiurLite; chapters: number }) {
 }
 
 export function ChapterList({ s }: { s: ShiurLite }) {
-  const { play } = usePlayer();
+  const { play, cue } = usePlayer();
+  // A link like /kesuvos/2#t=575 (used for chapters in search results) cues the shiur at that point.
+  useEffect(() => {
+    const m = /^#t=(\d+)$/.exec(window.location.hash);
+    if (m) cue(s, Number(m[1]));
+  }, [s, cue]);
   return (
     <ol className="chapters">
       {s.chapters.map((c) => (

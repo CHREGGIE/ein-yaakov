@@ -264,3 +264,22 @@ h1.title { font-size: 2.2rem; line-height: 1.15; font-weight: 700; margin: 0; te
   .shiur-page .summary { font-size: 1.05rem; }
   .masechta-page .lede { display: none; }
 }
+
+/* Footer */
+.foot { margin: 3rem calc(-1 * max(16px, env(safe-area-inset-left, 0px))) 0; background: var(--surface); border-top: 1px solid var(--line);
+  padding: 2.75rem max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px)); }
+.foot-in { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); gap: 2rem 3rem; }
+.foot-brand { display: grid; gap: .9rem; align-content: start; }
+.foot-brand p { margin: 0; color: var(--muted); font-size: .88rem; line-height: 1.6; max-width: 36ch; }
+.foot-name { display: block; font-size: 1rem; }
+.foot-he { display: block; color: var(--accent); font-weight: 700; font-size: 1.05rem; text-align: left; }
+.foot-col { display: grid; gap: .55rem; align-content: start; font-size: .9rem; }
+.foot-col b { font-size: .72rem; letter-spacing: .09em; text-transform: uppercase; color: var(--faint); margin-bottom: .2rem; }
+.foot-col a { text-decoration: none; color: var(--ink); }
+.foot-col a:hover { color: var(--accent); }
+.foot-col .he { color: var(--muted); margin-left: .25rem; }
+.foot-base { max-width: var(--max); margin: 2.5rem auto 0; padding-block: 1.1rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: .5rem 1.5rem; flex-wrap: wrap; font-size: .8rem; color: var(--faint); }
+@media (max-width: 860px) {
+  .foot-in { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .foot-brand { grid-column: 1 / -1; }
+}

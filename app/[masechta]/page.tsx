@@ -8,7 +8,7 @@ import { Library } from "@/components/Library";
 import { StartButtons } from "@/components/Player";
 import { SideBlocks } from "@/components/Side";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbsLd } from "@/lib/seo";
+import { breadcrumbsLd, masechtaListLd } from "@/lib/seo";
 
 export const dynamicParams = false;
 export function generateStaticParams() { return masechtos().map((m) => ({ masechta: m.slug })); }
@@ -17,7 +17,7 @@ type P = { params: Promise<{ masechta: string }> };
 export async function generateMetadata({ params }: P): Promise<Metadata> {
   const m = masechta((await params).masechta);
   return m ? {
-    title: `Ein Yaakov on ${m.name} (${m.he})`,
+    title: { absolute: `Ein Yaakov ${m.name} (${m.he}): every shiur by daf | Rabbi Fogelman` },
     description: `Every shiur on the aggados of Masechta ${m.name} (${m.he}) in the Ein Yaakov with Rabbi Fogelman, by daf, with a summary and chapters for each.`,
     alternates: { canonical: `/${m.slug}` },
   } : {};
@@ -32,6 +32,7 @@ export default async function MasechtaPage({ params }: P) {
   return (
     <div className="layout masechta-page">
       <JsonLd data={breadcrumbsLd([{ name: "Shiurim", path: "/" }, { name: m.name, path: `/${m.slug}` }])} />
+      <JsonLd data={masechtaListLd(m, mine)} />
       <div className="side-top">
         <Cover he={m.he} en={m.name} />
         <div className="by"><h1 className="show-name">Ein Yaakov on {m.name}</h1>Seder {SEDARIM[m.seder][0]}</div>

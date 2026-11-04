@@ -6,11 +6,12 @@ import { SITE } from "@/lib/site";
 import { PlayerProvider } from "@/components/Player";
 import { SearchIcon } from "@/components/Icons";
 import { JsonLd } from "@/components/JsonLd";
-import { ravLd, seriesLd } from "@/lib/seo";
+import { einYaakovLd, ravLd, seriesLd, websiteLd } from "@/lib/seo";
+import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: { default: SITE.name, template: `%s · ${SITE.short}` },
+  title: { default: `Ein Yaakov Shiur and Podcast with ${SITE.rav}`, template: `%s | ${SITE.name}` },
   description: SITE.description,
   alternates: { types: { "application/rss+xml": [{ url: "/feed.xml", title: SITE.name }] } },
   openGraph: { siteName: SITE.name, images: ["/cover.jpg"], type: "website" },
@@ -29,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@500;700&display=swap" />
       </head>
       <body>
-        <JsonLd data={{ "@context": "https://schema.org", "@graph": [seriesLd, ravLd] }} />
+        <JsonLd data={{ "@context": "https://schema.org", "@graph": [websiteLd, seriesLd, ravLd, einYaakovLd] }} />
         <PlayerProvider initial={latest ? lite(latest) : null}>
           <header className="top">
             <div className="top-in">
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </header>
           <main className="page">{children}</main>
+          <Footer />
         </PlayerProvider>
       </body>
     </html>

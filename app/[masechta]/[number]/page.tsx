@@ -9,7 +9,7 @@ import { ChapterList, PlayButton, PlayLabel } from "@/components/Player";
 import { RavPhoto } from "@/components/RavPhoto";
 import { SideBlocks } from "@/components/Side";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbsLd } from "@/lib/seo";
+import { breadcrumbsLd, episodeLd } from "@/lib/seo";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -27,8 +27,8 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   const r = await get(params);
   if (!r) return {};
   return {
-    title: `${r.m.name} ${dafRange(r.s)}: ${r.s.title}`,
-    description: r.s.summary,
+    title: { absolute: `Ein Yaakov ${r.m.name} ${dafRange(r.s)}: ${r.s.title} | Rabbi Fogelman` },
+    description: `${r.m.name} ${dafRange(r.s)} (${r.m.he}) in the Ein Yaakov. ${r.s.summary}`.slice(0, 300),
     alternates: { canonical: `/${r.m.slug}/${r.s.number}` },
     openGraph: { type: "article", title: `${r.m.name} ${dafRange(r.s)}: ${r.s.title}`, description: r.s.summary },
   };
@@ -42,17 +42,7 @@ export default async function ShiurPage({ params }: P) {
   const siblings = published().filter((x) => x.masechta === m.slug).sort((a, b) => a.number - b.number);
   const i = siblings.findIndex((x) => x.number === s.number);
   const prev = siblings[i - 1], next = siblings[i + 1];
-  const jsonLd = {
-    "@context": "https://schema.org", "@type": "PodcastEpisode",
-    url: `${SITE.url}${l.href}`, name: s.title, description: s.summary,
-    episodeNumber: s.number, ...(s.given_on ? { datePublished: s.given_on } : {}),
-    timeRequired: `PT${Math.round(s.audio.duration_sec / 60)}M`,
-    ...(l.audioUrl ? { associatedMedia: { "@type": "MediaObject", contentUrl: l.audioUrl } } : {}),
-    partOfSeason: { "@type": "PodcastSeason", name: `Ein Yaakov on ${m.name}` },
-    partOfSeries: { "@id": `${SITE.url}/#series` },
-    author: { "@id": `${SITE.url}/about#rav` },
-    about: `${m.name} ${dafRange(s)}`,
-  };
+  const jsonLd = episodeLd(s, m, l.audioUrl);
   return (
     <div className="layout shiur-page">
       <JsonLd data={jsonLd} />
