@@ -10,7 +10,7 @@ export function SideBlocks() {
       </div>
       <div className="block">
         <div className="block-head">Join the shiur live</div>
-        <p>{SITE.rav} gives the shiur weekly at the shul.</p>
+        <p>{SITE.rav} gives the shiur {SITE.when} at {SITE.shul}. Everyone is welcome.</p>
       </div>
     </>
   );

@@ -6,7 +6,7 @@ import { search } from "@/lib/search";
 import { EpItem } from "@/components/Library";
 import { SearchIcon } from "@/components/Icons";
 
-export const metadata: Metadata = { title: "Search" };
+export const metadata: Metadata = { title: "Search", robots: { index: false, follow: true } };
 
 /** Search over title and summary, plus the hidden automatic transcript as a weak signal. Rendered on the server. */
 export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {

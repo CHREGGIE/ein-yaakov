@@ -2,6 +2,8 @@ export const SITE = {
   name: "Ein Yaakov with Rabbi Fogelman",
   short: "Ein Yaakov",
   rav: "Rabbi Fogelman",
+  shul: "the Itchkes Shtiebel",
+  when: "Tuesday nights at 8pm",
   description:
     "A weekly shiur on the aggados of the Gemara as collected in the Ein Yaakov, masechta by masechta, with Rabbi Fogelman.",
   /** The show description podcast apps display. Plain text; keep under 4,000 characters. */
@@ -19,8 +21,8 @@ export const SITE = {
   ownerEmail: process.env.PODCAST_OWNER_EMAIL || "",
   /** Show pages in the podcast apps. Each badge appears once its link is set. */
   listen: {
-    spotify: process.env.SPOTIFY_URL || "",
-    apple: process.env.APPLE_PODCASTS_URL || "",
+    spotify: process.env.SPOTIFY_URL || "https://open.spotify.com/show/06NyPmLt9e35F8Yc402QlW",
+    apple: process.env.APPLE_PODCASTS_URL || "https://podcasts.apple.com/us/podcast/ein-yaakov-with-rabbi-fogelman/id6830361751",
   },
 };
 

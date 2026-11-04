@@ -9,6 +9,8 @@ import { Listen } from "@/components/Listen";
 import { RavPhoto } from "@/components/RavPhoto";
 import { SideBlocks } from "@/components/Side";
 
+export const metadata = { alternates: { canonical: "/" } };
+
 export default function Home() {
   const all = inOrder().map(lite);
   const first = newest()[0];

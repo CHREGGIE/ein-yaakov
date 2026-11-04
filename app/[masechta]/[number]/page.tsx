@@ -8,6 +8,8 @@ import { Cover } from "@/components/Cover";
 import { ChapterList, PlayButton, PlayLabel } from "@/components/Player";
 import { RavPhoto } from "@/components/RavPhoto";
 import { SideBlocks } from "@/components/Side";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbsLd } from "@/lib/seo";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -24,7 +26,12 @@ async function get(params: P["params"]) {
 export async function generateMetadata({ params }: P): Promise<Metadata> {
   const r = await get(params);
   if (!r) return {};
-  return { title: `${r.s.title} · ${r.m.name} ${dafRange(r.s)}`, description: r.s.summary };
+  return {
+    title: `${r.m.name} ${dafRange(r.s)}: ${r.s.title}`,
+    description: r.s.summary,
+    alternates: { canonical: `/${r.m.slug}/${r.s.number}` },
+    openGraph: { type: "article", title: `${r.m.name} ${dafRange(r.s)}: ${r.s.title}`, description: r.s.summary },
+  };
 }
 
 export default async function ShiurPage({ params }: P) {
@@ -42,11 +49,14 @@ export default async function ShiurPage({ params }: P) {
     timeRequired: `PT${Math.round(s.audio.duration_sec / 60)}M`,
     ...(l.audioUrl ? { associatedMedia: { "@type": "MediaObject", contentUrl: l.audioUrl } } : {}),
     partOfSeason: { "@type": "PodcastSeason", name: `Ein Yaakov on ${m.name}` },
-    partOfSeries: { "@type": "PodcastSeries", name: SITE.name, url: SITE.url },
+    partOfSeries: { "@id": `${SITE.url}/#series` },
+    author: { "@id": `${SITE.url}/about#rav` },
+    about: `${m.name} ${dafRange(s)}`,
   };
   return (
     <div className="layout">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={jsonLd} />
+      <JsonLd data={breadcrumbsLd([{ name: "Shiurim", path: "/" }, { name: m.name, path: `/${m.slug}` }, { name: `Shiur ${s.number}`, path: `/${m.slug}/${s.number}` }])} />
       <div className="side-top">
         <Cover he={m.he} en={m.name} />
         <div className="rav"><RavPhoto /><div className="by"><span className="show-name">Ein Yaakov on {m.name}</span>Given by<b>{SITE.rav}</b></div></div>
