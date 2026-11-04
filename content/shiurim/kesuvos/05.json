@@ -94,7 +94,8 @@
  "audio": {
   "file": "Kesuvos-05.mp3",
   "bytes": 24502017,
-  "duration_sec": 3063
+  "duration_sec": 3063,
+  "rev": 2
  },
  "transcript": [
   {

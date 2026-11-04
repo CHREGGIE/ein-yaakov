@@ -40,7 +40,8 @@ out = {
     **({"key_ideas": meta["key_ideas"]} if meta.get("key_ideas") else {}),
     **({"sources": meta["sources"]} if meta.get("sources") else {}),
     "chapters": meta["chapters"],
-    "audio": {"file": os.path.basename(audio_path), "bytes": os.path.getsize(audio_path), "duration_sec": round(dur)},
+    "audio": {"file": os.path.basename(audio_path), "bytes": os.path.getsize(audio_path), "duration_sec": round(dur),
+              **({"rev": meta["audio_rev"]} if meta.get("audio_rev") else {})},
     "transcript": paras,
 }
 os.makedirs(os.path.dirname(out_path), exist_ok=True)

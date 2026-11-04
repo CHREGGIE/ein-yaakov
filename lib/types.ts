@@ -32,7 +32,8 @@ export type ShiurFile = {
   /** Commentaries and stories the Rav cites, with where they come up in the recording. */
   sources?: { title: string; start: number }[];
   chapters: Chapter[];
-  audio: { file: string; bytes: number; duration_sec: number };
+  /** rev: bump to give podcast apps a new audio URL (same file) when they need to re-fetch it. */
+  audio: { file: string; bytes: number; duration_sec: number; rev?: number };
   transcript: Paragraph[];
 };
 

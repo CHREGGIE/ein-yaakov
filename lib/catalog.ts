@@ -39,7 +39,9 @@ export function masechta(slug: string): Masechta | undefined {
 }
 
 export function audioUrl(s: Pick<ShiurFile, "masechta" | "audio">): string | null {
-  return SITE.audioBase ? `${SITE.audioBase}/${s.masechta}/${s.audio.file}` : null;
+  if (!SITE.audioBase) return null;
+  const url = `${SITE.audioBase}/${s.masechta}/${s.audio.file}`;
+  return s.audio.rev ? `${url}?v=${s.audio.rev}` : url;
 }
 
 export function lite(s: ShiurFile): ShiurLite {
