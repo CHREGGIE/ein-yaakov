@@ -1,0 +1,39 @@
+{
+ "masechta": "kesuvos", "number": 6, "status": "reviewed", "in_feed": true, "given_on": "2026-11-03",
+ "title": "Tzedakah at all times, and feeding those who serve",
+ "daf_start": "50a", "daf_end": "61b",
+ "summary": "\"Oseh tzedakah b'chol eis\": supporting one's own small children as tzedakah given at every moment, the levels of giving, and why tzedakah never leaves the giver poorer. Chazal's warning against changing an inheritance among one's children, and how Avraham could give everything to Yitzchak. A husband's obligations to his wife, how long a mother nurses, and why Adam called his wife Chava. Then the stories of the waiter and the king's food, and why those who serve a meal must be given a taste.",
+ "key_ideas": [
+  "Supporting one's own small children is counted as tzedakah given at every moment.",
+  "Tzedakah is like light and like Torah: giving it never leaves the giver with less.",
+  "Chazal warn against changing an inheritance among one's children, even from a less worthy child to a better one.",
+  "Whoever serves food must be given a taste of it, as the stories of the waiter and the king's food show."
+ ],
+ "sources": [
+  {"title": "Rabbeinu Bachya on the levels of tzedakah", "start": 250},
+  {"title": "The Ben Yehoyada on yibum", "start": 836},
+  {"title": "The Rebbe's diary: the Frierdiker Rebbe's dream, Yud-Beis Kislev 1933", "start": 945},
+  {"title": "Rashi on the danger in the king's food", "start": 2901}
+ ],
+ "chapters": [
+  {"start": 0, "title": "Where we are holding"},
+  {"start": 83, "title": "Supporting small children"},
+  {"start": 164, "title": "Don't rush judgment, don't delay tzedakah"},
+  {"start": 250, "title": "Levels of giving tzedakah"},
+  {"start": 337, "title": "Tzedakah that turns every time for the good"},
+  {"start": 508, "title": "A loan to a poor person in need"},
+  {"start": 587, "title": "\"His tzedakah stands forever\""},
+  {"start": 836, "title": "Yibum"},
+  {"start": 945, "title": "The Frierdiker Rebbe's dream"},
+  {"start": 1163, "title": "Captives and their husbands"},
+  {"start": 1330, "title": "Changing an inheritance"},
+  {"start": 1410, "title": "How could Avraham give everything to Yitzchak?"},
+  {"start": 1650, "title": "Shabbos and raising children"},
+  {"start": 1732, "title": "A husband's obligations, and Shabbos as a partner"},
+  {"start": 1968, "title": "\"Enough that they raise our children\""},
+  {"start": 2123, "title": "How long a mother nurses"},
+  {"start": 2508, "title": "Why Adam called his wife Chava"},
+  {"start": 2667, "title": "Giving those who serve a taste"},
+  {"start": 2823, "title": "The two chassidim and the waiter"}
+ ]
+}
