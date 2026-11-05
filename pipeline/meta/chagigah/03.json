@@ -1,7 +1,12 @@
 {
- "masechta": "chagigah", "number": 3, "status": "reviewed", "in_feed": false, "given_on": null,
+ "masechta": "chagigah",
+ "number": 3,
+ "status": "published",
+ "in_feed": false,
+ "given_on": null,
  "title": "Rav Bibi and the Angel of Death",
- "daf_start": "4b", "daf_end": "5a",
+ "daf_start": "4b",
+ "daf_end": "5a",
  "summary": "The Gemara's story of Rav Bibi bar Abaye, who heard from the Angel of Death of a woman taken by mistake, and the questions it raises about people taken before their time. Then the verses that made the Amoraim cry: that Hashem judges hidden and revealed deeds alike, and how careful a person must be not to embarrass another.",
  "key_ideas": [
   "The Gemara tells of Rav Bibi bar Abaye and the Angel of Death, who took the wrong woman.",
@@ -10,21 +15,63 @@
   "A person must be careful never to embarrass another."
  ],
  "sources": [
-  {"title": "The Zohar, as brought in Tanya, on the Angel of Death as Hashem's servant", "start": 965},
-  {"title": "The Kotzker Rebbe on \"I will sin and then repent\"", "start": 2363}
+  {
+   "title": "The Zohar, as brought in Tanya, on the Angel of Death as Hashem's servant",
+   "start": 965
+  },
+  {
+   "title": "The Kotzker Rebbe on \"I will sin and then repent\"",
+   "start": 2363
+  }
  ],
  "chapters": [
-  {"start": 0, "title": "Where we are holding"},
-  {"start": 66, "title": "Rav Bibi bar Abaye and the Angel of Death"},
-  {"start": 543, "title": "\"A generation goes and a generation comes\""},
-  {"start": 698, "title": "Taken before their time"},
-  {"start": 965, "title": "The Angel of Death as Hashem's servant"},
-  {"start": 1335, "title": "Years given to another"},
-  {"start": 1556, "title": "The unripe fruit"},
-  {"start": 1948, "title": "Hidden and revealed sins"},
-  {"start": 2178, "title": "Regretting a sin"},
-  {"start": 2363, "title": "The Kotzker on sin and repentance"},
-  {"start": 2408, "title": "Embarrassing another person"},
-  {"start": 2640, "title": "Don't put someone in a test they can't pass"}
+  {
+   "start": 0,
+   "title": "Where we are holding"
+  },
+  {
+   "start": 66,
+   "title": "Rav Bibi bar Abaye and the Angel of Death"
+  },
+  {
+   "start": 543,
+   "title": "\"A generation goes and a generation comes\""
+  },
+  {
+   "start": 698,
+   "title": "Taken before their time"
+  },
+  {
+   "start": 965,
+   "title": "The Angel of Death as Hashem's servant"
+  },
+  {
+   "start": 1335,
+   "title": "Years given to another"
+  },
+  {
+   "start": 1556,
+   "title": "The unripe fruit"
+  },
+  {
+   "start": 1948,
+   "title": "Hidden and revealed sins"
+  },
+  {
+   "start": 2178,
+   "title": "Regretting a sin"
+  },
+  {
+   "start": 2363,
+   "title": "The Kotzker on sin and repentance"
+  },
+  {
+   "start": 2408,
+   "title": "Embarrassing another person"
+  },
+  {
+   "start": 2640,
+   "title": "Don't put someone in a test they can't pass"
+  }
  ]
 }

@@ -1,7 +1,12 @@
 {
- "masechta": "chagigah", "number": 2, "status": "reviewed", "in_feed": false, "given_on": null,
+ "masechta": "chagigah",
+ "number": 2,
+ "status": "published",
+ "in_feed": false,
+ "given_on": null,
  "title": "All given by one Shepherd",
- "daf_start": "3a", "daf_end": "4b",
+ "daf_start": "3a",
+ "daf_end": "4b",
  "summary": "Rabbi Yehoshua calls a teaching \"a pearl\": Hashem, Klal Yisrael and Shabbos each testify to the other. Words of Torah are like a goad that guides and a nail that stays fixed, and opposing opinions in Torah were all given by one Shepherd. Then Yosef's \"I am Yosef\" that left his brothers speechless, Shaul and Shmuel at Ein Dor, and the verses that made the Amoraim cry.",
  "key_ideas": [
   "Opposing opinions in Torah were all given by one Shepherd, so each deserves to be understood.",
@@ -10,22 +15,67 @@
   "The Amoraim cried at verses about judgment, from Yosef's brothers to Shmuel's ascent at Ein Dor."
  ],
  "sources": [
-  {"title": "The parable of the wind and the sun", "start": 1042},
-  {"title": "The Rebbe on accepting the nesius", "start": 1863}
+  {
+   "title": "The parable of the wind and the sun",
+   "start": 1042
+  },
+  {
+   "title": "The Rebbe on accepting the nesius",
+   "start": 1863
+  }
  ],
  "chapters": [
-  {"start": 0, "title": "Where we are holding"},
-  {"start": 81, "title": "\"A pearl\""},
-  {"start": 413, "title": "Hashem, Klal Yisrael and Shabbos testify for each other"},
-  {"start": 582, "title": "Torah like a goad"},
-  {"start": 664, "title": "Like a nail that stays fixed"},
-  {"start": 746, "title": "All given by one Shepherd"},
-  {"start": 1042, "title": "The wind and the sun"},
-  {"start": 1576, "title": "The student who lost his sight"},
-  {"start": 1662, "title": "Ammon and Moav in the shemittah year"},
-  {"start": 1976, "title": "Seeing with both eyes"},
-  {"start": 2212, "title": "\"I am Yosef\""},
-  {"start": 2521, "title": "Shaul and Shmuel at Ein Dor"},
-  {"start": 2826, "title": "Verses that made the Amoraim cry"}
+  {
+   "start": 0,
+   "title": "Where we are holding"
+  },
+  {
+   "start": 81,
+   "title": "\"A pearl\""
+  },
+  {
+   "start": 413,
+   "title": "Hashem, Klal Yisrael and Shabbos testify for each other"
+  },
+  {
+   "start": 582,
+   "title": "Torah like a goad"
+  },
+  {
+   "start": 664,
+   "title": "Like a nail that stays fixed"
+  },
+  {
+   "start": 746,
+   "title": "All given by one Shepherd"
+  },
+  {
+   "start": 1042,
+   "title": "The wind and the sun"
+  },
+  {
+   "start": 1576,
+   "title": "The student who lost his sight"
+  },
+  {
+   "start": 1662,
+   "title": "Ammon and Moav in the shemittah year"
+  },
+  {
+   "start": 1976,
+   "title": "Seeing with both eyes"
+  },
+  {
+   "start": 2212,
+   "title": "\"I am Yosef\""
+  },
+  {
+   "start": 2521,
+   "title": "Shaul and Shmuel at Ein Dor"
+  },
+  {
+   "start": 2826,
+   "title": "Verses that made the Amoraim cry"
+  }
  ]
 }
