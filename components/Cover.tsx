@@ -13,7 +13,7 @@ export function Cover({ he, en, small }: { he?: string; en?: string; small?: boo
       {he && <div className="cv-m" lang="he">מסכת {he}</div>}
       <div className="cv-he">עין יעקב</div>
       <div className="cv-en">EIN YAAKOV</div>
-      <div className="cv-by">{en ? `${en.toUpperCase()} · ` : ""}RABBI FOGELMAN</div>
+      <div className="cv-by">{en ? `${en.toUpperCase()} · ` : ""}{SITE.rav.toUpperCase()}</div>
     </div>
   );
 }

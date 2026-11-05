@@ -59,7 +59,7 @@ svg.f { fill: currentColor; stroke: none; }
 .cv-by { position: absolute; left: 9cqw; bottom: 8cqw; font-size: 4cqw; letter-spacing: .24em; opacity: .7; white-space: nowrap; }
 .cover.has-m .cv-page { height: 32cqw; }
 .cv-m { position: absolute; right: 9cqw; bottom: 45cqw; font: 700 7.5cqw/1 var(--f-he); direction: rtl; white-space: nowrap; opacity: .85; }
-.cover.has-m .cv-by { font-size: 3.6cqw; letter-spacing: .2em; }
+.cover.has-m .cv-by { font-size: 3cqw; letter-spacing: .18em; }
 .cover.sm { box-shadow: none; border-radius: 0; }
 .cover.sm .cv-page, .cover.sm .cv-en, .cover.sm .cv-by { display: none; }
 .cover.sm .cv-he { position: static; display: grid; place-items: center; height: 100%; font-size: 62cqw; margin-top: -8cqw; }

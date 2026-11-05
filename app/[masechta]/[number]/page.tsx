@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   const r = await get(params);
   if (!r) return {};
   return {
-    title: { absolute: `Ein Yaakov ${r.m.name} ${dafRange(r.s)}: ${r.s.title} | Rabbi Fogelman` },
+    title: { absolute: `Ein Yaakov ${r.m.name} ${dafRange(r.s)}: ${r.s.title} | ${SITE.rav}` },
     description: `${r.m.name} ${dafRange(r.s)} (${r.m.he}) in the Ein Yaakov. ${r.s.summary}`.slice(0, 300),
     alternates: { canonical: `/${r.m.slug}/${r.s.number}` },
     openGraph: { type: "article", title: `${r.m.name} ${dafRange(r.s)}: ${r.s.title}`, description: r.s.summary },

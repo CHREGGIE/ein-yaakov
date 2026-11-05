@@ -7,7 +7,7 @@ import { Listen } from "@/components/Listen";
 
 export const metadata: Metadata = {
   title: "Ein Yaakov: questions and answers",
-  description: "What Ein Yaakov is, who compiled it, how it differs from learning Gemara, why it is learned between Mincha and Maariv, and how to listen to the shiur with Rabbi Fogelman.",
+  description: "What Ein Yaakov is, who compiled it, how it differs from learning Gemara, why it is learned between Mincha and Maariv, and how to listen to the shiur with Rabbi Chaim Fogelman.",
   alternates: { canonical: "/faq" },
 };
 
@@ -31,7 +31,7 @@ export default function Faq() {
     },
     {
       q: "Is the shiur suitable for beginners?",
-      a: "Yes. Rabbi Fogelman reads the Gemara inside and explains it with the commentaries, so you can follow without background. You can follow along in any edition of Ein Yaakov, or just listen.",
+      a: `Yes. ${SITE.rav} reads the Gemara inside and explains it with the commentaries, so you can follow without background. You can follow along in any edition of Ein Yaakov, or just listen.`,
     },
     {
       q: "Which masechta is the shiur learning now?",

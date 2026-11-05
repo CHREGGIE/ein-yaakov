@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { inOrder, lite, masechta, masechtos } from "@/lib/catalog";
-import { SEDARIM } from "@/lib/site";
+import { SEDARIM, SITE } from "@/lib/site";
 import { Cover } from "@/components/Cover";
 import { DafJump } from "@/components/DafJump";
 import { Library } from "@/components/Library";
@@ -17,8 +17,8 @@ type P = { params: Promise<{ masechta: string }> };
 export async function generateMetadata({ params }: P): Promise<Metadata> {
   const m = masechta((await params).masechta);
   return m ? {
-    title: { absolute: `Ein Yaakov ${m.name} (${m.he}): every shiur by daf | Rabbi Fogelman` },
-    description: `Every shiur on the aggados of Masechta ${m.name} (${m.he}) in the Ein Yaakov with Rabbi Fogelman, by daf, with a summary and chapters for each.`,
+    title: { absolute: `Ein Yaakov ${m.name} (${m.he}): every shiur by daf | ${SITE.rav}` },
+    description: `Every shiur on the aggados of Masechta ${m.name} (${m.he}) in the Ein Yaakov with ${SITE.rav}, by daf, with a summary and chapters for each.`,
     alternates: { canonical: `/${m.slug}` },
   } : {};
 }

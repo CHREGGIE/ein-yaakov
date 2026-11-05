@@ -6,8 +6,8 @@ import { RavPhoto } from "@/components/RavPhoto";
 import { SideBlocks } from "@/components/Side";
 
 export const metadata: Metadata = {
-  title: "About the shiur and Rabbi Fogelman",
-  description: `Rabbi Fogelman gives a weekly Ein Yaakov shiur ${SITE.when} at ${SITE.shul}. Every shiur is online by masechta and daf, and new shiurim go out weekly as a podcast.`,
+  title: `About the shiur and ${SITE.rav}`,
+  description: `${SITE.rav} gives a weekly Ein Yaakov shiur ${SITE.when} at ${SITE.shul}. Every shiur is online by masechta and daf, and new shiurim go out weekly as a podcast.`,
   alternates: { canonical: "/about" },
 };
 

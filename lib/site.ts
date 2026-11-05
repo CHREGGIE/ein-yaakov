@@ -1,15 +1,15 @@
 export const SITE = {
-  name: "Ein Yaakov with Rabbi Fogelman",
+  name: "Ein Yaakov with Rabbi Chaim Fogelman",
   short: "Ein Yaakov",
-  rav: "Rabbi Fogelman",
+  rav: "Rabbi Chaim Fogelman",
   shul: "the Itchkes Shtiebel",
   when: "Tuesday nights at 8pm",
   description:
-    "A weekly shiur on the aggados of the Gemara as collected in the Ein Yaakov, masechta by masechta, with Rabbi Fogelman.",
+    "A weekly shiur on the aggados of the Gemara as collected in the Ein Yaakov, masechta by masechta, with Rabbi Chaim Fogelman.",
   /** The show description podcast apps display. Plain text; keep under 4,000 characters. */
   podcastDescription:
     "A weekly shiur on the Ein Yaakov, the classic collection of the aggados of the Talmud: the stories, parables and teachings woven through every masechta of the Gemara. " +
-    "Each week Rabbi Fogelman reads the Gemara inside with Rashi, the Maharsha and the commentaries printed alongside it, and draws out what Chazal are teaching about Hashem, the soul and how a person should live. " +
+    "Each week Rabbi Chaim Fogelman reads the Gemara inside with Rashi, the Maharsha and the commentaries printed alongside it, and draws out what Chazal are teaching about Hashem, the soul and how a person should live. " +
     "The podcast follows the shiur masechta by masechta, starting with Kesuvos. Every past shiur, with a summary and chapters, is at einyaakovshiur.com.",
   // SITE_URL wins; otherwise use the production domain Vercel exposes to every build.
   url: (process.env.SITE_URL

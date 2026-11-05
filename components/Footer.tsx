@@ -30,7 +30,7 @@ export function Footer() {
           <b>The shiur</b>
           <Link href="/">All shiurim</Link>
           <Link href="/faq">Questions and answers</Link>
-          <Link href="/about">About Rabbi Fogelman</Link>
+          <Link href="/about">About {SITE.rav}</Link>
           <Link href="/search">Search</Link>
         </nav>
         <nav className="foot-col" aria-label="Listen">
