@@ -1,0 +1,31 @@
+{
+ "masechta": "chagigah", "number": 1, "status": "reviewed", "in_feed": false, "given_on": null,
+ "title": "Opening Chagigah: coming to see and to be seen",
+ "daf_start": "2a", "daf_end": "3a",
+ "summary": "The first shiur on Masechta Chagigah: who is exempt from going up to Yerushalayim for the Yom Tov, and why one blind in one eye is exempt, since as a person comes to see, so he comes to be seen. The two mutes who sat before Rebbe, Avraham as the first ger, why Torah is compared to water, and why the children were brought to Hakhel.",
+ "key_ideas": [
+  "One who is blind in one eye is exempt from going up for the Yom Tov: as a person comes to see, so he comes to be seen.",
+  "Some have the custom of learning Masechta Chagigah on a yahrzeit.",
+  "Torah is compared to water, which flows from the highest place down to the lowest.",
+  "The children were brought to Hakhel so that those who bring them would earn reward."
+ ],
+ "sources": [
+  {"title": "A recent story of a boy who began to communicate and learn", "start": 959},
+  {"title": "Rashi on Yosef's pit", "start": 1455}
+ ],
+ "chapters": [
+  {"start": 0, "title": "Starting Masechta Chagigah"},
+  {"start": 78, "title": "Learning Chagigah on a yahrzeit"},
+  {"start": 406, "title": "Who is exempt: one blind in one eye"},
+  {"start": 490, "title": "Coming to see and to be seen"},
+  {"start": 724, "title": "The two mutes who sat before Rebbe"},
+  {"start": 803, "title": "Eldad and Meidad"},
+  {"start": 959, "title": "A boy who began to communicate"},
+  {"start": 1348, "title": "\"How beautiful are your feet\""},
+  {"start": 1425, "title": "Avraham, the first ger"},
+  {"start": 1502, "title": "Torah compared to water"},
+  {"start": 1898, "title": "Yosef and his brothers"},
+  {"start": 2291, "title": "Rabbi Elazar ben Azaryah's open beis medrash"},
+  {"start": 2445, "title": "Why the children came to Hakhel"}
+ ]
+}
