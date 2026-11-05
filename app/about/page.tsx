@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
 import { Cover } from "@/components/Cover";
 import { Listen } from "@/components/Listen";
+import { DedicationLine } from "@/components/DedicationLine";
 import { RavPhoto } from "@/components/RavPhoto";
 import { SideBlocks } from "@/components/Side";
 
@@ -20,6 +21,7 @@ export default function About() {
         <span className="eyebrow">About the shiur</span>
         <h1 className="title">{SITE.name}</h1>
         <p>{SITE.rav} gives a weekly shiur at {SITE.shul} on the Ein Yaakov, Rabbi Yaakov ibn Chaviv&apos;s collection of the aggados of the Talmud. The shiur moves through each masechta in order, reading the Gemara inside with Rashi and the commentaries printed alongside it.</p>
+        <DedicationLine />
         <h2>When and where</h2>
         <p>The shiur is given {SITE.when} at {SITE.shul}. Everyone is welcome.</p>
         <h2>Listen</h2>

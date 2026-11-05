@@ -298,3 +298,22 @@ h1.title { font-size: 2.2rem; line-height: 1.15; font-weight: 700; margin: 0; te
 .sources button { width: 100%; display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: .7rem .9rem; cursor: pointer; }
 .sources button:hover { border-color: var(--accent); }
 .sources .ts { color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; flex: none; }
+
+/* Dedication */
+.ded-line { margin: 0; font-size: .88rem; color: var(--muted); line-height: 1.6; }
+.ded-line a { color: var(--accent); text-decoration: none; font-weight: 600; }
+.ded-line a:hover { text-decoration: underline; }
+.ded-line .ded-he { display: block; color: var(--muted); font-size: 1rem; margin-top: .2rem; }
+.foot-ded { max-width: var(--max); margin: 2rem auto 0; padding-top: 1.25rem; border-top: 1px solid var(--line); text-align: center; }
+.block p a { color: var(--accent); text-decoration: none; font-weight: 600; }
+.dedication-page { gap: 1.1rem; }
+.dedication-page p { color: var(--ink); line-height: 1.75; font-size: 1.02rem; }
+.ded-head { display: grid; gap: .5rem; justify-items: center; text-align: center; padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); margin-bottom: .5rem; }
+.ded-lein { font-size: 1.3rem; color: var(--accent); font-weight: 700; direction: rtl; }
+.ded-name { font-size: 1.5rem; font-weight: 700; direction: rtl; }
+.ded-quote { margin: .5rem 0; padding: 1.25rem 1.5rem; background: var(--surface); border-radius: 6px; box-shadow: var(--shadow); }
+.ded-quote figcaption { font-size: .85rem; color: var(--muted); font-weight: 600; margin-bottom: .5rem; }
+.ded-quote blockquote { margin: 0; }
+.ded-quote blockquote p { font-size: 1.08rem; font-style: italic; }
+.ded-close { font-weight: 600; }
+.ded-tnzbh { text-align: center; font-size: 1.2rem; font-weight: 700; color: var(--accent) !important; letter-spacing: .1em; }

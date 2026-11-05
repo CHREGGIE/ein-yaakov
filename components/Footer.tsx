@@ -2,6 +2,7 @@ import Link from "next/link";
 import { masechtos } from "@/lib/catalog";
 import { SITE } from "@/lib/site";
 import { RavPhoto } from "./RavPhoto";
+import { DedicationLine } from "./DedicationLine";
 
 const APPS = [
   { key: "spotify", label: "Spotify" },
@@ -31,6 +32,7 @@ export function Footer() {
           <Link href="/">All shiurim</Link>
           <Link href="/faq">Questions and answers</Link>
           <Link href="/about">About {SITE.rav}</Link>
+          <Link href="/dedication">L&apos;iluy nishmas</Link>
           <Link href="/search">Search</Link>
         </nav>
         <nav className="foot-col" aria-label="Listen">
@@ -41,6 +43,7 @@ export function Footer() {
           <a href="/feed.xml">RSS feed</a>
         </nav>
       </div>
+      <div className="foot-ded"><DedicationLine /></div>
       <div className="foot-base">
         <span>© {new Date().getFullYear()} {SITE.name}</span>
         <span>Tuesdays 8pm · Itchkes Shtiebel</span>
