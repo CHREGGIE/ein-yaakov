@@ -1,0 +1,89 @@
+{
+ "masechta": "chagigah",
+ "status": "published",
+ "in_feed": false,
+ "given_on": null,
+ "number": 5,
+ "title": "Three Things Hashem Cries Over",
+ "daf_start": "5b",
+ "daf_end": "5b",
+ "summary": "The tears Hashem sheds over the churban, and the three people He cries over each day: one who could learn and doesn't, one who can't and does, and a leader who lords it over the community. Rebbi's blessing to \"greet the Face that sees and is not seen,\" how the Rebbe saw each person in front of him, Rav Idi who traveled three months for one day of learning, and what one hour of learning is worth.",
+ "key_ideas": [
+  "Hashem cries over one who could learn and doesn't, and over one who struggles to learn and still does.",
+  "A leader must not lord it over the community.",
+  "Seeing each person, face to face, is a great thing.",
+  "Even one day, or one hour, of learning is precious."
+ ],
+ "sources": [
+  {
+   "title": "The Rebbe greeting a visiting prime minister",
+   "start": 1120
+  },
+  {
+   "title": "The Rambam on Moshe's census, so he would see every Jew",
+   "start": 1204
+  },
+  {
+   "title": "The Rebbe noticing a boy's glasses",
+   "start": 1282
+  }
+ ],
+ "chapters": [
+  {
+   "start": 0,
+   "title": "Where we are holding"
+  },
+  {
+   "start": 80,
+   "title": "Hashem's tears over the churban"
+  },
+  {
+   "start": 239,
+   "title": "Three things Hashem cries over"
+  },
+  {
+   "start": 321,
+   "title": "Why cry if one doesn't learn?"
+  },
+  {
+   "start": 478,
+   "title": "One who struggles and still learns"
+  },
+  {
+   "start": 557,
+   "title": "A leader who lords over the community"
+  },
+  {
+   "start": 843,
+   "title": "Learning and shlichus"
+  },
+  {
+   "start": 961,
+   "title": "\"Greet the Face that sees and is not seen\""
+  },
+  {
+   "start": 1120,
+   "title": "The Rebbe and the prime minister"
+  },
+  {
+   "start": 1204,
+   "title": "Moshe's census"
+  },
+  {
+   "start": 1913,
+   "title": "Rav Idi's three months of travel"
+  },
+  {
+   "start": 2058,
+   "title": "Rabbi Yochanan defends him"
+  },
+  {
+   "start": 2258,
+   "title": "Learning for one day"
+  },
+  {
+   "start": 2458,
+   "title": "What to learn in one hour"
+  }
+ ]
+}

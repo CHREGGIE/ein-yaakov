@@ -1,0 +1,85 @@
+{
+ "masechta": "chagigah",
+ "status": "published",
+ "in_feed": false,
+ "given_on": null,
+ "number": 6,
+ "title": "One Hundred and One Times",
+ "daf_start": "6a",
+ "daf_end": "9b",
+ "summary": "The olas tamid offered at Sinai, the difference between an olah and a shelamim, and davening in place of korbanos. Then Bar Hei Hei's question: why learning something 101 times is so much greater than 100. Eliyahu's teaching that poverty suits Klal Yisrael like a red sash on a white horse, and the talmid chacham who strays like a bird from its nest.",
+ "key_ideas": [
+  "Davening takes the place of the korbanos.",
+  "An olah goes entirely to Hashem; a shelamim is shared.",
+  "The one extra review, 101 times instead of 100, makes all the difference.",
+  "A talmid chacham who strays is like a bird that wanders from its nest."
+ ],
+ "sources": [
+  {
+   "title": "The Baal Shem Tov on learning something 101 times",
+   "start": 1799
+  }
+ ],
+ "chapters": [
+  {
+   "start": 0,
+   "title": "Where we are holding"
+  },
+  {
+   "start": 79,
+   "title": "The olas tamid made at Sinai"
+  },
+  {
+   "start": 233,
+   "title": "Korbanos in the midbar"
+  },
+  {
+   "start": 389,
+   "title": "Olos and shelamim at Sinai"
+  },
+  {
+   "start": 707,
+   "title": "Making up a missed korban"
+  },
+  {
+   "start": 1088,
+   "title": "Olah or shelamim"
+  },
+  {
+   "start": 1166,
+   "title": "Same animal, different korban"
+  },
+  {
+   "start": 1325,
+   "title": "The day's offerings"
+  },
+  {
+   "start": 1443,
+   "title": "Davening in place of korbanos"
+  },
+  {
+   "start": 1641,
+   "title": "Bar Hei Hei"
+  },
+  {
+   "start": 1759,
+   "title": "101 times versus 100"
+  },
+  {
+   "start": 1952,
+   "title": "Above forgetting"
+  },
+  {
+   "start": 2125,
+   "title": "Eliyahu: poverty suits Klal Yisrael"
+  },
+  {
+   "start": 2345,
+   "title": "\"A red sash on a white horse\""
+  },
+  {
+   "start": 2501,
+   "title": "The bird that strays from its nest"
+  }
+ ]
+}

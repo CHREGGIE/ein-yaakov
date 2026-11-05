@@ -1,0 +1,105 @@
+{
+ "masechta": "chagigah",
+ "status": "published",
+ "in_feed": false,
+ "given_on": null,
+ "number": 4,
+ "title": "Hester Panim and the Angels of Peace",
+ "daf_start": "5a",
+ "daf_end": "5b",
+ "summary": "\"Many evils and troubles\": the Gemara's remedies for a wasp and a scorpion, and what it means when Hashem hides His face. The tax collector who would not be helped in time, Rabbi Yehoshua's silent exchange in sign language (\"His hand is stretched over us\"), how a tzaddik's thought alone can change things, and the angels of peace who wept, with a word on Shalom Aleichem.",
+ "key_ideas": [
+  "Even in hester panim, \"His hand is stretched over us.\"",
+  "Help a person before the trouble grows, not after.",
+  "A tzaddik's thought alone can affect another person.",
+  "Every word a person says, even in private, is recounted before him."
+ ],
+ "sources": [
+  {
+   "title": "Rashi on the one who could have been helped in time",
+   "start": 393
+  },
+  {
+   "title": "The story of the yeshiva bochurim in Pest and Marmaros",
+   "start": 1805
+  }
+ ],
+ "chapters": [
+  {
+   "start": 0,
+   "title": "Where we are holding"
+  },
+  {
+   "start": 80,
+   "title": "\"Many evils and troubles\""
+  },
+  {
+   "start": 158,
+   "title": "Evils that are also troubles"
+  },
+  {
+   "start": 236,
+   "title": "The wasp and the scorpion"
+  },
+  {
+   "start": 393,
+   "title": "Rashi: help that comes too late"
+  },
+  {
+   "start": 472,
+   "title": "The man with 199 zuz"
+  },
+  {
+   "start": 628,
+   "title": "Taxes and fines"
+  },
+  {
+   "start": 786,
+   "title": "Hashem's face toward us"
+  },
+  {
+   "start": 943,
+   "title": "The tax collector and the governor"
+  },
+  {
+   "start": 1020,
+   "title": "Thought, speech and action"
+  },
+  {
+   "start": 1338,
+   "title": "\"He hid His face\""
+  },
+  {
+   "start": 1490,
+   "title": "Rabbi Yehoshua's sign language"
+  },
+  {
+   "start": 1805,
+   "title": "The bochurim of Pest and Marmaros"
+  },
+  {
+   "start": 1885,
+   "title": "When the struggle starts"
+  },
+  {
+   "start": 2048,
+   "title": "Every word is recounted"
+  },
+  {
+   "start": 2300,
+   "title": "Rav and his wife"
+  },
+  {
+   "start": 2459,
+   "title": "\"If you will not listen\""
+  },
+  {
+   "start": 2557,
+   "title": "The angels of peace wept"
+  },
+  {
+   "start": 2692,
+   "title": "Shalom Aleichem"
+  }
+ ]
+}
