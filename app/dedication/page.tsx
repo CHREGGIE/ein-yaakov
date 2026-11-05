@@ -6,12 +6,14 @@ export const metadata: Metadata = {
   title: "L'iluy nishmas Rabbi Shmuel Eliyahu ben Chaim Elchonon Fogelman",
   description: `The learning of this shiur is dedicated by ${SITE.rav} l'iluy nishmas his father, Rabbi Shmuel Eliyahu ben Chaim Elchonon Fogelman, a dedicated educator for more than 60 years.`,
   alternates: { canonical: "/dedication" },
+  openGraph: { images: ["/rabbi-shmuel-eliyahu-fogelman.jpg"] },
 };
 
 export default function Dedication() {
   return (
     <article className="main-col prose dedication-page" style={{ maxWidth: "44rem", margin: "0 auto" }}>
       <div className="ded-head">
+        <img className="ded-photo" src="/rabbi-shmuel-eliyahu-fogelman.jpg" alt="Rabbi Shmuel Eliyahu Fogelman" width={768} height={1024} />
         <span className="he ded-lein" lang="he">לעילוי נשמת</span>
         <h1 className="title">Rabbi Shmuel Eliyahu ben Chaim Elchonon Fogelman</h1>
         <span className="he ded-name" lang="he">הרב שמואל אליהו בן חיים אלחנן</span>

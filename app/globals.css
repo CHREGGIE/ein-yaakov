@@ -317,3 +317,4 @@ h1.title { font-size: 2.2rem; line-height: 1.15; font-weight: 700; margin: 0; te
 .ded-quote blockquote p { font-size: 1.08rem; font-style: italic; }
 .ded-close { font-weight: 600; }
 .ded-tnzbh { text-align: center; font-size: 1.2rem; font-weight: 700; color: var(--accent) !important; letter-spacing: .1em; }
+.ded-photo { width: 100%; max-width: 15rem; height: auto; border-radius: 6px; box-shadow: var(--shadow); margin-bottom: .75rem; }
