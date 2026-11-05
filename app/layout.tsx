@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 import { PlayerProvider } from "@/components/Player";
 import { SearchIcon } from "@/components/Icons";
 import { JsonLd } from "@/components/JsonLd";
-import { einYaakovLd, ravLd, seriesLd, websiteLd } from "@/lib/seo";
+import { einYaakovLd, orgLd, ravLd, seriesLd, websiteLd } from "@/lib/seo";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@500;700&display=swap" />
       </head>
       <body>
-        <JsonLd data={{ "@context": "https://schema.org", "@graph": [websiteLd, seriesLd, ravLd, einYaakovLd] }} />
+        <JsonLd data={{ "@context": "https://schema.org", "@graph": [websiteLd, orgLd, seriesLd, ravLd, einYaakovLd] }} />
         <PlayerProvider initial={latest ? lite(latest) : null}>
           <header className="top">
             <div className="top-in">

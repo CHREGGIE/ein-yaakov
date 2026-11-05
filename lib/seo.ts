@@ -29,6 +29,20 @@ export const ravLd = {
   jobTitle: "Rabbi",
 };
 
+/** The organization behind the site, with the ע logo, so Google can show the site's name and logo. */
+export const orgLd = {
+  "@type": "Organization",
+  "@id": `${SITE.url}/#organization`,
+  name: SITE.name,
+  alternateName: ["Ein Yaakov Shiur", "einyaakovshiur.com"],
+  url: SITE.url,
+  logo: { "@type": "ImageObject", "@id": `${SITE.url}/#logo`, url: `${SITE.url}/icon.png`, width: 512, height: 512, caption: SITE.name },
+  image: { "@id": `${SITE.url}/#logo` },
+  description: SITE.description,
+  founder: { "@id": ravLd["@id"] },
+  sameAs: Object.values(SITE.listen).filter(Boolean),
+};
+
 /** The show, linked to its pages in the podcast apps. */
 export const seriesLd = {
   "@type": "PodcastSeries",
@@ -43,6 +57,7 @@ export const seriesLd = {
   webFeed: `${SITE.url}/feed.xml`,
   author: { "@id": ravLd["@id"] },
   creator: { "@id": ravLd["@id"] },
+  publisher: { "@id": orgLd["@id"] },
   about: { "@id": einYaakovLd["@id"] },
   sameAs: Object.values(SITE.listen).filter(Boolean),
 };
@@ -53,6 +68,7 @@ export const websiteLd = {
   name: SITE.name,
   url: SITE.url,
   inLanguage: "en",
+  publisher: { "@id": orgLd["@id"] },
   about: { "@id": einYaakovLd["@id"] },
   potentialAction: {
     "@type": "SearchAction",
