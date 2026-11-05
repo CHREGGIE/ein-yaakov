@@ -4,8 +4,31 @@
     "name": "Baitza",
     "he": "ביצה",
     "seder": "moed",
-    "aliases": ["beitzah", "beitza", "beitsa", "betzah", "baitzah", "beitzo", "yom tov"],
+    "aliases": [
+      "beitzah",
+      "beitza",
+      "beitsa",
+      "betzah",
+      "baitzah",
+      "beitzo",
+      "yom tov"
+    ],
     "order": 1,
+    "season": null
+  },
+  {
+    "slug": "chagigah",
+    "name": "Chagigah",
+    "he": "חגיגה",
+    "seder": "moed",
+    "aliases": [
+      "chagiga",
+      "hagigah",
+      "hagiga",
+      "chagigo",
+      "chagigoh"
+    ],
+    "order": 2,
     "season": null
   },
   {
@@ -13,8 +36,16 @@
     "name": "Kesuvos",
     "he": "כתובות",
     "seder": "nashim",
-    "aliases": ["ketubot", "ketubos", "kesubos", "kesuvot", "ketuvot", "kesubot", "ksubos"],
-    "order": 2,
+    "aliases": [
+      "ketubot",
+      "ketubos",
+      "kesubos",
+      "kesuvot",
+      "ketuvot",
+      "kesubot",
+      "ksubos"
+    ],
+    "order": 3,
     "season": 1
   }
 ]
