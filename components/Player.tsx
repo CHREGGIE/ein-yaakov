@@ -94,7 +94,7 @@ export function PlayerProvider({ initial, children }: { initial: ShiurLite | nul
             <div className="pb-art"><Cover he={current.masechtaHe} small /></div>
             <Link className="pb-info" href={current.href}>
               <b>{current.title}</b>
-              <span>{current.masechtaName} {dafRange(current)} · {fmtDate(current.given_on)}</span>
+              <span>{current.masechtaName} {dafRange(current)}{current.given_on ? ` · ${fmtDate(current.given_on)}` : ""}</span>
             </Link>
             <div className="pb-ctrls">
               <button className="pill" onClick={() => setRate(RATES[(RATES.indexOf(rate) + 1) % RATES.length])} aria-label="Playback speed">{rate}×</button>

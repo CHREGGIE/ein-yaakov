@@ -36,7 +36,7 @@ export default function Home() {
           <div className="week-ep">
             <PlayButton s={latest} variant="big" />
             <Link href={latest.href}>
-              <span className="ep-meta num"><span>{latest.masechtaName} {dafRange(latest)}</span><span className="dot">{fmtDate(latest.given_on)}</span><span className="dot">{mins(latest.audio.duration_sec)}</span></span>
+              <span className="ep-meta num"><span>{latest.masechtaName} {dafRange(latest)}</span>{latest.given_on && <span className="dot">{fmtDate(latest.given_on)}</span>}<span className="dot">{mins(latest.audio.duration_sec)}</span></span>
               <span className="week-title">{latest.title}</span>
             </Link>
           </div>

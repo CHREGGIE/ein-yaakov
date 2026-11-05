@@ -57,7 +57,7 @@ export default async function ShiurPage({ params }: P) {
           <dt>Masechta</dt><dd>{m.name} <span className="he" lang="he">{m.he}</span></dd>
           <dt>Daf</dt><dd>{dafRange(s)}</dd>
           <dt>Shiur</dt><dd>{s.number} of {siblings.length}</dd>
-          <dt>Given</dt><dd>{fmtDate(s.given_on)}</dd>
+          {s.given_on && <><dt>Given</dt><dd>{fmtDate(s.given_on)}</dd></>}
           <dt>Length</dt><dd>{mins(s.audio.duration_sec)}</dd>
         </dl></div>
         <SideBlocks />
@@ -65,7 +65,7 @@ export default async function ShiurPage({ params }: P) {
       <section className="main-col">
         <nav className="crumbs"><Link href="/">Shiurim</Link><span>›</span><Link href={`/${m.slug}`}>{m.name}</Link><span>›</span><span>Shiur {s.number}</span></nav>
         <div style={{ display: "grid", gap: ".75rem" }}>
-          <span className="eyebrow num">{m.name} · Shiur {s.number}{s.label ? ` · ${s.label}` : ""} · {fmtDate(s.given_on)}</span>
+          <span className="eyebrow num">{m.name} · Shiur {s.number}{s.label ? ` · ${s.label}` : ""}{s.given_on ? ` · ${fmtDate(s.given_on)}` : ""}</span>
           <h1 className="title">{s.title}</h1>
           <div className="dafline"><span className="num">Daf {dafRange(s)}</span><span className="he" lang="he">{m.he} {heRange(s)}</span></div>
         </div>

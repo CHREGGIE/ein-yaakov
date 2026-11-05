@@ -31,7 +31,7 @@ export function fmtTime(sec: number): string {
 }
 
 export function fmtDate(iso: string | null): string {
-  if (!iso) return "Date to be confirmed";
+  if (!iso) return "";
   return new Date(iso + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
 }
 

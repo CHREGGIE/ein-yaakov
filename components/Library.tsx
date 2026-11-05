@@ -22,7 +22,7 @@ export function EpItem({ s, terms = [], showM = true }: { s: ShiurLite; terms?: 
       <Link className="ep-body" href={s.href}>
         <span className="ep-meta num">
           <span>{showM ? `${s.masechtaName} ${dafRange(s)}` : `Daf ${dafRange(s)}`}</span>
-          <span className="dot">{fmtDate(s.given_on)}</span>
+          {s.given_on && <span className="dot">{fmtDate(s.given_on)}</span>}
           <span className="dot">{mins(s.audio.duration_sec)}</span>
           {s.in_feed && s.given_on && <span className="tag">Podcast</span>}
         </span>
