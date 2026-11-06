@@ -1,0 +1,13 @@
+{
+ "slug": "kesuvos-06",
+ "source": "$SCRATCH/kesuvos/out/Kesuvos-06.mp3",
+ "link": "einyaakovshiur.com/kesuvos/6",
+ "vocab": "the Frierdiker Rebbe, the Rebbe Rashab, Chassidus, l'chaim, at-bash, alef, tav, beis, shin.",
+ "clips": [
+  {"id": 1, "at": 663.8, "window": 43, "hook": "Can giving tzedakah<br>make you poorer?", "sub": "Kesuvos 50a · Shiur 6",
+   "start_word": "when", "end_word": "circle",
+   "fixes": [[["tayyidah,"], ["Torah,"]], [["your", "favorite", "child"], ["the", "Aibershter"]], [["at", "-bash,"], ["at-bash,"]], [["-bash"], ["at-bash"]], [["dalit"], ["dalet"]]]},
+  {"id": 2, "at": 1003.8, "window": 56, "hook": "“You are the light<br>in my house”", "sub": "A story from the Rebbe's diary · Kesuvos Shiur 6",
+   "end_word": "house", "end_after": "light"}
+ ]
+}

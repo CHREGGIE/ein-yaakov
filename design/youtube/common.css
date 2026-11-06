@@ -1,6 +1,6 @@
-@font-face{font-family:Fig;src:url(../../assets/og/figtree-500.ttf);font-weight:500}
-@font-face{font-family:Fig;src:url(../../assets/og/figtree-700.ttf);font-weight:700}
-@font-face{font-family:Frank;src:url(../../assets/og/frank-700.ttf);font-weight:700}
+@font-face{font-family:Fig;src:url(../../assets/fonts/figtree-500.ttf);font-weight:500}
+@font-face{font-family:Fig;src:url(../../assets/fonts/figtree-700.ttf);font-weight:700}
+@font-face{font-family:Frank;src:url(../../assets/fonts/frank-700.ttf);font-weight:700}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{background:transparent}
 .bg{background:linear-gradient(135deg,#2d55ef 0%,#0a2398 100%);color:#fff;font-family:Fig}

@@ -14,9 +14,9 @@ const asset = (...p: string[]) => readFile(join(process.cwd(), ...p));
 /** Link-preview card (WhatsApp, iMessage, Facebook, X): masechta and daf, shiur title, the Rav's photo. */
 export async function ogCard({ kicker, he, title, footer }: { kicker: string; he?: string; title: string; footer?: string }) {
   const [fig5, fig7, frank, photo] = await Promise.all([
-    asset("assets/og/figtree-500.ttf"),
-    asset("assets/og/figtree-700.ttf"),
-    asset("assets/og/frank-700.ttf"),
+    asset("assets/fonts/figtree-500.ttf"),
+    asset("assets/fonts/figtree-700.ttf"),
+    asset("assets/fonts/frank-700.ttf"),
     asset("public/rabbi.jpg"),
   ]);
   const img = `data:image/jpeg;base64,${photo.toString("base64")}`;
