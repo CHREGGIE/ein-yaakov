@@ -14,8 +14,8 @@ export const metadata: Metadata = {
   title: { default: `Ein Yaakov Shiur and Podcast with ${SITE.rav}`, template: `%s | ${SITE.name}` },
   description: SITE.description,
   alternates: { types: { "application/rss+xml": [{ url: "/feed.xml", title: SITE.name }] } },
-  openGraph: { siteName: SITE.name, images: ["/cover.jpg"], type: "website" },
-  twitter: { card: "summary_large_image", images: ["/cover.jpg"] },
+  openGraph: { siteName: SITE.name, type: "website" },
+  twitter: { card: "summary_large_image" },
 };
 export const viewport: Viewport = { viewportFit: "cover", themeColor: "#1d3fd1" };
 
