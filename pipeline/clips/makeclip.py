@@ -11,7 +11,12 @@ For each clip it:
   3. cleans the voice (highpass, denoise, gentle gate, -15 LUFS); no music,
   4. renders the branded background and the "Listen to the whole shiur" end card with Playwright,
   5. burns in word-by-word captions, a waveform and a progress bar, and appends the 2.5 s end card.
-Output: WORKDIR/ein-yaakov-<slug>-clip<N>.mp4 and a still card WORKDIR/ein-yaakov-<slug>-card<N>.jpg.
+Two versions come out of every clip:
+  ein-yaakov-<slug>-clip<N>.mp4   WhatsApp Status and Reels: full layout, CTA and progress bar at the bottom.
+  ein-yaakov-<slug>-short<N>.mp4  YouTube Shorts: everything clear of the Shorts title, channel row and right-hand
+                                  buttons; no progress bar (Shorts draws its own); a "Subscribe" end card.
+plus a still card per version and ein-yaakov-<slug>-clip<N>.txt with the WhatsApp caption and the Shorts title
+and description. Pass --only whatsapp or --only shorts to build one version.
 Needs ffmpeg with libass, node with playwright, and the venv with faster-whisper.
 """
 import base64, json, os, subprocess, sys
@@ -84,7 +89,42 @@ def shoot(html_path, png_path):
  await p.screenshot({{ path: '{png_path}' }}); await b.close(); }})();'''
     run('node', '-e', js)
 
-def build(cfg, c, W):
+def cta_text(cfg, c):
+    """Ready-to-paste post copy: the WhatsApp caption and the YouTube Shorts title and description."""
+    hook = c['hook'].replace('<br>', ' ').replace('“', '"').replace('”', '"')
+    title = c.get('shorts_title') or f"{hook} | Ein Yaakov {cfg['masechta']} | Rabbi Chaim Fogelman"
+    tags = ' '.join(['#EinYaakov', *c.get('tags', ['#Torah', '#Gemara']), '#Shorts'])
+    url = 'https://www.' + cfg['link']
+    question = c.get('cta') or hook
+    return (f"WHATSAPP STATUS (caption on the clip, or a text status with the link)\n{question} Listen to the whole shiur 👇\n{url}\n\n"
+            f"YOUTUBE SHORTS TITLE ({len(title)} of 100 characters)\n{title}\n\n"
+            f"YOUTUBE SHORTS DESCRIPTION\n{c.get('blurb', '')}\n\n"
+            f"From the Ein Yaakov shiur on {c.get('from', cfg['masechta'])}. Listen to the whole shiur: {cfg['link']}\n\n"
+            "New shiur every week, Tuesday nights at 8pm at the Itchkes Shtiebel. Also on Spotify and Apple Podcasts.\n\n"
+            f"{tags}\n")
+
+# Layouts. Shorts covers roughly the bottom 22% of the frame (title, channel, subscribe) and a ~170 px column
+# on the right from about y=1000 (like, comment, share), so the Shorts layout keeps everything inside
+# x 80..900 below y=1000 and above y=1480, and drops the progress bar YouTube already shows.
+LAYOUTS = {
+    'whatsapp': dict(
+        suffix='clip',
+        css=' .brand{top:214px} .p{top:330px;height:620px} .hook{top:930px;font-size:66px} .sub{top:1112px} .rule{top:1170px}',
+        extra='<div class="cta" style="top:1590px"><div class="l1">Listen to the whole shiur</div><div class="l2">einyaakovshiur.com</div><div class="l3">Spotify · Apple Podcasts</div></div>',
+        cap_margins=(110, 110, 1232), wave=(90, 1458, 900, 110), bar=1772,
+        end_css='top:930px;left:60px;right:60px', end_title=84, end_link=50,
+        end_extra=('<div style="margin-top:22px;font-weight:600;font-size:26px;letter-spacing:.12em;opacity:.8;text-transform:uppercase">Also on Spotify · Apple Podcasts · Amazon Music</div>'
+                   '<div style="margin-top:40px;font-weight:600;font-size:30px;opacity:.85">New shiur every week</div>')),
+    'shorts': dict(
+        suffix='short',
+        css=' .brand{top:150px} .p{top:250px;height:520px} .hook{top:770px;font-size:62px} .sub{top:935px} .rule{display:none}',
+        extra='<div class="cta" style="top:1372px;left:80px;right:180px"><div class="l1" style="font-size:28px">Full shiur · <b style="font-weight:800">einyaakovshiur.com</b></div></div>',
+        cap_margins=(80, 190, 1030), wave=(80, 1240, 740, 90), bar=None,
+        end_css='top:780px;left:80px;right:180px', end_title=74, end_link=40,
+        end_extra='<div style="margin-top:34px;font-weight:700;font-size:32px;opacity:.9">Subscribe for a new shiur every week</div>'),
+}
+
+def build(cfg, c, W, only=None):
     n, slug = c['id'], cfg['slug']
     duo = base64.b64encode(open(DUO, 'rb').read()).decode()
     win = os.path.join(W, f'{slug}-clip{n}.mp3')
@@ -123,8 +163,15 @@ def build(cfg, c, W):
             parts = [(r'{\c&H6AD7FF&}' if k == wi else (r'{\c&HFFFFFF&\alpha&H00&}' if k < wi else r'{\c&HFFFFFF&\alpha&H70&}')) + x['w']
                      for k, x in enumerate(ch)]
             ev.append(f'Dialogue: 0,{ass_time(t0)},{ass_time(t1)},Cap,,0,0,0,,' + ' '.join(parts))
-    ass = os.path.join(W, f'{slug}-clip{n}.ass')
-    open(ass, 'w').write('''[Script Info]
+    open(os.path.join(W, f'ein-yaakov-{slug}-clip{n}.txt'), 'w').write(cta_text(cfg, c))
+    for fmt, L in LAYOUTS.items():
+        if not only or fmt == only: render(cfg, c, W, L, ev, wav, dur, duo)
+
+def render(cfg, c, W, L, ev, wav, dur, duo):
+    n, slug, sx = c['id'], cfg['slug'], L['suffix']
+    ml, mr, mv = L['cap_margins']
+    ass = os.path.join(W, f'{slug}-{sx}{n}.ass')
+    open(ass, 'w').write(f"""[Script Info]
 ScriptType: v4.00+
 PlayResX: 1080
 PlayResY: 1920
@@ -133,51 +180,61 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Cap,Figtree ExtraBold,68,&H00FFFFFF,&H00FFFFFF,&H80631A08,&H00000000,0,0,0,0,100,100,0,0,1,3,0,8,110,110,1232,1
+Style: Cap,Figtree ExtraBold,68,&H00FFFFFF,&H00FFFFFF,&H80631A08,&H00000000,0,0,0,0,100,100,0,0,1,3,0,8,{ml},{mr},{mv},1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-''' + '\n'.join(ev) + '\n')
+""" + '\n'.join(ev) + '\n')
 
-    link = cfg['link']
-    bg_html, bg = os.path.join(W, f'bg{n}.html'), os.path.join(W, f'bg{n}.png')
-    open(bg_html, 'w').write(HEAD + f'''<div class="c">{BRAND}<img class="p" src="data:image/png;base64,{duo}">
+    head = HEAD.replace('</style>', L['css'] + '\n</style>')
+    bg_html, bg = os.path.join(W, f'bg-{sx}{n}.html'), os.path.join(W, f'bg-{sx}{n}.png')
+    open(bg_html, 'w').write(head + f'''<div class="c">{BRAND}<img class="p" src="data:image/png;base64,{duo}">
  <div class="hook">{c['hook']}</div><div class="sub">{c['sub']}</div><div class="rule"></div>
- <div class="cta"><div class="l1">Listen to the whole shiur</div><div class="l2">einyaakovshiur.com</div><div class="l3">Spotify · Apple Podcasts</div></div>
+ {L['extra']}
 </div></body></html>''')
     shoot(bg_html, bg)
-    end_html, endp = os.path.join(W, f'end{n}.html'), os.path.join(W, f'end{n}.png')
-    open(end_html, 'w').write(HEAD + f'''<div class="c">{BRAND}<img class="p" src="data:image/png;base64,{duo}" style="opacity:.55">
- <div style="position:absolute;top:930px;left:60px;right:60px;text-align:center">
-  <div style="font-weight:800;font-size:84px;line-height:1.08">Listen to the<br>whole shiur</div>
-  <div style="margin:44px auto 0;width:90px;height:3px;background:rgba(255,255,255,.35);border-radius:2px"></div>
-  <div style="margin-top:44px;font-weight:800;font-size:50px;color:#ffd76a">{link}</div>
-  <div style="margin-top:22px;font-weight:600;font-size:26px;letter-spacing:.12em;opacity:.8;text-transform:uppercase">Also on Spotify · Apple Podcasts · Amazon Music</div>
-  <div style="margin-top:40px;font-weight:600;font-size:30px;opacity:.85">New shiur every week</div>
+    end_html, endp = os.path.join(W, f'end-{sx}{n}.html'), os.path.join(W, f'end-{sx}{n}.png')
+    open(end_html, 'w').write(head + f'''<div class="c">{BRAND}<img class="p" src="data:image/png;base64,{duo}" style="opacity:.55">
+ <div style="position:absolute;{L['end_css']};text-align:center">
+  <div style="font-weight:800;font-size:{L['end_title']}px;line-height:1.08">Listen to the<br>whole shiur</div>
+  <div style="margin:40px auto 0;width:90px;height:3px;background:rgba(255,255,255,.35);border-radius:2px"></div>
+  <div style="margin-top:40px;font-weight:800;font-size:{L['end_link']}px;color:#ffd76a">{cfg['link']}</div>
+  {L['end_extra']}
  </div></div></body></html>''')
     shoot(end_html, endp)
-    card = os.path.join(W, f'ein-yaakov-{slug}-card{n}.jpg')
-    ff('-i', bg, '-q:v', '3', card)
+    ff('-i', bg, '-q:v', '3', os.path.join(W, f'ein-yaakov-{slug}-{sx}{n}-card.jpg'))
 
-    main = os.path.join(W, f'main{n}.mp4')
-    fc = (f"[1:a]asplit=2[aout][aw];[aw]showwaves=s=900x110:mode=cline:colors=white@0.85:rate=30:scale=sqrt:draw=full[wv];"
-          f"color=c=0xFFD76A:s=900x6:r=30[bar];[0:v]drawbox=x=90:y=1772:w=900:h=6:color=white@0.22:t=fill[v0];"
-          f"[v0][wv]overlay=90:1458:format=auto[v1];[v1][bar]overlay=x='90-900+900*t/{dur:.2f}':y=1772:eval=frame[v2];"
-          f"[v2]drawbox=x=0:y=1772:w=90:h=6:color=0x091C66:t=fill,ass={ass}:fontsdir={FONTS},format=yuv420p[vout]")
+    wx, wy, ww, wh = L['wave']
+    fc = (f"[1:a]asplit=2[aout][aw];[aw]showwaves=s={ww}x{wh}:mode=cline:colors=white@0.85:rate=30:scale=sqrt:draw=full[wv];"
+          f"[0:v][wv]overlay={wx}:{wy}:format=auto[v1];")
+    if L['bar'] is not None:
+        # progress bar: a gold bar slides in from the left; the left margin is repainted in the background color
+        y = L['bar']
+        fc += (f"color=c=0xFFD76A:s=900x6:r=30[bar];[v1]drawbox=x=90:y={y}:w=900:h=6:color=white@0.22:t=fill[v1b];"
+               f"[v1b][bar]overlay=x='90-900+900*t/{dur:.2f}':y={y}:eval=frame[v2];[v2]drawbox=x=0:y={y}:w=90:h=6:color=0x091C66:t=fill,")
+    else:
+        fc += "[v1]"
+    fc += f"ass={ass}:fontsdir={FONTS},format=yuv420p[vout]"
+    main = os.path.join(W, f'main-{sx}{n}.mp4')
     ff('-loop', '1', '-framerate', '30', '-i', bg, '-i', wav, '-filter_complex', fc, '-map', '[vout]', '-map', '[aout]',
        '-t', f'{dur:.2f}', '-r', '30', '-c:v', 'libx264', '-preset', 'medium', '-crf', '20', '-pix_fmt', 'yuv420p',
        '-c:a', 'aac', '-b:a', '128k', main)
-    out = os.path.join(W, f'ein-yaakov-{slug}-clip{n}.mp4')
+    out = os.path.join(W, f'ein-yaakov-{slug}-{sx}{n}.mp4')
     ff('-i', main, '-loop', '1', '-framerate', '30', '-t', '2.5', '-i', endp, '-f', 'lavfi', '-t', '2.5', '-i', 'anullsrc=r=44100:cl=mono',
        '-filter_complex', '[1:v]format=yuv420p,fade=t=in:d=0.3[e];[2:a]aformat=sample_rates=44100:channel_layouts=mono[ea];'
                           '[0:a]aformat=sample_rates=44100:channel_layouts=mono[ma];[0:v][ma][e][ea]concat=n=2:v=1:a=1[v][a]',
        '-map', '[v]', '-map', '[a]', '-r', '30', '-c:v', 'libx264', '-preset', 'medium', '-crf', '20', '-pix_fmt', 'yuv420p',
        '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', out)
+    os.remove(main)
     print(f'{out}: {dur + 2.5:.1f}s, {len(ev)} caption events, {os.path.getsize(out)} bytes')
 
 if __name__ == '__main__':
-    cfg_path, W, *ids = sys.argv[1:]
+    args = sys.argv[1:]
+    only = None
+    if '--only' in args:
+        k = args.index('--only'); only = args[k + 1]; del args[k:k + 2]
+    cfg_path, W, *ids = args
     cfg = json.load(open(cfg_path)); os.makedirs(W, exist_ok=True)
     cfg['source'] = os.path.expandvars(cfg['source'])
     for c in cfg['clips']:
-        if not ids or str(c['id']) in ids: build(cfg, c, os.path.abspath(W))
+        if not ids or str(c['id']) in ids: build(cfg, c, os.path.abspath(W), only)

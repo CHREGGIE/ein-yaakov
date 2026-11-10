@@ -1,6 +1,6 @@
 ---
 name: ein-yaakov-show
-description: The weekly Ein Yaakov production run for Rabbi Chaim Fogelman's shiur. Use it whenever Greg sends a new recording (an attachment or Dropbox link), says a recording is in R2, or asks to publish, release, backfill, write titles or summaries, cut clips, make a WhatsApp Status, YouTube Short or Reel, or create branded art for any platform. It covers ingest, audio cleanup, transcription, writing the shiur page, publishing to the site and podcast feed, choosing and building clips, and the brand rules.
+description: The weekly Ein Yaakov production run for Rabbi Chaim Fogelman's shiur. Use it whenever Greg sends a new recording (an attachment or Dropbox link), says a recording is in R2, or asks to publish, release, backfill, write titles or summaries, cut clips, make a WhatsApp Status, YouTube Short (with its title and description) or Reel, or create branded art for any platform. It covers ingest, audio cleanup, transcription, writing the shiur page, publishing to the site and podcast feed, choosing and building clips, and the brand rules.
 ---
 
 # Ein Yaakov show: the weekly run
@@ -136,28 +136,51 @@ Find candidates in the condensed transcript: the Rav's stories, "the Gemara says
 
 ## 7. Build clips
 
-Write `pipeline/clips/<masechta>-NN.json`, using `pipeline/clips/kesuvos-06.json` as the example:
-- `at`: where the window starts in the cleaned MP3, in seconds.
+Write `pipeline/clips/<masechta>-NN.json`, using `pipeline/clips/kesuvos-06.json` as the example.
+
+Top level:
+- `slug`, `source` (the cleaned MP3), `link` (`einyaakovshiur.com/<masechta>/<n>`), `masechta` (`"Kesuvos"`), `vocab` (extra transcription hints).
+
+Per clip, where to cut:
+- `at`: where the window starts in the MP3, in seconds.
 - `window`: how many seconds to pull.
+- `start_word` and `end_word`: the first and last words to keep. Add `end_after` when the end word also appears earlier.
+- `fixes`: spelling corrections, as heard words → right words.
+
+Per clip, on screen:
 - `hook`: one or two lines; use `<br>` for the break.
 - `sub`: "Kesuvos 50a · Shiur 6".
-- `start_word` and `end_word`: the first and last words to keep. Add `end_after` when the end word appears earlier too.
-- `fixes`: spelling corrections, as heard words → right words.
+
+Per clip, post copy:
+- `cta`: the question for the WhatsApp caption.
+- `blurb`: two or three sentences for the Shorts description. For a story, stop before the ending so people watch.
+- `from`: "Kesuvos 50a".
+- `tags`: two or three hashtags (`#EinYaakov` and `#Shorts` are added for you).
+- `shorts_title`: only when the default title (hook | Ein Yaakov <Masechta> | Rabbi Chaim Fogelman) doesn't read well.
 
 ```bash
 SCRATCH=$SCRATCH $SCRATCH/venv/bin/python pipeline/clips/makeclip.py pipeline/clips/kesuvos-07.json $SCRATCH/clips
+# one clip: add its id; one version: --only whatsapp | --only shorts
 ```
 
 - **Step 1: transcribe and check.** The first run transcribes each window word by word and caches it as `<slug>-clipN.words.json`. Read those words and add `fixes` for every garbled term: Torah, the Aibershter, dalet, names. Re-run; it's fast once cached.
-- **Step 2: what you get.** One output works everywhere: a 1080×1920 MP4 for WhatsApp Status, YouTube Shorts, Reels and TikTok. It has:
-  - word-by-word captions, with the spoken word in gold;
-  - a waveform and a progress bar;
-  - a 2.5-second end card: "Listen to the whole shiur" with the link.
-  You also get a still card JPG.
-- **Step 3: look before sending.** Pull a frame (`ffmpeg -ss 10 -i clip.mp4 -frames:v 1 f.png`) and check the captions.
+- **Step 2: what you get.** Each clip comes out in two versions from the same audio and captions:
+
+| File | For | Layout |
+| --- | --- | --- |
+| `ein-yaakov-<slug>-clipN.mp4` | WhatsApp Status, Instagram Reels | Full layout: CTA block, waveform and gold progress bar at the bottom; end card lists Spotify, Apple, Amazon |
+| `ein-yaakov-<slug>-shortN.mp4` | YouTube Shorts | Everything sits above y=1480 and left of x=900, so YouTube's title, channel row and like/comment/share buttons never cover it. No progress bar, since Shorts draws its own. A "Full shiur · einyaakovshiur.com" line under the waveform. End card: the link plus "Subscribe for a new shiur every week". |
+
+  You also get:
+  - a still card for each version (`…-clipN-card.jpg`, `…-shortN-card.jpg`);
+  - `ein-yaakov-<slug>-clipN.txt` with the WhatsApp caption, the Shorts title (with its length checked against the 100-character limit) and the Shorts description. Send Greg the text with the videos.
+- **Step 3: look before sending.** Pull a frame (`ffmpeg -ss 10 -i clip.mp4 -frames:v 1 f.png`) and check the captions. For a Short, also check it against the YouTube buttons: draw red boxes over the bottom 420 px, and over x≥910 between y=1000 and y=1500, and confirm nothing important is underneath.
 - **Audio stays voice only.** Greg asked for no music. The clip chain is highpass, denoise (afftdn nr=30) and a gentle gate. Don't add a compressor: it pumped up the room noise.
+- **Send the original MP4s.** A copy saved back from WhatsApp is recompressed and looks soft on YouTube.
 
 ## 8. Copy to send with clips
+
+The `.txt` file the clip tool writes has all of this filled in; check it and adjust the wording.
 
 **Calls to action:**
 - Lead with a question from the clip, then 👇, then the link:
@@ -174,8 +197,16 @@ SCRATCH=$SCRATCH $SCRATCH/venv/bin/python pipeline/clips/makeclip.py pipeline/cl
 - If an old link shows no preview, add `?s` to the end.
 
 **YouTube Shorts:**
-- Title: `<hook> | Ein Yaakov <Masechta> <daf> | Rabbi Chaim Fogelman`.
-- Description: the summary's first sentence, then the shiur link.
+- **Title**: `<hook> | Ein Yaakov <Masechta> | Rabbi Chaim Fogelman`, under 100 characters. For a story, name it instead: `"You are the light in my house" | A story from the Rebbe's diary | Rabbi Chaim Fogelman`.
+- **Description**, in this order:
+  1. the blurb;
+  2. "From the Ein Yaakov shiur on <Masechta daf>. Listen to the whole shiur: einyaakovshiur.com/<masechta>/<n>";
+  3. "New shiur every week, Tuesday nights at 8pm at the Itchkes Shtiebel. Also on Spotify and Apple Podcasts.";
+  4. hashtags: `#EinYaakov` and two or three topic tags, then `#Shorts`.
+- **Links aren't clickable** in Shorts descriptions or comments. Write the address as `einyaakovshiur.com/…` so people can type it, and rely on the end card. When full shiurim are on the channel, set each Short's **Related video** to its shiur: that gives a tappable link.
+- **Upload from the YouTube phone app**, with the first frame (the hook) as the cover.
+- **Don't turn on auto-subtitles**; the captions are already in the video.
+- **Space Shorts a day or two apart** instead of posting a shiur's clips all at once.
 
 ## Brand rules
 
