@@ -49,12 +49,13 @@ def words(mp3, out, vocab):
     return ws
 
 def apply_fixes(ws, fixes):
-    """fixes: [[["heard", "words"], ["right", "words"]], ...]; timing is spread across the replacement."""
+    """fixes: [[["heard", "words"], ["right", "words"]], ...]; timing is spread across the replacement.
+    An empty replacement deletes the words from the captions (the audio is untouched)."""
     out = []; i = 0
     while i < len(ws):
         for src, dst in fixes:
             if [w['w'].strip() for w in ws[i:i + len(src)]] == src:
-                s, e = ws[i]['s'], ws[i + len(src) - 1]['e']; step = (e - s) / len(dst)
+                s, e = ws[i]['s'], ws[i + len(src) - 1]['e']; step = (e - s) / max(1, len(dst))  # dst [] deletes
                 out += [{'w': d, 's': round(s + k * step, 2), 'e': round(s + (k + 1) * step, 2)} for k, d in enumerate(dst)]
                 i += len(src); break
         else:

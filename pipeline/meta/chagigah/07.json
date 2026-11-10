@@ -1,0 +1,137 @@
+{
+ "masechta": "chagigah",
+ "status": "drafted",
+ "in_feed": false,
+ "given_on": null,
+ "number": 7,
+ "title": "The Hidden Light",
+ "daf_start": "9b",
+ "daf_end": "12a",
+ "summary": "\"Hataras nedarim porchin ba'avir\": annulling vows hangs in the air, and some halachos are like mountains hanging by a hair, with a word on how spoken words never disappear. Then what may not be taught in public, why we may not ask what is above and below, Adam who reached from earth to heaven, the ten things created on the first day, the green line around the world, and the first light, hidden away for the tzaddikim.",
+ "key_ideas": [
+  "Words never disappear; they hover in the air, so a person must be careful with every word.",
+  "Some depths of Torah are taught only one on one, to someone who can understand on his own.",
+  "Adam contained all of humanity, and at first could see from one end of the world to the other.",
+  "The first light was hidden for the tzaddikim, and it can be reached through the Torah."
+ ],
+ "sources": [
+  {
+   "title": "The Baal Shem Tov and the man who said “I would tear you like a fish”",
+   "start": 456
+  },
+  {
+   "title": "The Rebbe on lips that move in the grave when a person is quoted",
+   "start": 472
+  },
+  {
+   "title": "The Frierdiker Rebbe’s account of the house filled by curses",
+   "start": 571
+  },
+  {
+   "title": "The Bnei Yissaschar on the light hidden in the Chanukah candles",
+   "start": 2597
+  },
+  {
+   "title": "The Baal Shem Tov finding a stolen animal through the light in the Torah",
+   "start": 2710
+  },
+  {
+   "title": "Rashi on the house filling with light when Moshe was born",
+   "start": 2782
+  }
+ ],
+ "chapters": [
+  {
+   "start": 0,
+   "title": "Where we are holding"
+  },
+  {
+   "start": 42,
+   "title": "Leaving Talmud for Mishnah"
+  },
+  {
+   "start": 248,
+   "title": "Vows that hang in the air"
+  },
+  {
+   "start": 289,
+   "title": "Mountains hanging by a hair"
+  },
+  {
+   "start": 440,
+   "title": "Words that never disappear"
+  },
+  {
+   "start": 571,
+   "title": "The house filled by curses"
+  },
+  {
+   "start": 694,
+   "title": "Where annulling vows comes from"
+  },
+  {
+   "start": 1016,
+   "title": "What is not taught in public"
+  },
+  {
+   "start": 1097,
+   "title": "What is above and what is below"
+  },
+  {
+   "start": 1218,
+   "title": "From the day Adam was created"
+  },
+  {
+   "start": 1337,
+   "title": "Adam reached from earth to heaven"
+  },
+  {
+   "start": 1418,
+   "title": "Adam and all the souls"
+  },
+  {
+   "start": 1500,
+   "title": "From one end of the world to the other"
+  },
+  {
+   "start": 1626,
+   "title": "Ten things created on the first day"
+  },
+  {
+   "start": 1749,
+   "title": "The green line around the world"
+  },
+  {
+   "start": 1872,
+   "title": "Tohu and vohu"
+  },
+  {
+   "start": 1914,
+   "title": "The light of the first day"
+  },
+  {
+   "start": 1998,
+   "title": "Hidden for the tzaddikim"
+  },
+  {
+   "start": 2083,
+   "title": "A lesson on light"
+  },
+  {
+   "start": 2421,
+   "title": "The light of 36"
+  },
+  {
+   "start": 2597,
+   "title": "Hidden in the Chanukah candles"
+  },
+  {
+   "start": 2633,
+   "title": "Hidden in the Torah"
+  },
+  {
+   "start": 2773,
+   "title": "Moshe’s birth and the tagin"
+  }
+ ]
+}
