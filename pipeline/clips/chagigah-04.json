@@ -1,0 +1,186 @@
+{
+ "slug": "chagigah-04",
+ "source": "$SCRATCH/chagigah/out/Chagigah-04.mp3",
+ "link": "einyaakovshiur.com/chagigah/4",
+ "masechta": "Chagigah",
+ "vocab": "Rav Bibi bar Abaye, the Malach Hamaves, Miriam, Rabbi Yehoshua ben Chananya, Caesar, tzeduki, apikores, Rav Ashi, Mar Zutra, Ameimar, Izgur, tzaraas, Gemara.",
+ "clips": [
+  {
+   "id": 1,
+   "at": 1449.5,
+   "window": 190,
+   "skip": [
+    [
+     1482.6,
+     1519.8
+    ]
+   ],
+   "hook": "A secret signal<br>in front of the Caesar",
+   "sub": "A story from the Gemara · Chagigah 5b",
+   "end_word": "him",
+   "end_after": "killed",
+   "cover_title": "A secret signal in front of the Caesar",
+   "from": "Chagigah 5b",
+   "cta": "What did Rabbi Yehoshua answer without saying a word?",
+   "tags": [
+    "#Gemara",
+    "#Torah",
+    "#JewishStories"
+   ],
+   "blurb": "In the Caesar's palace, a heretic signals to Rabbi Yehoshua ben Chananya that Hashem has turned His face away from the Jews. Rabbi Yehoshua signals back. Then the Caesar asks each of them what the signs meant.",
+   "start_word": "rav",
+   "fixes": [
+    [
+     [
+      "Rav",
+      "Shuah",
+      "ben",
+      "Chananya,",
+      "have",
+      "a",
+      "koi",
+      "bei",
+      "keisa."
+     ],
+     [
+      "Rabbi",
+      "Yehoshua",
+      "ben",
+      "Chananya",
+      "havah",
+      "kai",
+      "bei",
+      "Kesar."
+     ]
+    ],
+    [
+     [
+      "I'm",
+      "sorry,",
+      "he"
+     ],
+     [
+      "He"
+     ]
+    ],
+    [
+     [
+      "So",
+      "there",
+      "was",
+      "acholayahut",
+      "tzeduki,",
+      "there",
+      "was",
+      "a",
+      "pakares",
+      "tzeduki"
+     ],
+     [
+      "So",
+      "there",
+      "was",
+      "a",
+      "tzeduki,",
+      "an",
+      "apikores,"
+     ]
+    ],
+    [
+     [
+      "Amah,"
+     ],
+     [
+      "Amar,"
+     ]
+    ],
+    [
+     [
+      "that",
+      "they",
+      "knew",
+      "Mary",
+      "Lapimineh,"
+     ],
+     [
+      "hehder",
+      "Marei",
+      "apei",
+      "minei,"
+     ]
+    ],
+    [
+     [
+      "tukki,"
+     ],
+     [
+      "tzeduki,"
+     ]
+    ],
+    [
+     [
+      "apikares"
+     ],
+     [
+      "apikores"
+     ]
+    ],
+    [
+     [
+      "motion"
+     ],
+     [
+      "motioned"
+     ]
+    ],
+    [
+     [
+      "He's",
+      "not",
+      "a",
+      "king",
+      "called",
+      "over",
+      "to",
+      "tukki",
+      "and",
+      "said,"
+     ],
+     [
+      "Then",
+      "the",
+      "king",
+      "called",
+      "over",
+      "the",
+      "tzeduki",
+      "and",
+      "said,"
+     ]
+    ],
+    [
+     [
+      "I",
+      "said,",
+      "the",
+      "king",
+      "said,"
+     ],
+     [
+      "The",
+      "king",
+      "said,"
+     ]
+    ],
+    [
+     [
+      "sig."
+     ],
+     [
+      "sign."
+     ]
+    ]
+   ]
+  }
+ ]
+}

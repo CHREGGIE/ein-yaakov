@@ -16,7 +16,10 @@ Two versions come out of every clip:
   ein-yaakov-<slug>-short<N>.mp4  YouTube Shorts: everything clear of the Shorts title, channel row and right-hand
                                   buttons; no progress bar (Shorts draws its own); a "Subscribe" end card.
 plus a still card per version and ein-yaakov-<slug>-clip<N>.txt with the WhatsApp caption and the Shorts title
-and description. Pass --only whatsapp or --only shorts to build one version.
+and description. Pass --only whatsapp or --only shorts to build one version. PREVIEW=1 prints the finished
+caption text and length without rendering, for checking `fixes`.
+Optional per clip: `skip` ([[from, to], ...] in shiur seconds) drops side comments from inside the clip;
+`cover_title` (+ `kicker`, `cover_size`) adds a thumbnail frame for the first 1.2 s and saves it as a JPG.
 Needs ffmpeg with libass, node with playwright, and the venv with faster-whisper.
 """
 import base64, json, os, subprocess, sys
@@ -124,6 +127,25 @@ LAYOUTS = {
         end_extra='<div style="margin-top:34px;font-weight:700;font-size:32px;opacity:.9">Subscribe for a new shiur every week</div>'),
 }
 
+def cover_markup(cfg, c, L, duo):
+    """The thumbnail: a story title big enough to read in the Shorts grid, the Rav, and the brand.
+    In the Shorts version the title stays left of the button column and nothing sits below y=1480."""
+    short = L['suffix'] == 'short'
+    right = 180 if short else 70
+    kicker = c.get('kicker', 'A story from the Gemara')
+    title = c['cover_title'].replace("'", "’")
+    foot = '' if short else (
+        '<div style="position:absolute;top:1690px;left:0;right:0;text-align:center;font-weight:700;font-size:34px;color:#c9d5ff">'
+        f'Listen to the whole shiur · <span style="color:#ffd76a">{cfg["link"]}</span></div>')
+    return f'''<style>.brand{{top:150px!important}}</style><div class="c" style="background:radial-gradient(120% 70% at 50% 28%,#2d55ef 0%,#0f2680 55%,#081a63 100%)">
+ {BRAND}
+ <img class="p" src="data:image/png;base64,{duo}" style="top:250px;height:780px">
+ <div style="position:absolute;top:1010px;left:70px;right:{right}px;text-align:left">
+  <div style="display:inline-block;background:#ffd76a;color:#081a63;font-weight:800;font-size:32px;letter-spacing:.12em;text-transform:uppercase;padding:10px 22px;border-radius:8px">{kicker}</div>
+  <div style="margin-top:26px;font-weight:800;font-size:{c.get('cover_size', 112)}px;line-height:1.0;letter-spacing:-.02em;text-wrap:balance">{title}</div>
+  <div style="margin-top:28px;font-weight:700;font-size:34px;color:#c9d5ff;letter-spacing:.03em">{c.get('from', cfg['masechta'])} · Rabbi Chaim Fogelman</div>
+ </div>{foot}</div></body></html>'''
+
 def build(cfg, c, W, only=None):
     n, slug = c['id'], cfg['slug']
     duo = base64.b64encode(open(DUO, 'rb').read()).decode()
@@ -138,15 +160,36 @@ def build(cfg, c, W, only=None):
         i1 = next(i for i in range(il, len(ws)) if low(i).startswith(c['end_word'].lower()))
     else:
         i1 = max(i for i in range(len(ws)) if low(i).startswith(c['end_word'].lower()))
-    start = max(0, ws[i0]['s'] - 0.3); end = ws[i1]['e'] + 0.7; dur = end - start
-    ws = apply_fixes([{'w': w['w'], 's': w['s'] - start, 'e': w['e'] - start} for w in ws[i0:i1 + 1]], c.get('fixes', []))
+    start = max(0, ws[i0]['s'] - 0.3); end = ws[i1]['e'] + 0.7
+    # keep [start, end] minus any `skip` spans (shiur seconds), so a story can drop a side comment
+    keep, t = [], start
+    for a, b in sorted(c.get('skip', [])):
+        a, b = a - c['at'], b - c['at']
+        if a > t: keep.append((t, a))
+        t = max(t, b)
+    keep.append((t, end))
+    def remap(x):
+        off = 0
+        for a, b in keep:
+            if a <= x <= b: return off + x - a
+            off += b - a
+        return None
+    kept = [{'w': w['w'], 's': remap(w['s']), 'e': remap(w['e'])} for w in ws[i0:i1 + 1]]
+    kept = [w for w in kept if w['s'] is not None and w['e'] is not None]
+    dur = sum(b - a for a, b in keep)
+    ws = apply_fixes(kept, c.get('fixes', []))
     if ws: ws[0]['w'] = ws[0]['w'][0].upper() + ws[0]['w'][1:]
+    if os.environ.get('PREVIEW'):
+        # PREVIEW=1: print the final caption text and length, render nothing
+        print(f'--- {slug} clip {n}: {dur:.1f}s\n' + ' '.join(w['w'] for w in ws)); return
 
     wav = os.path.join(W, f'{slug}-clip{n}.wav')
-    ff('-ss', f'{c["at"] + start:.2f}', '-t', f'{dur:.2f}', '-i', cfg['source'],
-       '-af', ('highpass=f=100,afftdn=nr=30:nf=-40:tn=1,agate=threshold=0.02:range=0.25:attack=5:release=250:ratio=3,'
-               f'loudnorm=I=-15:TP=-1.5:LRA=9,afade=t=in:d=0.15,afade=t=out:st={dur - 0.6:.2f}:d=0.6'),
-       '-ar', '44100', '-c:a', 'pcm_s16le', wav)
+    parts = ''.join(f'[0:a]atrim={a:.2f}:{b:.2f},asetpts=PTS-STARTPTS,afade=t=in:d=0.04,afade=t=out:st={b - a - 0.04:.2f}:d=0.04[p{k}];'
+                    for k, (a, b) in enumerate(keep))
+    chain = ('highpass=f=100,afftdn=nr=30:nf=-40:tn=1,agate=threshold=0.02:range=0.25:attack=5:release=250:ratio=3,'
+             f'loudnorm=I=-15:TP=-1.5:LRA=9,afade=t=in:d=0.15,afade=t=out:st={dur - 0.6:.2f}:d=0.6')
+    ff('-i', win, '-filter_complex', parts + ''.join(f'[p{k}]' for k in range(len(keep))) + f'concat=n={len(keep)}:v=0:a=1,{chain}[a]',
+       '-map', '[a]', '-ar', '44100', '-ac', '1', '-c:a', 'pcm_s16le', wav)
 
     # captions: ~30-character chunks; the spoken word is gold, said words white, upcoming words dim
     chunks, cur = [], []
@@ -203,6 +246,12 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
  </div></div></body></html>''')
     shoot(end_html, endp)
     ff('-i', bg, '-q:v', '3', os.path.join(W, f'ein-yaakov-{slug}-{sx}{n}-card.jpg'))
+    cover = None
+    if c.get('cover_title'):
+        cover_html, cover = os.path.join(W, f'cover-{sx}{n}.html'), os.path.join(W, f'cover-{sx}{n}.png')
+        open(cover_html, 'w').write(head + cover_markup(cfg, c, L, duo))
+        shoot(cover_html, cover)
+        ff('-i', cover, '-q:v', '2', os.path.join(W, f'ein-yaakov-{slug}-{sx}{n}-thumbnail.jpg'))
 
     wx, wy, ww, wh = L['wave']
     fc = (f"[1:a]asplit=2[aout][aw];[aw]showwaves=s={ww}x{wh}:mode=cline:colors=white@0.85:rate=30:scale=sqrt:draw=full[wv];"
@@ -214,9 +263,15 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                f"[v1b][bar]overlay=x='90-900+900*t/{dur:.2f}':y={y}:eval=frame[v2];[v2]drawbox=x=0:y={y}:w=90:h=6:color=0x091C66:t=fill,")
     else:
         fc += "[v1]"
-    fc += f"ass={ass}:fontsdir={FONTS},format=yuv420p[vout]"
+    fc += f"ass={ass}:fontsdir={FONTS},format=yuv420p"
+    extra_in = []
+    if cover:
+        fc += "[vm];[2:v]format=yuva420p,fade=t=out:st=1.2:d=0.35:alpha=1[cv];[vm][cv]overlay=0:0:eof_action=pass,format=yuv420p[vout]"
+        extra_in = ['-loop', '1', '-framerate', '30', '-t', '1.6', '-i', cover]
+    else:
+        fc += "[vout]"
     main = os.path.join(W, f'main-{sx}{n}.mp4')
-    ff('-loop', '1', '-framerate', '30', '-i', bg, '-i', wav, '-filter_complex', fc, '-map', '[vout]', '-map', '[aout]',
+    ff('-loop', '1', '-framerate', '30', '-i', bg, '-i', wav, *extra_in, '-filter_complex', fc, '-map', '[vout]', '-map', '[aout]',
        '-t', f'{dur:.2f}', '-r', '30', '-c:v', 'libx264', '-preset', 'medium', '-crf', '20', '-pix_fmt', 'yuv420p',
        '-c:a', 'aac', '-b:a', '128k', main)
     out = os.path.join(W, f'ein-yaakov-{slug}-{sx}{n}.mp4')

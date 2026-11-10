@@ -125,14 +125,24 @@ git add pipeline/meta content/shiurim && git commit -m "Publish Kesuvos 7" && gi
 
 ## 6. Choose clips
 
-Pick one to three moments per shiur, each **30–60 seconds**. Good clips:
-- **Open on a question or a surprise** that makes sense with no context: "Can giving tzedakah make you poorer?"
-- **Tell a complete story** with a payoff, such as the Rebbe's diary story "You are the light in my house".
-- **End on a punchline or lesson**, never mid-thought. End-of-clip silence is trimmed for you.
-- **Have clear audio**: one speaker, not crosstalk or audience questions.
-- **Avoid long Hebrew or Aramaic quotes**: the captions will mangle them.
+**Clips are mainly the Gemara's own stories.** Greg's direction: the Ein Yaakov stories are what grab people, so every shiur should yield at least one story clip before anything else. Look for:
+- **The aggados themselves**: the Gemara telling what happened to a Tanna or Amora, a king, an angel. Examples so far:
+  - the Angel of Death taking the wrong Miriam (Chagigah 4b);
+  - Rabbi Yehoshua's silent exchange before the Caesar (Chagigah 5b);
+  - Rav Ashi dipping his finger in the king's food (Kesuvos 61a).
+- **A complete arc**: setup, twist, payoff. Start where the Rav says "the Gemara says…" or "there was once…". End on the Gemara's punchline or the Rav's one-line lesson, never mid-thought.
+- **The Rav's retelling, not the reading.** He reads a phrase in Aramaic, then tells it in English. Keep both: the Aramaic gives it flavor. Use `skip` to drop a side comment in the middle (a modern analogy, a "remember last week").
 
-Find candidates in the condensed transcript: the Rav's stories, "the Gemara says…", rhetorical questions. Note the second the moment starts in the cleaned MP3.
+Other clips can be:
+- the Rav's own stories (the Rebbe, chassidim);
+- a sharp teaching that opens on a question ("Can giving tzedakah make you poorer?").
+These come after the stories.
+
+**Length:**
+- Stories run **1–3 minutes**. YouTube Shorts allows up to 3:00 including the 2.5-second end card, so keep the spoken part under about 2:55.
+- WhatsApp Status may trim or split anything over a minute. For WhatsApp, tell Greg the length, and offer a 60-second cut of the opening (hook and setup, ending on the cliffhanger) when he wants one.
+
+Find candidates in the condensed transcript (`pipeline/cond.py`) and the chapter list: the stories usually have their own chapter. Note the second the story starts in the cleaned MP3.
 
 ## 7. Build clips
 
@@ -145,11 +155,13 @@ Per clip, where to cut:
 - `at`: where the window starts in the MP3, in seconds.
 - `window`: how many seconds to pull.
 - `start_word` and `end_word`: the first and last words to keep. Add `end_after` when the end word also appears earlier.
-- `fixes`: spelling corrections, as heard words → right words.
+- `fixes`: spelling corrections, as heard words → right words. Each side is matched word for word, punctuation included.
+- `skip`: `[[from, to], ...]` in shiur seconds, to drop a side comment from inside a story.
 
 Per clip, on screen:
 - `hook`: one or two lines; use `<br>` for the break.
-- `sub`: "Kesuvos 50a · Shiur 6".
+- `sub`: "Kesuvos 50a · Shiur 6", or for a story "A story from the Gemara · Chagigah 4b".
+- `cover_title`: the thumbnail title, shown full screen for the first 1.2 seconds and saved as `…-thumbnail.jpg`. Give every story one. Write it as the story's twist or question in under about 45 characters ("The Angel of Death took the wrong woman", "Why did Rav Ashi touch the king's food?"). Optional: `kicker` (default "A story from the Gemara"), `cover_size` (default 112 px).
 
 Per clip, post copy:
 - `cta`: the question for the WhatsApp caption.
@@ -163,7 +175,10 @@ SCRATCH=$SCRATCH $SCRATCH/venv/bin/python pipeline/clips/makeclip.py pipeline/cl
 # one clip: add its id; one version: --only whatsapp | --only shorts
 ```
 
-- **Step 1: transcribe and check.** The first run transcribes each window word by word and caches it as `<slug>-clipN.words.json`. Read those words and add `fixes` for every garbled term: Torah, the Aibershter, dalet, names. Re-run; it's fast once cached.
+- **Step 1: transcribe and check.** Run with `PREVIEW=1` first. It transcribes each window word by word (cached as `<slug>-clipN.words.json`), applies `start_word`, `end_word`, `skip` and `fixes`, and prints the final caption text and length without rendering. Add `fixes` for every garbled term and run the preview again until the captions read right.
+  - Expect garbled names: Rav Bibi, the Malach Hamaves, Rav Ashi, Mar Zutra, Rabbi Yehoshua, tzeduki, apikores, tzaraas.
+  - Write the Aramaic as a readable transliteration.
+  - Rendering both versions of a 2-minute story takes several minutes, so run the full build in the background.
 - **Step 2: what you get.** Each clip comes out in two versions from the same audio and captions:
 
 | File | For | Layout |
@@ -172,6 +187,7 @@ SCRATCH=$SCRATCH $SCRATCH/venv/bin/python pipeline/clips/makeclip.py pipeline/cl
 | `ein-yaakov-<slug>-shortN.mp4` | YouTube Shorts | Everything sits above y=1480 and left of x=900, so YouTube's title, channel row and like/comment/share buttons never cover it. No progress bar, since Shorts draws its own. A "Full shiur · einyaakovshiur.com" line under the waveform. End card: the link plus "Subscribe for a new shiur every week". |
 
   You also get:
+  - a thumbnail for each version when `cover_title` is set (`…-thumbnail.jpg`, also the video's opening frame: pick it as the Shorts cover);
   - a still card for each version (`…-clipN-card.jpg`, `…-shortN-card.jpg`);
   - `ein-yaakov-<slug>-clipN.txt` with the WhatsApp caption, the Shorts title (with its length checked against the 100-character limit) and the Shorts description. Send Greg the text with the videos.
 - **Step 3: look before sending.** Pull a frame (`ffmpeg -ss 10 -i clip.mp4 -frames:v 1 f.png`) and check the captions. For a Short, also check it against the YouTube buttons: draw red boxes over the bottom 420 px, and over x≥910 between y=1000 and y=1500, and confirm nothing important is underneath.
