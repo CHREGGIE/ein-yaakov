@@ -73,7 +73,7 @@ html,body{margin:0} .c{width:1080px;height:1920px;position:relative;overflow:hid
  .brand{position:absolute;top:214px;left:0;right:0;text-align:center}
  .brand .he{font:700 64px/1 'Frank Ruhl Libre',serif;direction:rtl}
  .brand .en{margin-top:14px;font-weight:700;letter-spacing:.22em;font-size:22px;opacity:.85}
- .p{position:absolute;left:50%;transform:translateX(-50%);top:330px;height:620px;
+ .p{position:absolute;left:50%;transform:translateX(-43.5%);top:330px;height:620px;
    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%),linear-gradient(180deg,#000 60%,transparent 97%);
    -webkit-mask-composite:source-in}
  .hook{position:absolute;top:930px;left:70px;right:70px;text-align:center;font-weight:800;font-size:66px;line-height:1.12;letter-spacing:-.01em}
@@ -113,10 +113,10 @@ def cta_text(cfg, c):
 LAYOUTS = {
     'whatsapp': dict(
         suffix='clip',
-        css=' .brand{top:214px} .p{top:330px;height:620px} .hook{top:930px;font-size:66px} .sub{top:1112px} .rule{top:1170px}',
-        extra='<div class="cta" style="top:1590px"><div class="l1">Listen to the whole shiur</div><div class="l2">einyaakovshiur.com</div><div class="l3">Spotify · Apple Podcasts</div></div>',
-        cap_margins=(110, 110, 1232), wave=(90, 1458, 900, 110), bar=1772,
-        end_css='top:930px;left:60px;right:60px', end_title=84, end_link=50,
+        css=' .brand{top:280px} .p{top:390px;height:600px} .hook{top:985px;font-size:66px} .sub{top:1160px} .rule{top:1214px}',
+        extra='<div class="cta" style="top:1600px"><div class="l1">Listen to the whole shiur</div><div class="l2">einyaakovshiur.com</div><div class="l3">Spotify · Apple Podcasts</div></div>',
+        cap_margins=(110, 110, 1268), wave=(90, 1470, 900, 100), bar=1772,
+        end_css='top:990px;left:60px;right:60px', end_title=84, end_link=50,
         end_extra=('<div style="margin-top:22px;font-weight:600;font-size:26px;letter-spacing:.12em;opacity:.8;text-transform:uppercase">Also on Spotify · Apple Podcasts · Amazon Music</div>'
                    '<div style="margin-top:40px;font-weight:600;font-size:30px;opacity:.85">New shiur every week</div>')),
     'shorts': dict(
@@ -138,10 +138,11 @@ def cover_markup(cfg, c, L, duo):
     foot = '' if short else (
         '<div style="position:absolute;top:1690px;left:0;right:0;text-align:center;font-weight:700;font-size:34px;color:#c9d5ff">'
         f'Listen to the whole shiur · <span style="color:#ffd76a">{cfg["link"]}</span></div>')
-    return f'''<style>.brand{{top:150px!important}}</style><div class="c" style="background:radial-gradient(120% 70% at 50% 28%,#2d55ef 0%,#0f2680 55%,#081a63 100%)">
+    top = 0 if short else 70
+    return f'''<style>.brand{{top:{150 + top}px!important}}</style><div class="c" style="background:radial-gradient(120% 70% at 50% 28%,#2d55ef 0%,#0f2680 55%,#081a63 100%)">
  {BRAND}
- <img class="p" src="data:image/png;base64,{duo}" style="top:250px;height:780px">
- <div style="position:absolute;top:1010px;left:70px;right:{right}px;text-align:left">
+ <img class="p" src="data:image/png;base64,{duo}" style="top:{250 + top}px;height:780px">
+ <div style="position:absolute;top:{1010 + top}px;left:70px;right:{right}px;text-align:left">
   <div style="display:inline-block;background:#ffd76a;color:#081a63;font-weight:800;font-size:32px;letter-spacing:.12em;text-transform:uppercase;padding:10px 22px;border-radius:8px">{kicker}</div>
   <div style="margin-top:26px;font-weight:800;font-size:{c.get('cover_size', 112)}px;line-height:1.0;letter-spacing:-.02em;text-wrap:balance">{title}</div>
   <div style="margin-top:28px;font-weight:700;font-size:34px;color:#c9d5ff;letter-spacing:.03em">{c.get('from', cfg['masechta'])} · Rabbi Chaim Fogelman</div>
