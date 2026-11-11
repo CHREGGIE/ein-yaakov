@@ -160,7 +160,7 @@ Per clip, where to cut:
 
 Per clip, on screen:
 - `hook`: one or two lines; use `<br>` for the break.
-- `sub`: "Kesuvos 50a · Shiur 6", or for a story "A story from the Gemara · Chagigah 4b".
+- `sub`: always say **Ein Yaakov** before the masechta, so nothing reads as a Gemara shiur: "Ein Yaakov Kesuvos 50a · Shiur 6", "A story from the Gemara · Ein Yaakov Chagigah 4b". The thumbnail adds "Ein Yaakov" before `from` for you.
 - `cover_title`: the thumbnail title, shown full screen for the first 1.2 seconds and saved as `…-thumbnail.jpg`. Give every story one. Write it as the story's twist or question in under about 45 characters ("The Angel of Death took the wrong woman", "Why did Rav Ashi touch the king's food?"). Optional: `kicker` (default "A story from the Gemara"), `cover_size` (default 112 px).
 
 Per clip, post copy:

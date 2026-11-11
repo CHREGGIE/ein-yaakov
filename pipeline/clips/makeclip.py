@@ -141,11 +141,11 @@ def cover_markup(cfg, c, L, duo):
     top = 0 if short else 70
     return f'''<style>.brand{{top:{150 + top}px!important}}</style><div class="c" style="background:radial-gradient(120% 70% at 50% 28%,#2d55ef 0%,#0f2680 55%,#081a63 100%)">
  {BRAND}
- <img class="p" src="data:image/png;base64,{duo}" style="top:{250 + top}px;height:780px">
+ <img class="p" src="data:image/png;base64,{duo}" style="top:{250 + top}px;height:690px">
  <div style="position:absolute;top:{1010 + top}px;left:70px;right:{right}px;text-align:left">
   <div style="display:inline-block;background:#ffd76a;color:#081a63;font-weight:800;font-size:32px;letter-spacing:.12em;text-transform:uppercase;padding:10px 22px;border-radius:8px">{kicker}</div>
   <div style="margin-top:26px;font-weight:800;font-size:{c.get('cover_size', 112)}px;line-height:1.0;letter-spacing:-.02em;text-wrap:balance">{title}</div>
-  <div style="margin-top:28px;font-weight:700;font-size:34px;color:#c9d5ff;letter-spacing:.03em">{c.get('from', cfg['masechta'])} · Rabbi Chaim Fogelman</div>
+  <div style="margin-top:28px;font-weight:700;font-size:34px;color:#c9d5ff;letter-spacing:.03em">Ein Yaakov {c.get('from', cfg['masechta'])} · Rabbi Chaim Fogelman</div>
  </div>{foot}</div></body></html>'''
 
 def build(cfg, c, W, only=None):
