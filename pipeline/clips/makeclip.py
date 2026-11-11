@@ -113,7 +113,7 @@ def cta_text(cfg, c):
 LAYOUTS = {
     'whatsapp': dict(
         suffix='clip',
-        css=' .brand{top:280px} .p{top:390px;height:600px} .hook{top:985px;font-size:66px} .sub{top:1160px} .rule{top:1214px}',
+        css=' .brand{top:280px} .p{top:445px;height:545px} .hook{top:985px;font-size:66px} .sub{top:1160px} .rule{top:1214px}',
         extra='<div class="cta" style="top:1600px"><div class="l1">Listen to the whole shiur</div><div class="l2">einyaakovshiur.com</div><div class="l3">Spotify · Apple Podcasts</div></div>',
         cap_margins=(110, 110, 1268), wave=(90, 1470, 900, 100), bar=1772,
         end_css='top:990px;left:60px;right:60px', end_title=84, end_link=50,
@@ -121,7 +121,7 @@ LAYOUTS = {
                    '<div style="margin-top:40px;font-weight:600;font-size:30px;opacity:.85">New shiur every week</div>')),
     'shorts': dict(
         suffix='short',
-        css=' .brand{top:150px} .p{top:250px;height:520px} .hook{top:770px;font-size:62px} .sub{top:935px} .rule{display:none}',
+        css=' .brand{top:150px} .p{top:305px;height:465px} .hook{top:770px;font-size:62px} .sub{top:935px} .rule{display:none}',
         extra='<div class="cta" style="top:1372px;left:80px;right:180px"><div class="l1" style="font-size:28px">Full shiur · <b style="font-weight:800">einyaakovshiur.com</b></div></div>',
         cap_margins=(80, 190, 1030), wave=(80, 1240, 740, 90), bar=None,
         end_css='top:780px;left:80px;right:180px', end_title=74, end_link=40,
@@ -141,7 +141,7 @@ def cover_markup(cfg, c, L, duo):
     top = 0 if short else 70
     return f'''<style>.brand{{top:{150 + top}px!important}}</style><div class="c" style="background:radial-gradient(120% 70% at 50% 28%,#2d55ef 0%,#0f2680 55%,#081a63 100%)">
  {BRAND}
- <img class="p" src="data:image/png;base64,{duo}" style="top:{250 + top}px;height:690px">
+ <img class="p" src="data:image/png;base64,{duo}" style="top:{305 + top}px;height:635px">
  <div style="position:absolute;top:{1010 + top}px;left:70px;right:{right}px;text-align:left">
   <div style="display:inline-block;background:#ffd76a;color:#081a63;font-weight:800;font-size:32px;letter-spacing:.12em;text-transform:uppercase;padding:10px 22px;border-radius:8px">{kicker}</div>
   <div style="margin-top:26px;font-weight:800;font-size:{c.get('cover_size', 112)}px;line-height:1.0;letter-spacing:-.02em;text-wrap:balance">{title}</div>
