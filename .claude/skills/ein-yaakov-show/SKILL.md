@@ -191,6 +191,7 @@ SCRATCH=$SCRATCH $SCRATCH/venv/bin/python pipeline/clips/makeclip.py pipeline/cl
   - a still card for each version (`…-clipN-card.jpg`, `…-shortN-card.jpg`);
   - `ein-yaakov-<slug>-clipN.txt` with the WhatsApp caption, the Shorts title (with its length checked against the 100-character limit) and the Shorts description. Send Greg the text with the videos.
 - **Step 3: look before sending.** Pull a frame (`ffmpeg -ss 10 -i clip.mp4 -frames:v 1 f.png`) and check the captions. For a Short, also check it against the YouTube buttons: draw red boxes over the bottom 420 px, and over x≥910 between y=1000 and y=1500, and confirm nothing important is underneath.
+- **WhatsApp lays its progress bars and name over the top of a Status,** so the WhatsApp layout starts the brand at y=280 and the photo at y=390. The photo is shifted (`translateX(-43.5%)`) because the Rav sits left of center in the source photo; keep his face centered if the photo changes.
 - **Audio stays voice only.** Greg asked for no music. The clip chain is highpass, denoise (afftdn nr=30) and a gentle gate. Don't add a compressor: it pumped up the room noise.
 - **Send the original MP4s.** A copy saved back from WhatsApp is recompressed and looks soft on YouTube.
 
@@ -223,6 +224,7 @@ The `.txt` file the clip tool writes has all of this filled in; check it and adj
 - **Upload from the YouTube phone app**, with the first frame (the hook) as the cover.
 - **Don't turn on auto-subtitles**; the captions are already in the video.
 - **Space Shorts a day or two apart** instead of posting a shiur's clips all at once.
+- **Send Greg a full Shorts kit** for every Short: the `shortN.mp4`, the thumbnail JPG, and one text file with the title (with its character count), description, hashtags, tags for YouTube Studio, settings (not made for kids, Public, Education, auto-subtitles off), a pinned comment with the shiur link, and the upload steps in the phone app. The Kesuvos 7 kit is the model.
 
 ## Brand rules
 
