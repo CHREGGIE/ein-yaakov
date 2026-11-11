@@ -1,0 +1,153 @@
+{
+ "masechta": "kesuvos",
+ "number": 7,
+ "status": "drafted",
+ "in_feed": true,
+ "given_on": "2026-11-10",
+ "title": "A Tear on Erev Yom Kippur",
+ "daf_start": "61b",
+ "daf_end": "62b",
+ "summary": "How long a talmid may leave home to learn, and what it costs the wife who waits. A sigh breaks half the body, yet the Jew walking with a gentile kept his pace. Then Rav Rechumi, who came home once a year on Erev Yom Kippur, until the year he stayed learning and his wife's tear brought down the roof; Yehuda the son of Rabbi Chiya and the pillar of fire; the power of a tzaddik's words, with the Rav's memory of the Rebbe's heart attack for Rosh Chodesh Kislev; and Rebbi's match for his son.",
+ "key_ideas": [
+  "Learning Torah away from home must not come at the expense of one's wife; her tear has great power.",
+  "A sigh breaks the body, but a Jew who is used to hardship keeps going.",
+  "The words of a tzaddik have the power to bring about what they say, for good even more than for bad.",
+  "Be home on the days that matter."
+ ],
+ "sources": [
+  {
+   "title": "The Alter Rebbe on his way to learn in Mezritch",
+   "start": 201
+  },
+  {
+   "title": "The Maharal on the Akeidah",
+   "start": 683
+  },
+  {
+   "title": "Rashi on who goes home from war",
+   "start": 1766
+  },
+  {
+   "title": "Rav Elchonon Wasserman on the power of speech",
+   "start": 2205
+  },
+  {
+   "title": "The Rebbe's heart attack and Rosh Chodesh Kislev",
+   "start": 2275
+  }
+ ],
+ "chapters": [
+  {
+   "start": 0,
+   "title": "Where we are holding"
+  },
+  {
+   "start": 48,
+   "title": "Talmidim who leave home to learn"
+  },
+  {
+   "start": 201,
+   "title": "The Alter Rebbe on the way to Mezritch"
+  },
+  {
+   "start": 251,
+   "title": "A month away, a month at home"
+  },
+  {
+   "start": 341,
+   "title": "A sigh breaks half the body"
+  },
+  {
+   "start": 514,
+   "title": "What are you sighing about?"
+  },
+  {
+   "start": 542,
+   "title": "The Jew and the gentile on the road"
+  },
+  {
+   "start": 683,
+   "title": "The Maharal on the Akeidah"
+  },
+  {
+   "start": 896,
+   "title": "The Satan at the Akeidah"
+  },
+  {
+   "start": 981,
+   "title": "Who are the \"tayalim\"?"
+  },
+  {
+   "start": 1068,
+   "title": "The wives of those who learn"
+  },
+  {
+   "start": 1239,
+   "title": "Who must be home every night"
+  },
+  {
+   "start": 1283,
+   "title": "Rabbi Yochanan on the stairs"
+  },
+  {
+   "start": 1373,
+   "title": "Donkey drivers, camel drivers and sailors"
+  },
+  {
+   "start": 1415,
+   "title": "Changing jobs"
+  },
+  {
+   "start": 1504,
+   "title": "Leaving home to learn Torah"
+  },
+  {
+   "start": 1580,
+   "title": "Rav Rechumi and Erev Yom Kippur"
+  },
+  {
+   "start": 1725,
+   "title": "Be home on the days that matter"
+  },
+  {
+   "start": 1766,
+   "title": "Rashi: going home from war"
+  },
+  {
+   "start": 1939,
+   "title": "Friday night"
+  },
+  {
+   "start": 2033,
+   "title": "Yehuda the son of Rabbi Chiya"
+  },
+  {
+   "start": 2171,
+   "title": "The power of a tzaddik's words"
+  },
+  {
+   "start": 2270,
+   "title": "Rosh Chodesh Kislev: the Rebbe's heart attack"
+  },
+  {
+   "start": 2397,
+   "title": "Aharon, lover of peace"
+  },
+  {
+   "start": 2628,
+   "title": "A navi and a tzaddik"
+  },
+  {
+   "start": 2662,
+   "title": "Rebbi's match for his son"
+  },
+  {
+   "start": 2867,
+   "title": "Twelve years of learning"
+  },
+  {
+   "start": 2998,
+   "title": "Why twelve years"
+  }
+ ]
+}
