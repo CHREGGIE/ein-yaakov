@@ -125,6 +125,164 @@
      ]
     ]
    ]
+  },
+  {
+   "id": 2,
+   "at": 2269.5,
+   "window": 124,
+   "end_word": "generator.",
+   "hook": "The Rebbe's heart attack<br>and Rosh Chodesh Kislev",
+   "sub": "Rosh Chodesh Kislev · Kesuvos Shiur 7",
+   "cover_title": "The night 770 needed a generator",
+   "kicker": "Rosh Chodesh Kislev",
+   "from": "Kesuvos 62a",
+   "cta": "Rosh Chodesh Kislev: the Rav remembers the night of the Rebbe's heart attack.",
+   "tags": [
+    "#RoshChodeshKislev",
+    "#TheRebbe",
+    "#Chabad"
+   ],
+   "shorts_title": "Rosh Chodesh Kislev: the night 770 needed a generator | Rabbi Chaim Fogelman",
+   "blurb": "On Shemini Atzeres the Rebbe had a heart attack and refused to go to the hospital, so the hospital came to 770. Rabbi Chaim Fogelman remembers his father picking up the phone that night, and what Rosh Chodesh Kislev means.",
+   "start_word": "today's",
+   "fixes": [
+    [
+     [
+      "in",
+      "today's",
+      "Rosh",
+      "Chodesh",
+      "Kislev,"
+     ],
+     [
+      "and",
+      "today's",
+      "Rosh",
+      "Chodesh",
+      "Kislev,"
+     ]
+    ],
+    [
+     [
+      "Tafshen",
+      "Lama",
+      "Chas,"
+     ],
+     [
+      "5738,"
+     ]
+    ],
+    [
+     [
+      "Shmoni",
+      "Atzeres"
+     ],
+     [
+      "Shemini",
+      "Atzeres"
+     ]
+    ],
+    [
+     [
+      "everything",
+      "in",
+      "the",
+      "capacity"
+     ],
+     [
+      "everything",
+      "that",
+      "could",
+      "possibly",
+      "be,"
+     ]
+    ],
+    [
+     [
+      "a",
+      "little",
+      "bit",
+      "of",
+      "a",
+      "bringing,"
+     ],
+     [
+      "a",
+      "little",
+      "bit",
+      "of",
+      "a",
+      "farbrengen,"
+     ]
+    ],
+    [
+     [
+      "Meir",
+      "Bim."
+     ],
+     [
+      "Mayor",
+      "Beame."
+     ]
+    ],
+    [
+     [
+      "Meir",
+      "Bim"
+     ],
+     [
+      "Mayor",
+      "Beame"
+     ]
+    ],
+    [
+     [
+      "Shmoni",
+      "Atzeres,"
+     ],
+     [
+      "Shemini",
+      "Atzeres,"
+     ]
+    ],
+    [
+     [
+      "home.",
+      "but"
+     ],
+     [
+      "home.",
+      "But"
+     ]
+    ]
+   ],
+   "end_after": "truck",
+   "skip": [
+    [
+     2288.8,
+     2291.7
+    ],
+    [
+     2296.4,
+     2299.05
+    ],
+    [
+     2311.6,
+     2316.7
+    ],
+    [
+     2318.9,
+     2321.5
+    ],
+    [
+     2324.8,
+     2327.0
+    ],
+    [
+     2332.6,
+     2336.3
+    ]
+   ]
   }
  ]
 }
