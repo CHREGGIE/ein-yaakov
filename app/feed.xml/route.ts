@@ -16,11 +16,16 @@ export function GET() {
     const m = bySlug.get(s.masechta)!;
     const url = audioUrl(s);
     const link = `${SITE.url}/${s.masechta}/${s.number}`;
-    const title = `Ein Yaakov on ${m.name} – Shiur ${s.number}: ${s.title}`;
+    // The daf leads the title: it is what people search for ("Ein Yaakov Kesuvos 62a").
+    const title = `Ein Yaakov ${m.name} ${dafRange(s)}: ${s.title}`;
+    // "00:00 Title" lines become chapters in Spotify, Apple Podcasts and YouTube.
+    const chapters = s.chapters.length >= 3 && s.chapters[0].start === 0
+      ? "\n\nChapters:\n" + s.chapters.map((c) => `${hms(c.start)} ${c.title}`).join("\n")
+      : "";
     return `
     <item>
       <title>${esc(title)}</title>
-      <description>${esc(`${s.summary}${s.key_ideas?.length ? "\n\nKey ideas:\n" + s.key_ideas.map((k) => `• ${k}`).join("\n") : ""}\n\n${m.name} ${dafRange(s)}. Summary and chapters: ${link}`)}</description>
+      <description>${esc(`${s.summary}${s.key_ideas?.length ? "\n\nKey ideas:\n" + s.key_ideas.map((k) => `• ${k}`).join("\n") : ""}${chapters}\n\nEin Yaakov ${m.name} ${dafRange(s)}, shiur ${s.number}, with ${SITE.rav}. Summary, sources and chapters: ${link}`)}</description>
       <link>${link}</link>
       <guid isPermaLink="false">${s.guid}</guid>
       <pubDate>${pubDate(s.given_on!)}</pubDate>
