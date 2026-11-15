@@ -10,6 +10,10 @@ import { RavPhoto } from "@/components/RavPhoto";
 import { SideBlocks } from "@/components/Side";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbsLd, episodeLd } from "@/lib/seo";
+import { byChapter } from "@/lib/transcript";
+
+/** m:ss for transcript chapter links. */
+const hms = (sec: number) => `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -89,6 +93,18 @@ export default async function ShiurPage({ params }: P) {
           <div className="tabs"><span className="tab" aria-selected="true">Chapters</span></div>
           <ChapterList s={l} />
         </div>
+        {s.transcript_public && s.transcript.length ? (
+          <section className="tx" aria-labelledby="tx-h">
+            <h2 id="tx-h">Transcript</h2>
+            <p className="muted-s">An automatic transcript of the shiur, lightly corrected. Hebrew and Aramaic words may be misspelled; the recording is the authoritative version.</p>
+            {byChapter(s.chapters, s.transcript).map((c) => (
+              <details key={c.start} id={`tx-${c.start}`}>
+                <summary><a className="ts" href={`#t=${c.start}`} aria-label={`Play from ${hms(c.start)}`}>{hms(c.start)}</a><span>{c.title}</span></summary>
+                {c.paras.map((p) => <p key={p.start}>{p.text}</p>)}
+              </details>
+            ))}
+          </section>
+        ) : null}
         <nav className="pn" aria-label="Previous and next shiur">
           {prev ? <Link href={`/${m.slug}/${prev.number}`}><small>← Shiur {prev.number} · {dafRange(prev)}</small><b>{prev.title}</b></Link> : <span />}
           {next ? <Link className="next" href={`/${m.slug}/${next.number}`}><small>Shiur {next.number} · {dafRange(next)} →</small><b>{next.title}</b></Link> : <span />}

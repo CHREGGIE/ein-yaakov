@@ -318,3 +318,15 @@ h1.title { font-size: 2.2rem; line-height: 1.15; font-weight: 700; margin: 0; te
 .ded-close { font-weight: 600; }
 .ded-tnzbh { text-align: center; font-size: 1.2rem; font-weight: 700; color: var(--accent) !important; letter-spacing: .1em; }
 .ded-photo { width: 100%; max-width: 15rem; height: auto; border-radius: 6px; box-shadow: var(--shadow); margin-bottom: .75rem; }
+
+/* Transcript: closed by default, one panel per chapter */
+.tx { display: grid; gap: .6rem; max-width: 46rem; }
+.tx h2 { margin: 0; font-size: 1.15rem; font-weight: 700; }
+.tx details { border-top: 1px solid var(--line); }
+.tx details:last-of-type { border-bottom: 1px solid var(--line); }
+.tx summary { display: grid; grid-template-columns: 4rem 1fr; gap: .75rem; padding: .75rem 0; cursor: pointer; list-style: none; font-weight: 600; }
+.tx summary::-webkit-details-marker { display: none; }
+.tx summary .ts { color: var(--accent); font-variant-numeric: tabular-nums; text-decoration: none; }
+.tx details[open] summary { color: var(--accent); }
+.tx details p { margin: 0 0 .9rem 4.75rem; line-height: 1.65; color: var(--ink); }
+@media (max-width: 640px) { .tx details p { margin-left: 0; } }

@@ -1,0 +1,18 @@
+{
+ "_note": "Whole-word corrections applied when a transcript is shown on a shiur page. Add the garbles Whisper repeats; keep the Rav's own words otherwise.",
+ "Gomorrah": "Gemara", "Gomar": "Gemara", "Gomara": "Gemara", "Gamara": "Gemara", "Gomarah": "Gemara", "Gomadah": "Gemara", "Gamar": "Gemara", "G-mahr": "Gemara", "G-mar": "Gemara",
+ "Abishta": "Aibershter", "Abishtah": "Aibershter", "Abishteh": "Aibershter", "Abish": "Aibershter", "Eibishta": "Aibershter", "Ebishta": "Aibershter", "Ebish": "Aibershter", "Abishneh": "Aibershter",
+ "Keshuvos": "Kesuvos", "Kesubos": "Kesuvos",
+ "Chumish": "Chumash", "Tayrah": "Torah", "Teyrah": "Torah", "Tairah": "Torah", "Tayra": "Torah", "Teidah": "Torah", "tayrah": "Torah",
+ "Yidin": "Yidden", "Yiddin": "Yidden",
+ "Mafarshim": "Meforshim", "Mepharshim": "Meforshim", "Mafashim": "Meforshim", "mafarshim": "meforshim",
+ "Yim Kippur": "Yom Kippur", "Yim Kipper": "Yom Kippur",
+ "Fridikal Ebe": "Frierdiker Rebbe", "Fiddi Kereba": "Frierdiker Rebbe", "Frederkehber": "Frierdiker Rebbe",
+ "Altar-Ebe": "Alter Rebbe", "Altar Ebe": "Alter Rebbe",
+ "Magat": "Maggid",
+ "Ram Bams": "Rambam", "Maral": "Maharal", "Mahral": "Maharal",
+ "tzedikim": "tzaddikim", "Tzedikim": "Tzaddikim", "sadikim": "tzaddikim", "tzadikim": "tzaddikim",
+ "Mishaah S'nafesh": "mesiras nefesh",
+ "Meir Bim": "Mayor Beame",
+ "shtaydish kislev": "Rosh Chodesh Kislev", "Shmini Atsetas": "Shemini Atzeres", "Shminim and Chas": "Shemini Atzeres", "subchastah": "Shemini Atzeres"
+}
