@@ -120,6 +120,7 @@ git add pipeline/meta content/shiurim && git commit -m "Publish Kesuvos 7" && gi
 - `build_shiur.py` keeps an existing `guid`. **Never change a guid once a shiur is in the feed**; podcast apps would show it as a new episode.
 - The audio URL is `https://audio.einyaakovshiur.com/<masechta>/<Masechta>-NN.mp3`. If a file in R2 is ever replaced, add `"audio_rev": N` to the meta file and rebuild.
 - The feed includes a shiur only when it's published, has `in_feed`, has `given_on`, and its masechta has a `season`.
+- Episode titles in the feed lead with the daf ("Ein Yaakov Kesuvos 61b–62b: A Tear on Erev Yom Kippur"), because that is what people search. Each description ends with the chapter list as `00:00:00 Title` lines, which Spotify, Apple Podcasts and YouTube turn into chapters. So chapter 0 must start at 0, and there must be at least three.
 - Check that the page is live after about 90 seconds. The container's curl is blocked from the site, so fetch the page with the Vercel MCP `web_fetch_vercel_url` and grep the saved result for the title.
 - Spotify and Apple pick up the feed on their own schedules, usually within a few hours.
 
