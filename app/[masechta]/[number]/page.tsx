@@ -93,7 +93,7 @@ export default async function ShiurPage({ params }: P) {
           <div className="tabs"><span className="tab" aria-selected="true">Chapters</span></div>
           <ChapterList s={l} />
         </div>
-        {s.transcript_public && s.transcript.length ? (
+        {s.transcript_public !== false && s.transcript.length ? (
           <section className="tx" aria-labelledby="tx-h">
             <h2 id="tx-h">Transcript</h2>
             <p className="muted-s">An automatic transcript of the shiur, lightly corrected. Hebrew and Aramaic words may be misspelled; the recording is the authoritative version.</p>

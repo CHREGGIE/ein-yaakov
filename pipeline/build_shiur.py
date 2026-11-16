@@ -43,7 +43,7 @@ out = {
     "audio": {"file": os.path.basename(audio_path), "bytes": os.path.getsize(audio_path), "duration_sec": round(dur),
               **({"rev": meta["audio_rev"]} if meta.get("audio_rev") else {})},
     "transcript": paras,
-    **({"transcript_public": True} if meta.get("transcript_public") else {}),
+    **({"transcript_public": False} if meta.get("transcript_public") is False else {}),
 }
 os.makedirs(os.path.dirname(out_path), exist_ok=True)
 json.dump(out, open(out_path, "w"), ensure_ascii=False, indent=1)

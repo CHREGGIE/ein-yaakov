@@ -35,7 +35,7 @@ export type ShiurFile = {
   /** rev: bump to give podcast apps a new audio URL (same file) when they need to re-fetch it. */
   audio: { file: string; bytes: number; duration_sec: number; rev?: number };
   transcript: Paragraph[];
-  /** Show the automatic transcript on the page (set once Greg has approved it for this shiur). */
+  /** The automatic transcript shows on the page, closed by default; set false to hide it for one shiur. */
   transcript_public?: boolean;
 };
 

@@ -50,7 +50,7 @@ python3 pipeline/cond.py tx/Kesuvos-07.json 260    # condensed view, one line pe
 
 The venv needs `faster-whisper` and `numpy`. A 45-minute shiur takes several minutes on CPU, so run it in the background.
 
-The transcript is search-only: it's never shown on the page. It will garble Hebrew and Aramaic. That's expected. Use it to find structure and quotes, not to copy from.
+The transcript shows on the shiur page in closed panels, one per chapter, under a note that Hebrew and Aramaic words may be misspelled; it's there for Google and for anyone who wants to read along. Greg chose to publish it as is rather than edit the Aramaic. Known garbles are corrected at display time from `content/transcript-fixes.json`; add to that list whenever you spot a repeated one. To hide a transcript for one shiur, set `"transcript_public": false` in its meta file. It will garble Hebrew and Aramaic. That's expected. Use it to find structure and quotes, not to copy from.
 
 ## 4. Write the meta file
 
