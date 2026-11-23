@@ -1,5 +1,22 @@
 [
   {
+    "slug": "eruvin",
+    "name": "Eruvin",
+    "he": "עירובין",
+    "seder": "moed",
+    "aliases": [
+      "eiruvin",
+      "erubin",
+      "eruvim",
+      "eiruvim",
+      "eirovin",
+      "eruv",
+      "eiruv"
+    ],
+    "order": 0,
+    "season": null
+  },
+  {
     "slug": "baitza",
     "name": "Baitza",
     "he": "ביצה",
