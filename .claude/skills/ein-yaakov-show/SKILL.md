@@ -41,6 +41,8 @@ pipeline/measure.sh out/Kesuvos-07.mp3   # expect about -16 LUFS and true peak <
 
 Don't add compression or music.
 
+**Wait for `clean.sh` to finish before sending the MP3 or starting transcription.** When a loud recording needs the lower limiter retries, the script rewrites the output file two or three times; a file sent or transcribed mid-rewrite is broken. Send it only after `measure.sh` prints the final numbers.
+
 ## 3. Transcribe
 
 ```bash
