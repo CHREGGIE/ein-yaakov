@@ -1,0 +1,391 @@
+{
+ "slug": "kesuvos-09",
+ "source": "$SCRATCH/kesuvos/out/Kesuvos-09.mp3",
+ "link": "einyaakovshiur.com/kesuvos/9",
+ "masechta": "Kesuvos",
+ "vocab": "the Frierdiker Rebbe, Boston, Rabbi Rabinowitz, igros kodesh, tzedakah, kosher, mashgiach, kashering, Erev Pesach, matzah, shliach, the OK, Kollel.",
+ "clips": [
+  {
+   "id": 1,
+   "at": 1477,
+   "window": 134,
+   "start_word": "there's",
+   "end_word": "stopped.",
+   "end_after": "screaming",
+   "hook": "The screams<br>were real",
+   "sub": "A story of the Frierdiker Rebbe · Ein Yaakov Kesuvos 67a",
+   "cover_title": "The screams were real",
+   "kicker": "A story",
+   "from": "Kesuvos 67a",
+   "cta": "Why did a mother hear her daughter screaming every night?",
+   "tags": [
+    "#FrierdikerRebbe",
+    "#Tzedakah",
+    "#Chabad"
+   ],
+   "shorts_title": "The screams were real: a letter from the Frierdiker Rebbe | Rabbi Chaim Fogelman",
+   "blurb": "After her daughter passed away, a mother in Boston heard her screaming every night, and the doctors said it was all in her head. Then a letter came from the Frierdiker Rebbe. Rabbi Chaim Fogelman tells the story, and what it teaches about giving tzedakah to the right places.",
+   "fixes": [
+    [
+     [
+      "There's",
+      "a",
+      "story",
+      "by",
+      "the",
+      "by",
+      "the",
+      "Frierdiker",
+      "Rebbe"
+     ],
+     [
+      "There's",
+      "a",
+      "story",
+      "of",
+      "the",
+      "Frierdiker",
+      "Rebbe"
+     ]
+    ],
+    [
+     [
+      "she",
+      "she",
+      "lost",
+      "her",
+      "daughter",
+      "Naba"
+     ],
+     [
+      "she",
+      "lost",
+      "her",
+      "daughter,",
+      "nebach,"
+     ]
+    ],
+    [
+     [
+      "ask",
+      "if",
+      "you're",
+      "a",
+      "Barakah."
+     ],
+     [
+      "ask",
+      "for",
+      "a",
+      "bracha."
+     ]
+    ],
+    [
+     [
+      "sudaka"
+     ],
+     [
+      "tzedakah"
+     ]
+    ],
+    [
+     [
+      "tzedaka"
+     ],
+     [
+      "tzedakah"
+     ]
+    ],
+    [
+     [
+      "this",
+      "letter",
+      "to",
+      "Rebbe"
+     ],
+     [
+      "this",
+      "letter",
+      "to",
+      "Rabbi",
+      "Rabinowitz"
+     ]
+    ],
+    [
+     [
+      "Iggers",
+      "Kaedish.",
+      "I",
+      "took",
+      "a",
+      "photo",
+      "stat",
+      "at",
+      "it"
+     ],
+     [
+      "Igros",
+      "Kodesh.",
+      "I",
+      "took",
+      "a",
+      "photostat",
+      "of",
+      "it"
+     ]
+    ],
+    [
+     [
+      "krata,"
+     ],
+     [
+      "hachlatah,"
+     ]
+    ],
+    [
+     [
+      "and",
+      "they",
+      "said",
+      "you",
+      "know",
+      "why",
+      "don't",
+      "you"
+     ],
+     [
+      "and",
+      "he",
+      "said",
+      "you",
+      "know",
+      "why",
+      "don't",
+      "you"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": 2,
+   "at": 2613,
+   "window": 228,
+   "end_word": "here.",
+   "end_after": "gemara",
+   "hook": "Matzah on<br>Erev Pesach",
+   "sub": "A story · Ein Yaakov Kesuvos 67b",
+   "cover_title": "The call on Erev Pesach",
+   "kicker": "A story",
+   "from": "Kesuvos 67b",
+   "cta": "Who answered the call for matzah on Erev Pesach?",
+   "tags": [
+    "#Pesach",
+    "#HashgachaPratis",
+    "#Torah"
+   ],
+   "shorts_title": "The call on Erev Pesach | Hashgacha pratis | Rabbi Chaim Fogelman",
+   "blurb": "A mashgiach drove out on Erev Pesach for a kosher run that had been pushed off again and again, and turned back at the last minute for a few boxes of matzah. Then his phone rang. Rabbi Chaim Fogelman tells the story, \"like the Gemara from over here.\"",
+   "skip": [
+    [
+     2620.85,
+     2622.45
+    ],
+    [
+     2626.85,
+     2660.55
+    ],
+    [
+     2693.0,
+     2714.15
+    ],
+    [
+     2734.95,
+     2740.45
+    ]
+   ],
+   "fixes": [
+    [
+     [
+      "kasher's",
+      "run,"
+     ],
+     [
+      "kosher",
+      "run,"
+     ]
+    ],
+    [
+     [
+      "And",
+      "the",
+      "rabbi",
+      "said,",
+      "Zeshliel,",
+      "he",
+      "said,"
+     ],
+     [
+      "And",
+      "the",
+      "shliach",
+      "said,"
+     ]
+    ],
+    [
+     [
+      "Davidink,"
+     ],
+     [
+      "davening,"
+     ]
+    ],
+    [
+     [
+      "parking",
+      "lot",
+      "from",
+      "the",
+      "Kabbalah's,",
+      "he",
+      "drives",
+      "the",
+      "bike,"
+     ],
+     [
+      "parking",
+      "lot,",
+      "he",
+      "drives",
+      "a",
+      "bit,"
+     ]
+    ],
+    [
+     [
+      "goes",
+      "back",
+      "into",
+      "the",
+      "Kabbalah's,"
+     ],
+     [
+      "goes",
+      "back",
+      "inside,"
+     ]
+    ],
+    [
+     [
+      "he",
+      "does",
+      "a",
+      "noise,"
+     ],
+     [
+      "he",
+      "doesn't",
+      "know",
+      "it,"
+     ]
+    ],
+    [
+     [
+      "some",
+      "kind",
+      "of",
+      "hiktah",
+      "you",
+      "never"
+     ],
+     [
+      "some",
+      "kind",
+      "of",
+      "place",
+      "you",
+      "never"
+     ]
+    ],
+    [
+     [
+      "She",
+      "looks",
+      "up",
+      "and",
+      "he",
+      "sees"
+     ],
+     [
+      "He",
+      "looks",
+      "up",
+      "and",
+      "he",
+      "sees"
+     ]
+    ],
+    [
+     [
+      "She",
+      "says,",
+      "he",
+      "says,"
+     ],
+     [
+      "He",
+      "says,"
+     ]
+    ],
+    [
+     [
+      "that",
+      "shul",
+      "was",
+      "a",
+      "Sunday",
+      "morning."
+     ],
+     [
+      "that",
+      "shul,",
+      "it",
+      "was",
+      "a",
+      "Sunday",
+      "morning."
+     ]
+    ],
+    [
+     [
+      "kashirim"
+     ],
+     [
+      "kashering"
+     ]
+    ],
+    [
+     [
+      "from",
+      "up",
+      "here."
+     ],
+     [
+      "from",
+      "over",
+      "here."
+     ]
+    ],
+    [
+     [
+      "sometimes.",
+      "Anyway,"
+     ],
+     [
+      "sometimes.",
+      "Anyway,"
+     ]
+    ]
+   ]
+  }
+ ]
+}
