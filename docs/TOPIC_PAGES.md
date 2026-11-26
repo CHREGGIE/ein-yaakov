@@ -38,8 +38,10 @@ A **shiur matches a topic** when its match score ≥ the topic's `score_min` (de
   - `"never": ["kesuvos/3", …]` — force a non-match (used when a single chapter is coincidental).
 
 A **topic page is generated** only when ≥ **3 published shiurim** match. Min 3 (not 2) because a
-2-shiur page adds crawl budget without looking like a real collection; the site is ~2 months old
-and GSC is already rationing indexing of 21 URLs.
+2-shiur page is a thin collection: it adds crawl budget without looking like a real hub, and the
+site is ~2 months old with little authority. There is no Search Console data to calibrate against
+yet — the site is not registered with GSC (`docs/SEO_PLAN.md`) — so the threshold rests on
+thin-content reasoning alone; revisit it once GSC shows real index coverage.
 
 Curation is human: new topics are added to `content/topics.json` by hand (title, description,
 keywords) and Greg reviews the generated match list before the topic ships. The generator never
@@ -50,6 +52,18 @@ field verbatim.
 Tuning loop: run `python3 pipeline/topics_gen.py` after tuning; it prints each match with its
 evidence (which key ideas and chapters hit), so every false positive is visible and fixable with
 one keyword or a `never` entry.
+
+**Keyword hygiene** (learned in QA round 1, 2026-11-26): bare common words match figurative or
+unrelated uses and are banned as keywords — `give/gave/gives` matched "Rabbi Akiva **gave** his
+last water" and "the soldiers **gave** gittin" under tzedakah; `heaven` matched "fear of **Heaven**"
+and "zivug decreed in **Heaven**" under angels; bare `words` matched "**Words** of Torah are like a
+goad" under guarding-speech; `first day` matched an egg laid on the "**first day**" of Rosh
+Hashanah under creation. Use specific phrases instead (`salt of money`, `words never disappear`,
+`every word`). Two traps the evidence print exposes: `norm()` strips apostrophes, so `heavens`
+also matches *Heaven's* — plural `heavens` was tried and removed for exactly that reason; and
+singular/plural pairs differ ("Every **word** is recounted" was missed by bare `words` and caught
+only by the phrase `every word`). Any keyword change must be followed by a re-run whose output is
+committed to `docs/topics_gen_output.txt`.
 
 ## 3. Page template (wireframe)
 
@@ -130,39 +144,69 @@ payload — schema just ties it to entities.
   collapses to one bullet linking the first (highest-score) shiur.
 - QA gate: after build, assert every sitemap topic URL renders H1 + ≥3 shiur cards + schema.
 
-## 8. The generated topic list (real catalog, 2026-11-26)
+## 8. The generated topic list (real catalog, 2026-11-26, after QA-round-1 keyword tightening)
 
-27 published shiurim. Output of `python3 pipeline/topics_gen.py`:
+27 published shiurim. Output of `python3 pipeline/topics_gen.py`, committed verbatim at
+`docs/topics_gen_output.txt`:
 
 **11 pages qualify (≥3 matching shiurim):**
 
 | URL | Topic | Shiurim | Top match |
 | --- | --- | --- | --- |
-| /topics/tzedakah | Tzedakah and chesed | 9 | Kesuvos 9 (score 20) |
 | /topics/torah-learning | The value of learning Torah | 11 | Kesuvos 8 (score 12) |
-| /topics/shabbos-yom-tov | Shabbos and Yom Tov | 7 | Baitza 1 (score 11) |
+| /topics/guarding-speech | Guarding the eyes and the tongue | 7 | Chagigah 4 (score 4) |
+| /topics/shabbos-yom-tov | Shabbos and Yom Tov | 7 | Baitza 1 (score 17) |
 | /topics/tzaddikim | The tzaddik and his power | 7 | Baitza 4 (score 3) |
-| /topics/guarding-speech | Guarding the eyes and the tongue | 8 | Chagigah 7 (score 3) |
 | /topics/marriage | Marriage, the chuppah and the Jewish home | 6 | Kesuvos 1 (score 17) |
-| /topics/creation | The creation and the hidden light | 6 | Chagigah 7 (score 9) |
-| /topics/gehinnom | Gehinnom and the judgment | 5 | Eruvin 2 (score 6) |
-| /topics/angels | Angels, the heavens and the Merkavah | 5 | Chagigah 9 (score 9) |
-| /topics/korbanos | Korbanos and the Beis Hamikdash | 4 | Chagigah 6 (score 10) |
+| /topics/creation | The creation and the hidden light | 5 | Chagigah 7 (score 8) |
+| /topics/gehinnom | Gehinnom and the judgment | 5 | Eruvin 2 (score 7) |
+| /topics/korbanos | Korbanos and the Beis Hamikdash | 4 | Chagigah 6 (score 9) |
+| /topics/tzedakah | Tzedakah and chesed | 4 | Kesuvos 6 (score 12) |
+| /topics/angels | Angels, the heavens and the Merkavah | 3 | Chagigah 9 (score 5) |
 | /topics/emunah | Emunah, bitachon and parnassah | 3 | Baitza 1 (score 7) |
 
 **3 topics wait below threshold (2 each) — page appears automatically when the third shiur
 matches:** teshuvah, mourning, davening.
 
+**Changes from the pre-QA run (same catalog, same rule — only keywords in
+`content/topics.json` changed; see the keyword-hygiene note in §2):**
+
+- *tzedakah* 9 → 4. Dropped as false positives (bare `give/gave/gives`): eruvin/2 ("Rabbi Akiva
+  **gave** his last water"), eruvin/3 ("Shlomo **gave** the Torah handles"), kesuvos/2 ("one who
+  **gives** should never look…"), kesuvos/3 ("soldiers **gave** gittin"), baitza/2 ("one who
+  **gives** a gift"). Remaining: kesuvos 5, 6, 9 — the core the taxonomy notes predicted — plus
+  **chagigah/8, a known borderline kept match** (via `chesed`: "One who learns Torah at night is
+  granted chesed by day", "Chesed or rachamim first?"). If Greg calls it off-topic, remove
+  `chesed` from the match list; tzedakah then still qualifies with its 3 core shiurim.
+- *angels* 5 → 3. Dropped as false positives (any `heaven`): eruvin/2 ("fear of **Heaven**"),
+  kesuvos/1 ("zivug decreed in **Heaven**") — Heaven meaning Hashem — and kesuvos/5 ("Everything is
+  in **Heaven's** hands", which plural `heavens` caught because `norm()` strips the apostrophe).
+  Remaining: chagigah 3, 9, 10 — exactly the malachim/merkavah shiurim.
+- *guarding-speech* 8 → 7. Dropped as false positives (bare `words`): chagigah/2 ("**Words** of
+  Torah are like a goad") and kesuvos/7 ("The power of a tzaddik's **words**" — about the power of
+  speech, not guarding it). Gained a true positive the bare keyword had missed: chagigah/4
+  ("Every **word** a person says, even in private, is recounted before him" — singular `word`),
+  now the top match. Remaining: chagigah 4, 7; kesuvos 1, 3, 5; eruvin 1, 2.
+- *creation* 6 → 5. Dropped as a false positive (`first day`): baitza/1 ("an egg laid on the
+  **first day**" of Rosh Hashanah). The true `first day` content (chagigah/7 "Ten things created
+  on the first day") still matches via `created`.
+- *torah-learning* `learn`/`learning` were reviewed (QA flagged them as loose): the two lowest
+  matches — baitza/5 ("those who work by day and **learn** every night") and kesuvos/5 ("fill him
+  with **learning**") — are genuinely about learning Torah, so the keywords stay; no change
+  (11 shiurim).
+- All 11 topics still clear the ≥3 bar after the cleanup; the tightest are *angels* and *emunah*
+  at exactly 3.
+
 Examples of matches the evidence shows (so reviewers can judge quality):
-- *tzedakah*: all four Kesuvos 9 key_ideas hit (score 20), plus Kesuvos 6 (13) and Kesuvos 5 (5);
-  edges like Baitza 2 "one who gives a gift must let the recipient know" hit via `gives` — check
-  whether that stays after review (borderline: gift ≠ tzedakah; likely a `never` for baitza/2).
-- *marriage*: Kesuvos 1 (17), 4 (8), 8 (6), 2 (4), 3 (3), 7 (2) — the exact set the taxonomy notes
-  predicted; the score_min=2 rule correctly kept the tzedakah shiurim's isolated marriage chapters
-  out.
-- *emunah*: only 3 shiurim, and Kesuvos 9's "Hashem gives each person his food in its time" does
-  not hit today's keywords — add `"food in its time"` / `"worry"` to `match` in
-  `content/topics.json` as part of review.
+- *tzedakah*: kesuvos/6 (12) and kesuvos/9 (11) lead — all four Kesuvos 9 key ideas hit except
+  "Hashem **gives** each person his food in its time", which lost `gives`; see emunah below.
+- *marriage*: Kesuvos 1 (17), 4 (8), 8 (6), 2 (4), 3 (3), 7 (2) — the exact set the taxonomy
+  notes predicted; the score_min=2 rule correctly kept the tzedakah shiurim's isolated marriage
+  chapters out.
+- *emunah*: only 3 shiurim. Kesuvos 9's "Hashem gives each person his food in its time" does not
+  hit today's keywords — adding `"food in its time"` / `"worry"` to `match` in
+  `content/topics.json` as part of review would both firm up emunah (4 shiurim) and restore a
+  genuine tzedakah key idea on kesuvos/9.
 
 ## 9. Impact / effort / targets
 
@@ -179,9 +223,13 @@ Examples of matches the evidence shows (so reviewers can judge quality):
 ## 10. Open for Greg's review
 
 1. Un-DRAFT the 11 `description` fields (wording is his).
-2. The baitza/2 "gift" edge on tzedakah — keep or `never`.
+2. Tzedakah's borderline match chagigah/8 (via `chesed` — see §8): keep, or drop `chesed` from the
+   match list (tzedakah still qualifies with kesuvos 5, 6, 9). The pre-QA baitza/2 "gift" edge no
+   longer matches after the keyword tightening.
 3. Candidate topics intentionally not in the taxonomy yet: *Rabbi Akiva* (4 shiurim would match),
-  *Hillel and Shammai* (4), *stories of the Gemara* (12, but overlaps everything — better as an
-  /stories landing page later, not a topic page), *chassidic insights on the aggadah* (13 — same
-  overlap concern). Add only if he wants them.
+   *Hillel and Shammai* (4), *stories of the Gemara* (12, but overlaps everything — better as an
+   /stories landing page later, not a topic page), *chassidic insights on the aggadah* (13 — same
+   overlap concern). Add only if he wants them.
 4. `MIN_SHIURIM` stays 3 as the catalog grows; revisit at 100+ shiurim.
+5. emunah keyword addition (`"food in its time"` / `"worry"`, §8) — his call whether to make it
+   with this PR or after launch.

@@ -16,8 +16,8 @@ Everything is computed from the catalog at build time, so pages stay in sync
 with the weekly publish.
 
 Usage:
-    python3 pipeline/topics.py            # qualifying topics + evidence
-    python3 pipeline/topics.py --json    # full match dump as JSON
+    python3 pipeline/topics_gen.py            # qualifying topics + evidence
+    python3 pipeline/topics_gen.py --json    # full match dump as JSON
 """
 import json
 import re

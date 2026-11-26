@@ -1,0 +1,296 @@
+Catalog: 27 published shiurim. Threshold: >= 3 matching shiurim, score_min default 2 (one key_idea hit or two chapter hits).
+
+[PAGE] /topics/tzedakah — Tzedakah and chesed — 4 shiurim
+       kesuvos/6  Tzedakah at all times, and feeding those who serve  (50a-61b, score 12)
+         KI: Supporting one's own small children is counted as tzedakah given at every moment.
+         KI: Tzedakah is like light and like Torah: giving it never leaves the giver with less.
+         CH: Don't rush judgment, don't delay tzedakah
+         CH: Levels of giving tzedakah
+         CH: Tzedakah that turns every time for the good
+         CH: "His tzedakah stands forever"
+         CH: Giving those who serve a taste
+       kesuvos/9  The Salt of Money Is Chesed  (66b-67b, score 11)
+         KI: The salt that preserves money is chesed: giving some away is what keeps it.
+         KI: Give tzedakah properly and to the right places; how it is given matters.
+         CH: "The salt of money is chesed"
+         CH: Chaser: giving some away
+         CH: Didn't Nakdimon give tzedakah?
+         CH: When tzedakah counts
+      chagigah/8  Shakai: Who Said to the World “Enough”  (12a-12b, score 3)
+         KI: One who learns Torah at night is granted chesed by day.
+         CH: Chesed or rachamim first?
+       kesuvos/5  Give no more than a fifth, and start at six  (30a-50a, score 2)
+         KI: The takanah of Usha: a person should not give more than a fifth of his means to tzedakah.
+
+[PAGE] /topics/marriage — Marriage, the chuppah and the Jewish home — 6 shiurim
+       kesuvos/1  Opening Kesuvos: the match made in Heaven  (2a-8a, score 17)
+         KI: A person's zivug is decreed in Heaven; it is the one thing in life he does not get to choose.
+         KI: The Gemara sets a besulah's wedding for Wednesday, and the Rav explains the blessing given to the fish on the day they were created.
+         KI: At the chuppah, the generations who came before and those yet to come stand with the chosson and kallah.
+         CH: A zivug is the one thing you don't choose
+         CH: Each one's role in a marriage
+         CH: Why the chosson and kallah cry under the chuppah
+         CH: The generations who stand at the chuppah
+         CH: Seven days of sheva brachos
+       kesuvos/4  Three hadasim: dancing before the kallah  (17a-28b, score 8)
+         KI: Rav Shmuel bar Rav Yitzchak juggled three hadasim before the kallah, bringing her joy even at the cost of looking foolish.
+         KI: Learning is interrupted for a levaya and to escort a kallah, depending on how many people are already there.
+         CH: Why a wife is compared to a beam
+         CH: A levaya that waited for a chuppah
+         CH: Stopping learning for a levaya or a chuppah
+         CH: Appearances and marriage
+       kesuvos/8  Rabbi Akiva and the Wife Who Waited  (62b-65a, score 6)
+         KI: A wife who sends her husband to learn shares in all of his Torah: "What is mine and yours is hers."
+         KI: A wife brings out the best in her husband.
+         CH: His wife sees him
+         CH: What a wife brings out in her husband
+       kesuvos/2  The sheva brachos, and comforting mourners  (7b-8b, score 4)
+         KI: Each of the brachos under the chuppah has its own purpose, from yotzer ha'adam to the joy heard in the streets of Yerushalayim.
+         CH: The six brachos under the chuppah
+         CH: What a wife brings into the home
+       kesuvos/3  How one dances before the kallah  (9b-17a, score 3)
+         KI: How one dances before the kallah: Beis Hillel praise every kallah as beautiful and gracious.
+         CH: How one dances before the kallah
+       kesuvos/7  A Tear on Erev Yom Kippur  (61b-62b, score 2)
+         KI: Learning Torah away from home must not come at the expense of one's wife; her tear has great power.
+
+[PAGE] /topics/torah-learning — The value of learning Torah — 11 shiurim
+       kesuvos/8  Rabbi Akiva and the Wife Who Waited  (62b-65a, score 12)
+         KI: Don't push off learning: Rabbi Chananya left for yeshiva right away, without waiting.
+         KI: A wife who sends her husband to learn shares in all of his Torah: "What is mine and yours is hers."
+         KI: Going to learn is like going to the market: you never know what new thing you will find there.
+         CH: Rabbi Chananya ben Chachinai leaves for yeshiva
+         CH: Don't push off learning
+         CH: Yeshiva is like the market
+         CH: Learning with a young scholar
+      chagigah/5  Three Things Hashem Cries Over  (5b-5b, score 9)
+         KI: Hashem cries over one who could learn and doesn't, and over one who struggles to learn and still does.
+         KI: Even one day, or one hour, of learning is precious.
+         CH: Why cry if one doesn't learn?
+         CH: One who struggles and still learns
+         CH: Learning and shlichus
+         CH: Learning for one day
+         CH: What to learn in one hour
+       kesuvos/7  A Tear on Erev Yom Kippur  (61b-62b, score 8)
+         KI: Learning Torah away from home must not come at the expense of one's wife; her tear has great power.
+         CH: Talmidim who leave home to learn
+         CH: The wives of those who learn
+         CH: Leaving home to learn Torah
+         CH: Twelve years of learning
+      chagigah/1  Opening Chagigah: coming to see and to be seen  (2a-3a, score 4)
+         KI: Some have the custom of learning Masechta Chagigah on a yahrzeit.
+         CH: Learning Chagigah on a yahrzeit
+         CH: Rabbi Elazar ben Azaryah's open beis medrash
+      chagigah/6  One Hundred and One Times  (6a-9b, score 4)
+         KI: The one extra review, 101 times instead of 100, makes all the difference.
+         KI: A talmid chacham who strays is like a bird that wanders from its nest.
+      chagigah/8  Shakai: Who Said to the World “Enough”  (12a-12b, score 4)
+         KI: One who learns Torah at night is granted chesed by day.
+         CH: Learning Torah at night
+      chagigah/9  The Seven Heavens and the Merkavah  (12b-13b, score 3)
+         CH: Why learn Ein Yaakov
+         CH: Stopping learning to chat
+         CH: How far one may learn
+        eruvin/3  Shlomo Gave the Torah Handles  (21b-22a, score 3)
+         CH: Learning Ein Yaakov before Yud Tes Kislev
+         CH: Learning from the trop
+         CH: Rising early and staying late
+       kesuvos/4  Three hadasim: dancing before the kallah  (17a-28b, score 3)
+         KI: Learning is interrupted for a levaya and to escort a kallah, depending on how many people are already there.
+         CH: Stopping learning for a levaya or a chuppah
+        baitza/5  The Siyum: wild and domestic, and finishing Baitza  (29a-40a, score 2)
+         KI: Wild and domestic animals are read as two kinds of learners: those who leave home to learn, and those who work by day and learn every night.
+       kesuvos/5  Give no more than a fifth, and start at six  (30a-50a, score 2)
+         KI: From age six, take a child into the class and fill him with learning.
+
+[PAGE] /topics/shabbos-yom-tov — Shabbos and Yom Tov — 7 shiurim
+        baitza/1  Opening Baitza: Yom Tov for Hashem and for yourself  (2a-16a, score 17)
+         KI: Yom Tov is meant to be half for Hashem and half for yourself.
+         KI: A person's livelihood is set on Rosh Hashanah, except what he spends on Shabbos, Yom Tov and his children's Torah, which Hashem repays.
+         KI: Rosh Hashanah is treated as one long day, so an egg laid on the first day may not be used on the second.
+         KI: Shammai set aside the best food for Shabbos all week; Hillel trusted each day to Hashem.
+         CH: An egg laid on Yom Tov
+         CH: Rosh Hashanah as one long day
+         CH: Grinding salt on Yom Tov
+         CH: A person's livelihood is set on Rosh Hashanah
+         CH: Shammai and Hillel prepare for Shabbos
+        baitza/2  A gift you have to tell about: Shabbos  (16a-16b, score 12)
+         KI: Shabbos is Hashem's hidden gift; its full reward has not been revealed.
+         KI: An extra neshamah comes with Shabbos and leaves when it ends.
+         KI: An eruv tavshilin can be made on behalf of everyone in a town.
+         CH: Shabbos, Hashem's hidden gift
+         CH: The extra neshamah of Shabbos
+         CH: An eruv tavshilin for the whole town
+        baitza/3  Bava ben Buta and the flock in the Azarah  (20a-23a, score 4)
+         KI: A non-Jew may not be invited to a Yom Tov meal.
+         CH: Bringing a korban olah on Yom Tov
+         CH: Inviting a non-Jew on Yom Tov
+        baitza/4  Why the Torah was given to Klal Yisrael  (25a-26a, score 4)
+         KI: Whether one may walk with a stick on Yom Tov depends on whether he needs it.
+         CH: Walking with a stick on Yom Tov
+         CH: Measuring and weighing on Yom Tov
+        baitza/5  The Siyum: wild and domestic, and finishing Baitza  (29a-40a, score 4)
+         KI: On Yom Tov one may buy without naming a price or a measure, so it is not business.
+         CH: Asking the butcher for meat on Yom Tov
+         CH: Clapping and dancing on Yom Tov
+      chagigah/1  Opening Chagigah: coming to see and to be seen  (2a-3a, score 2)
+         KI: One who is blind in one eye is exempt from going up for the Yom Tov: as a person comes to see, so he comes to be seen.
+       kesuvos/6  Tzedakah at all times, and feeding those who serve  (50a-61b, score 2)
+         CH: Shabbos and raising children
+         CH: A husband's obligations, and Shabbos as a partner
+
+[PAGE] /topics/gehinnom — Gehinnom and the judgment — 5 shiurim
+        eruvin/2  Rabbi Akiva's Water in Prison  (19a-21b, score 7)
+         KI: The doors to Gehinnom are the ways a person gets there: through speech, through what he does, and through a lack of fear of Heaven.
+         CH: The three doors of Gehinnom
+         CH: Three ways a person ends up in Gehinnom
+         CH: The seven names of Gehinnom
+         CH: More doors to Gehinnom than to Gan Eden?
+         CH: Gehinnom cleans a person
+      chagigah/2  All given by one Shepherd  (3a-4b, score 4)
+         KI: Yosef's "I am Yosef" left his brothers unable to answer; how much more so the judgment of the future.
+         KI: The Amoraim cried at verses about judgment, from Yosef's brothers to Shmuel's ascent at Ein Dor.
+      chagigah/3  Rav Bibi and the Angel of Death  (4b-5a, score 4)
+         KI: Some are taken before their time, "swept away without judgment."
+         KI: Hashem brings every deed to judgment, hidden and revealed, which made Rabbi Yochanan cry.
+        eruvin/1  Full of Mitzvos Like a Pomegranate  (18b-19a, score 4)
+         CH: Hashem's judgment and man's
+         CH: Accepting the judgment
+         CH: A special place in Gehinnom
+         CH: At the gate of Gehinnom
+       kesuvos/3  How one dances before the kallah  (9b-17a, score 2)
+         KI: Davening as a child asks a parent, not as one who deserves, keeps a person from bringing judgment on himself.
+
+[PAGE] /topics/angels — Angels, the heavens and the Merkavah — 3 shiurim
+      chagigah/9  The Seven Heavens and the Merkavah  (12b-13b, score 5)
+         CH: The highest malachim
+         CH: The legs of the Chayos
+         CH: Who may be taught maaseh merkavah
+         CH: The Chayos of fire
+         CH: Sandalfon
+      chagigah/3  Rav Bibi and the Angel of Death  (4b-5a, score 4)
+         KI: The Gemara tells of Rav Bibi bar Abaye and the Angel of Death, who took the wrong woman.
+         CH: Rav Bibi bar Abaye and the Angel of Death
+         CH: The Angel of Death as Hashem's servant
+     chagigah/10  The River of Fire  (13b-14a, score 2)
+         CH: How many malachim?
+         CH: New malachim every morning
+
+[PAGE] /topics/emunah — Emunah, bitachon and parnassah — 3 shiurim
+        baitza/1  Opening Baitza: Yom Tov for Hashem and for yourself  (2a-16a, score 7)
+         KI: A person's livelihood is set on Rosh Hashanah, except what he spends on Shabbos, Yom Tov and his children's Torah, which Hashem repays.
+         CH: A person's livelihood is set on Rosh Hashanah
+         CH: Stories of emunah and parnassah
+        eruvin/1  Full of Mitzvos Like a Pomegranate  (18b-19a, score 2)
+         KI: Better a bitter livelihood straight from Hashem than a sweet one from people.
+       kesuvos/5  Give no more than a fifth, and start at six  (30a-50a, score 2)
+         KI: Everything is in Heaven's hands except cold and heat, which a person must guard himself from.
+
+[PAGE] /topics/guarding-speech — Guarding the eyes and the tongue — 7 shiurim
+      chagigah/4  Hester Panim and the Angels of Peace  (5a-5b, score 4)
+         KI: Every word a person says, even in private, is recounted before him.
+         CH: Thought, speech and action
+         CH: Every word is recounted
+      chagigah/7  The Hidden Light  (9b-12a, score 4)
+         KI: Words never disappear; they hover in the air, so a person must be careful with every word.
+       kesuvos/1  Opening Kesuvos: the match made in Heaven  (2a-8a, score 3)
+         KI: Our fingers are shaped like pegs so a person can close his ears to words he shouldn't hear.
+         CH: Guarding what we hear
+       kesuvos/5  Give no more than a fifth, and start at six  (30a-50a, score 3)
+         CH: Do not go about as a gossip
+         CH: Guarding your thoughts by day
+         CH: Rechilus and loving your fellow
+        eruvin/1  Full of Mitzvos Like a Pomegranate  (18b-19a, score 2)
+         KI: Guard your eyes; even a great person can be drawn in.
+        eruvin/2  Rabbi Akiva's Water in Prison  (19a-21b, score 2)
+         KI: The doors to Gehinnom are the ways a person gets there: through speech, through what he does, and through a lack of fear of Heaven.
+       kesuvos/3  How one dances before the kallah  (9b-17a, score 2)
+         KI: Three things no one escapes each day: thoughts of sin, iyun tefillah, and the dust of lashon hara.
+
+[PAGE] /topics/tzaddikim — The tzaddik and his power — 7 shiurim
+        baitza/4  Why the Torah was given to Klal Yisrael  (25a-26a, score 3)
+         KI: Bitter beans turn sweet after seven boilings, and a tzaddik falls seven times and rises.
+         CH: A tzaddik falls seven times and rises
+      chagigah/7  The Hidden Light  (9b-12a, score 3)
+         KI: The first light was hidden for the tzaddikim, and it can be reached through the Torah.
+         CH: Hidden for the tzaddikim
+      chagigah/8  Shakai: Who Said to the World “Enough”  (12a-12b, score 3)
+         KI: The world stands on the tzaddik, the people who connect it to Hashem.
+         CH: The tzaddik, foundation of the world
+       kesuvos/7  A Tear on Erev Yom Kippur  (61b-62b, score 3)
+         KI: The words of a tzaddik have the power to bring about what they say, for good even more than for bad.
+         CH: A navi and a tzaddik
+      chagigah/9  The Seven Heavens and the Merkavah  (12b-13b, score 2)
+         KI: Every level of heaven has its own purpose, and the highest holds the souls of the tzaddikim.
+     chagigah/10  The River of Fire  (13b-14a, score 2)
+         KI: Even being in the presence of a tzaddik changes a person.
+        eruvin/1  Full of Mitzvos Like a Pomegranate  (18b-19a, score 2)
+         CH: Even a tzaddik is affected
+         CH: Noach the tzaddik
+
+[PAGE] /topics/creation — The creation and the hidden light — 5 shiurim
+      chagigah/7  The Hidden Light  (9b-12a, score 8)
+         KI: Adam contained all of humanity, and at first could see from one end of the world to the other.
+         CH: From the day Adam was created
+         CH: Adam reached from earth to heaven
+         CH: Adam and all the souls
+         CH: Ten things created on the first day
+         CH: Tohu and vohu
+       kesuvos/2  The sheva brachos, and comforting mourners  (7b-8b, score 4)
+         CH: Ten chuppos for Adam and Chava
+         CH: Better not to have been created?
+         CH: Body and soul: the two creations of Adam
+         CH: Created as one or as two
+      chagigah/8  Shakai: Who Said to the World “Enough”  (12a-12b, score 3)
+         CH: Ten things the world was created with
+         CH: Created together
+         CH: Tohu vavohu
+        eruvin/1  Full of Mitzvos Like a Pomegranate  (18b-19a, score 3)
+         CH: Adam and the mazikim
+         CH: Adam, the first baal teshuvah
+         CH: Why wasn't Adam let back into Gan Eden?
+       kesuvos/1  Opening Kesuvos: the match made in Heaven  (2a-8a, score 2)
+         KI: The Gemara sets a besulah's wedding for Wednesday, and the Rav explains the blessing given to the fish on the day they were created.
+
+[PAGE] /topics/korbanos — Korbanos and the Beis Hamikdash — 4 shiurim
+      chagigah/6  One Hundred and One Times  (6a-9b, score 9)
+         KI: An olah goes entirely to Hashem; a shelamim is shared.
+         CH: Olos and shelamim at Sinai
+         CH: Making up a missed korban
+         CH: Olah or shelamim
+         CH: Same animal, different korban
+        baitza/3  Bava ben Buta and the flock in the Azarah  (20a-23a, score 5)
+         KI: Bava ben Buta brought his own flock to the Azarah so the halachah would follow Beis Hillel.
+         CH: Bringing a korban olah on Yom Tov
+         CH: Hillel in the Azarah
+        eruvin/1  Full of Mitzvos Like a Pomegranate  (18b-19a, score 3)
+         CH: Since the Churban, two letters of the Name
+         CH: The pipes of the mizbeach
+         CH: Coated like the golden mizbeach
+     chagigah/10  The River of Fire  (13b-14a, score 2)
+         KI: Something was lost above when the Beis Hamikdash was destroyed, and we ask for it to return.
+
+[wait] /topics/teshuvah — Teshuvah — 2 shiurim
+        eruvin/1  Full of Mitzvos Like a Pomegranate  (18b-19a, score 4)
+         KI: Teshuvah means building fences so you don't fall back.
+         CH: Adam, the first baal teshuvah
+        baitza/3  Bava ben Buta and the flock in the Azarah  (20a-23a, score 2)
+         KI: One sincere sigh from a Jew can bring a person to teshuvah.
+
+[wait] /topics/mourning — Mourning and comforting mourners — 2 shiurim
+       kesuvos/2  The sheva brachos, and comforting mourners  (7b-8b, score 7)
+         KI: Chazal limited the wine drunk in a mourner's home, and Rabban Gamliel ended costly funerals by asking to be buried in simple linen.
+         CH: Brachos in a house of mourning
+         CH: Ten cups of wine in a mourner's home
+         CH: Rabban Gamliel and burial in simple linen
+       kesuvos/8  Rabbi Akiva and the Wife Who Waited  (62b-65a, score 2)
+         CH: Chuma, Abaye's widow, before Rava
+         CH: A woman widowed three times
+
+[wait] /topics/davening — Davening and its power — 2 shiurim
+       kesuvos/3  How one dances before the kallah  (9b-17a, score 4)
+         KI: Three things no one escapes each day: thoughts of sin, iyun tefillah, and the dust of lashon hara.
+         KI: Davening as a child asks a parent, not as one who deserves, keeps a person from bringing judgment on himself.
+      chagigah/6  One Hundred and One Times  (6a-9b, score 3)
+         KI: Davening takes the place of the korbanos.
+         CH: Davening in place of korbanos

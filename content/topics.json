@@ -4,8 +4,8 @@
     "title": "Tzedakah and chesed",
     "description": "DRAFTED (needs review before the page shows it): What the Gemara's aggados teach about giving: how much, to whom, and why giving is what keeps wealth alive.",
     "aliases": ["charity", "giving"],
-    "match": ["tzedakah", "chesed", "gives", "giving", "give", "gave", "salt of money"],
-    "notes": "kesuvos 5, 6, 9 are the core; chagigah 4 'help before the trouble grows' should also match."
+    "match": ["tzedakah", "chesed", "giving", "salt of money"],
+    "notes": "kesuvos 5, 6, 9 are the core. Bare give/gave/gives removed 2026-11-26 (QA round 1): they matched eruvin/2 ('Rabbi Akiva gave his last water'), eruvin/3, kesuvos/2 and kesuvos/3 ('soldiers gave gittin') as false positives. chagigah/8 still matches via 'chesed' — borderline (creation beginning with chesed / Torah learning granted chesed); kept, listed in spec §8."
   },
   {
     "slug": "marriage",
@@ -44,8 +44,8 @@
     "title": "Angels, the heavens and the Merkavah",
     "description": "DRAFTED (needs review): Malachim in the Gemara — the Angel of Death, the angels of peace, the seven heavens, and what may be learned of the Merkavah.",
     "aliases": ["malachim", "angel of death", "merkavah", "heavens"],
-    "match": ["angel", "malach", "malachim", "merkavah", "heaven", "chayos", "sandalfon"],
-    "notes": "chagigah 3, 8, 9, 10. 'heaven' must match 'seven heavens' but watch 'Heaven' meaning Hashem ('fear of Heaven') — eruvin 2 KI says 'fear of Heaven'."
+    "match": ["angel", "malach", "malachim", "merkavah", "chayos", "sandalfon"],
+    "notes": "chagigah 3, 9, 10 are core. Bare 'heaven' removed 2026-11-26 (QA round 1): it matched 'fear of Heaven' (eruvin/2) and 'zivug decreed in Heaven' (kesuvos/1), where Heaven means Hashem. Plural 'heavens' was tried and also removed: norm() strips the apostrophe in 'Heaven's hands' (kesuvos/5), so it matched the same way; the seven-heavens shiur (chagigah/9) matches on its angel/merkavah/chayos keywords instead. Never add any form of 'heaven' back without checking where Heaven means Hashem."
   },
   {
     "slug": "emunah",
@@ -60,8 +60,8 @@
     "title": "Guarding the eyes and the tongue",
     "description": "DRAFTED (needs review): What a person says and sees is never lost: words hover in the air and are recounted before him, and Chazal build fences around eyes and speech.",
     "aliases": ["lashon hara", "speech", "gossip"],
-    "match": ["lashon hara", "gossip", "rechilus", "guard your eyes", "guarding", "words", "speech"],
-    "notes": "chagigah 4, 7; kesuvos 1, 3, 5; eruvin 1. 'words' may be too broad — check output."
+    "match": ["lashon hara", "gossip", "rechilus", "guard your eyes", "guarding", "speech", "words never disappear", "every word", "words he shouldn't hear"],
+    "notes": "Bare 'words' removed 2026-11-26 (QA round 1): it matched chagigah/2 ('Words of Torah are like a goad') as a false positive. Replaced with the specific phrases that carry the true positives: chagigah/7 ('Words never disappear'), kesuvos/1 ('words he shouldn't hear'). kesuvos/7 ('The power of a tzaddik's words') is about the power of speech, not guarding it — deliberately no longer matched; listed in spec §8."
   },
   {
     "slug": "tzaddikim",
@@ -76,8 +76,8 @@
     "title": "The creation and the hidden light",
     "description": "DRAFTED (needs review): The light of the first day, hidden for the tzaddikim and reachable through the Torah; Adam and all the souls; why the world was created unfinished, so people complete it.",
     "aliases": ["hidden light", "or haganuz", "maaseh bereshit"],
-    "match": ["created", "creation", "first day", "hidden light", "adam", "tohu"],
-    "notes": "chagigah 7, 8, 9('s heavens overlap is fine); 'adam' must not match 'Adam' inside other words — word boundary handles it."
+    "match": ["created", "creation", "hidden light", "adam", "tohu"],
+    "notes": "'first day' removed 2026-11-26 (QA round 1): it matched baitza/1 ('an egg laid on the first day' of Rosh Hashanah) as a false positive; the true positives (chagigah/7 'Ten things created on the first day') still match via 'created'. chagigah 7, 8, 9; eruvin 1; kesuvos 1, 2. 'adam' must not match 'Adam' inside other words — word boundary handles it."
   },
   {
     "slug": "korbanos",
