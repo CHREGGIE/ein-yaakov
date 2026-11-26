@@ -1,0 +1,114 @@
+[
+  {
+    "slug": "tzedakah",
+    "title": "Tzedakah and chesed",
+    "description": "DRAFTED (needs review before the page shows it): What the Gemara's aggados teach about giving: how much, to whom, and why giving is what keeps wealth alive.",
+    "aliases": ["charity", "giving"],
+    "match": ["tzedakah", "chesed", "giving", "salt of money"],
+    "notes": "kesuvos 5, 6, 9 are the core. Bare give/gave/gives removed 2026-11-26 (QA round 1): they matched eruvin/2 ('Rabbi Akiva gave his last water'), eruvin/3, kesuvos/2 and kesuvos/3 ('soldiers gave gittin') as false positives. chagigah/8 still matches via 'chesed' — borderline (creation beginning with chesed / Torah learning granted chesed); kept, listed in spec §8."
+  },
+  {
+    "slug": "marriage",
+    "title": "Marriage, the chuppah and the Jewish home",
+    "description": "DRAFTED (needs review): Zivugim decreed in Heaven, the chuppah, sheva brachos, the wife who sends her husband to learn, and what each brings out in the other.",
+    "aliases": ["shidduch", "wedding", "chuppah"],
+    "match": ["chuppah", "kallah", "chosson", "sheva brachos", "zivug", "marriage", "wife", "wedding"],
+    "notes": "kesuvos 1-4, 7, 8. Careful: kesuvos 5/6/9 are tzedakah shiurim with isolated marriage chapters; score_min may need raising."
+  },
+  {
+    "slug": "torah-learning",
+    "title": "The value of learning Torah",
+    "description": "DRAFTED (needs review): Why learning Torah outranks everything else: even one hour counts, review defeats forgetting, and Torah stays with one who rises early and stays late.",
+    "aliases": ["torah study", "limmud torah"],
+    "match": ["learning torah", "learns", "learn", "learning", "yeshiva", "talmid chacham", "beis medrash", "rising early", "review"],
+    "notes": "Must not match every shiur that merely says 'Torah' — keywords are action-of-learning phrases."
+  },
+  {
+    "slug": "shabbos-yom-tov",
+    "title": "Shabbos and Yom Tov",
+    "description": "DRAFTED (needs review): Shabbos as Hashem's hidden gift, the extra neshamah, half of Yom Tov for Hashem and half for yourself, and how the Gemara's aggados carry the kedushah of the day.",
+    "aliases": ["shabbat", "yom tov", "holidays"],
+    "match": ["shabbos", "yom tov", "rosh hashanah", "eruv", "neshamah", "yuntif"],
+    "notes": "Baitza is a Yom Tov masechta — expect most Baitza shiurim to match; that is correct, not over-matching."
+  },
+  {
+    "slug": "gehinnom",
+    "title": "Gehinnom and the judgment",
+    "description": "DRAFTED (needs review): The Gemara's picture of judgment and Gehinnom: hidden and revealed deeds, the doors that lead there, and what cleanses a person.",
+    "aliases": ["hell", "judgment", "din"],
+    "match": ["gehinnom", "judgment", "judged", "the pit", "sentenced"],
+    "notes": "eruvin 1-2 and chagigah 3 are core; 'judgment' also appears in kesuvos 3 KI."
+  },
+  {
+    "slug": "angels",
+    "title": "Angels, the heavens and the Merkavah",
+    "description": "DRAFTED (needs review): Malachim in the Gemara — the Angel of Death, the angels of peace, the seven heavens, and what may be learned of the Merkavah.",
+    "aliases": ["malachim", "angel of death", "merkavah", "heavens"],
+    "match": ["angel", "malach", "malachim", "merkavah", "chayos", "sandalfon"],
+    "notes": "chagigah 3, 9, 10 are core. Bare 'heaven' removed 2026-11-26 (QA round 1): it matched 'fear of Heaven' (eruvin/2) and 'zivug decreed in Heaven' (kesuvos/1), where Heaven means Hashem. Plural 'heavens' was tried and also removed: norm() strips the apostrophe in 'Heaven's hands' (kesuvos/5), so it matched the same way; the seven-heavens shiur (chagigah/9) matches on its angel/merkavah/chayos keywords instead. Never add any form of 'heaven' back without checking where Heaven means Hashem."
+  },
+  {
+    "slug": "emunah",
+    "title": "Emunah, bitachon and parnassah",
+    "description": "DRAFTED (needs review): Livelihood is set on Rosh Hashanah; worry and bitachon; Hashem gives each person his food in its time. The Gemara's aggados on trusting Him.",
+    "aliases": ["faith", "livelihood", "trust in god"],
+    "match": ["emunah", "bitachon", "parnassah", "livelihood", "heavens hands", "repays"],
+    "notes": "baitza 1, kesuvos 3, 5, 9."
+  },
+  {
+    "slug": "guarding-speech",
+    "title": "Guarding the eyes and the tongue",
+    "description": "DRAFTED (needs review): What a person says and sees is never lost: words hover in the air and are recounted before him, and Chazal build fences around eyes and speech.",
+    "aliases": ["lashon hara", "speech", "gossip"],
+    "match": ["lashon hara", "gossip", "rechilus", "guard your eyes", "guarding", "speech", "words never disappear", "every word", "words he shouldn't hear"],
+    "notes": "Bare 'words' removed 2026-11-26 (QA round 1): it matched chagigah/2 ('Words of Torah are like a goad') as a false positive. Replaced with the specific phrases that carry the true positives: chagigah/7 ('Words never disappear'), kesuvos/1 ('words he shouldn't hear'). kesuvos/7 ('The power of a tzaddik's words') is about the power of speech, not guarding it — deliberately no longer matched; listed in spec §8."
+  },
+  {
+    "slug": "tzaddikim",
+    "title": "The tzaddik and his power",
+    "description": "DRAFTED (needs review): What a tzaddik is in the Gemara: the world stands on him, his words have power, his thought alone can affect another person, and even his animal is kept from sin.",
+    "aliases": ["righteous", "tzaddik"],
+    "match": ["tzaddik", "tzaddikim"],
+    "notes": "Word-boundary matching must not catch 'tzaddikim' twice or miss plurals — both listed."
+  },
+  {
+    "slug": "creation",
+    "title": "The creation and the hidden light",
+    "description": "DRAFTED (needs review): The light of the first day, hidden for the tzaddikim and reachable through the Torah; Adam and all the souls; why the world was created unfinished, so people complete it.",
+    "aliases": ["hidden light", "or haganuz", "maaseh bereshit"],
+    "match": ["created", "creation", "hidden light", "adam", "tohu"],
+    "notes": "'first day' removed 2026-11-26 (QA round 1): it matched baitza/1 ('an egg laid on the first day' of Rosh Hashanah) as a false positive; the true positives (chagigah/7 'Ten things created on the first day') still match via 'created'. chagigah 7, 8, 9; eruvin 1; kesuvos 1, 2. 'adam' must not match 'Adam' inside other words — word boundary handles it."
+  },
+  {
+    "slug": "korbanos",
+    "title": "Korbanos and the Beis Hamikdash",
+    "description": "DRAFTED (needs review): The korbanos and what was lost with the churban: olos and shelamim, the mizbeach, the wings that sing, and what we ask to return.",
+    "aliases": ["sacrifices", "temple", "beis hamikdash"],
+    "match": ["korban", "olah ", "shelamim", "mizbeach", "beis hamikdash", "churban", "azarah"],
+    "notes": "chagigah 5, 6, 10; baitza 3; eruvin 1; kesuvos 3 has 'What the mizbeach does' — one chapter hit only, may not qualify at score_min 2. That is acceptable."
+  },
+  {
+    "slug": "teshuvah",
+    "title": "Teshuvah",
+    "description": "DRAFTED (needs review): Returning: Adam as the first baal teshuvah, fences so one does not fall back, regret, and the Kotzker on sin and repentance.",
+    "aliases": ["repentance", "baal teshuvah"],
+    "match": ["teshuvah", "repentance", "baal teshuvah", "regret"],
+    "notes": "Expected ~2 shiurim at Nov 2026 — likely below threshold; kept in the taxonomy so the page appears when the third shiur lands."
+  },
+  {
+    "slug": "mourning",
+    "title": "Mourning and comforting mourners",
+    "description": "DRAFTED (needs review): What Chazal teach about death and the mourner's home: the limits set on mourning, burial in simple linen, and death and atonement.",
+    "aliases": ["aveilus", "mourning", "comforting mourners"],
+    "match": ["mourner", "mourners", "mourning", "burial", "buried", "widow", "widowed"],
+    "notes": "kesuvos 2 core; kesuvos 8 has widows. Watch kesuvos 3 'Why a widow is called almanah' — one chapter hit, should not qualify the shiur alone."
+  },
+  {
+    "slug": "davening",
+    "title": "Davening and its power",
+    "description": "DRAFTED (needs review): Davening takes the place of the korbanos; how to ask — as a child asks a parent, not as one who deserves.",
+    "aliases": ["prayer", "tefillah"],
+    "match": ["davening", "daven", "prayer", "tefillah"],
+    "notes": "chagigah 6, kesuvos 3 — expect ~2, below threshold at launch."
+  }
+]
