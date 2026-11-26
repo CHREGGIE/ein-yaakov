@@ -250,6 +250,11 @@ The `.txt` file the clip tool writes has all of this filled in; check it and adj
   - the dedication wording;
   - the source and key-idea review.
 
+## Security
+
+- `docs/threat-model.md` describes the real risks (accounts, push-equals-live, R2) and Greg's checklist.
+- `next.config.ts` sends security headers, and a content security policy in report-only mode. If you add a new outside source (a font host, a script, an image host), add it to the policy there, or it will be blocked once the policy is enforced.
+
 ## Commits
 
 - End every commit with the session's Co-Authored-By trailer.

@@ -4,7 +4,27 @@ Oct 28, 2026 · @Gregory · Updated Oct 30, 2026 (weekly podcast + library model
 
 Companion to Doc. Export this doc as Markdown and save it in the repo as `CLAUDE.md` or `HANDOFF.md`.
 
-## Read this first
+## Status, November 2026: what was actually built
+
+**This section replaces the plan below wherever they disagree.** The rest of this document is the original October plan, kept for its specs and reasoning. Supabase, the admin review queue and the automatic Dropbox intake were never built.
+
+- **Live site:** https://www.einyaakovshiur.com, a Next.js 16 app on Vercel. Every push to `claude/determined-clarke-bi0vun` deploys to production; there is no separate review branch.
+- **Catalog:** JSON files in the repo, not a database. `content/masechtos.json` lists the masechtos; `content/shiurim/<masechta>/NN.json` holds each shiur (built from `pipeline/meta/<masechta>/NN.json` by `pipeline/build_shiur.py`).
+- **Audio:** cleaned with `pipeline/clean.sh`, uploaded by Greg to Cloudflare R2, served from `https://audio.einyaakovshiur.com/<masechta>/<Masechta>-NN.mp3`.
+- **Podcast:** `/feed.xml`, read by Spotify, Apple Podcasts, Amazon Music and iHeart. Only Kesuvos (season 1) is in the feed. Baitza, Chagigah and Eruvin are library-only.
+- **Transcripts:** made with faster-whisper and shown on every shiur page in closed panels under a "may be misspelled" note. Greg chose to publish them as is.
+- **Clips:** `pipeline/clips/makeclip.py` makes WhatsApp and YouTube Shorts versions of story clips.
+- **How a shiur is reviewed and published:**
+  1. Greg sends the recording (attachment or Dropbox link).
+  2. Claude cleans and transcribes it, writes the title, summary, key ideas, sources and chapters, and sends the summary to Greg.
+  3. Greg uploads the MP3 to R2 and says so.
+  4. Claude publishes by pushing to the branch.
+
+  Greg's confirmation is the human review; there is no admin screen.
+- **The weekly run** is documented step by step in `.claude/skills/ein-yaakov-show/SKILL.md`. Read that before doing any weekly work.
+- **Security:** see `docs/threat-model.md`.
+
+## Read this first (original plan, October 2026)
 
 You're building a pipeline and a standalone site that publish Rabbi Fogelman's weekly Ein Yaakov shiur from our shul as a searchable library and a weekly podcast feed. Greg Grinman owns the project and reviews everything before it goes public.
 
@@ -14,13 +34,13 @@ Already decided:
 - **The shiur site is standalone**, separate from the shul's website.
 - **Intake is Dropbox**, one folder per masechta, files named `Masechta-NN`.
 - **Audio cleanup runs locally with ffmpeg** (`clean.sh` below), not Auphonic, unless spot checks show older recordings need more.
-- **Nothing publishes without human review.**
+- **Nothing publishes without human review.** (In practice: Greg reads the write-up and confirms the MP3 is in R2 before Claude publishes. See the status section above.)
 - **Two products from one catalog: a weekly podcast and a library.** The podcast carries new shiurim, one a week, from the feed launch onward. The site library carries every reviewed shiur, including the backlog. Backlog shiurim keep their original dates and go into the library one masechta at a time; they do not go into the main podcast feed.
 - **The weekly shiur always comes first in review.** Backlog review happens in batches and never holds up the weekly release.
 
 Proposed but not locked: Supabase, Cloudflare R2, Whisper, Vercel. Confirm with Greg before building on them.
 
-## Current state
+## Current state (as of October 30; see the status section above)
 
 Only the audio preset exists; no repo, database, storage or site has been set up.
 
@@ -94,7 +114,7 @@ Source recordings seen so far peak above 0 dBTP (Baitza: +0.0 to +1.9), so the l
 
 Intake notes from Baitza: files arrive as `Masechta_NN` (underscore), a shiur can be split into parts (`Baitza_04.1`, `Baitza_04.2`) that must be joined in order before cleaning, and file metadata dates are copy/export times, not shiur dates. The inventory script must flag all three.
 
-## Proposed data model
+## Proposed data model (not built; the catalog is JSON files in the repo)
 
 Two tables cover the catalog: one row per masechta, one row per shiur. This is a starting proposal; adjust it when the inventory shows what metadata actually exists.
 
@@ -148,7 +168,7 @@ create index shiurim_search_idx on shiurim using gin (search);
 
 The `guid` must never change once published, or podcast apps will treat the shiur as a new episode.
 
-## Build tasks
+## Build tasks (original plan; the review queue and Dropbox trigger were not built)
 
 Build in this order; each task is done when its check passes.
 
